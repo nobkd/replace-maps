@@ -1,0 +1,21 @@
+{
+    "description": "Replaces Google Maps iframes with OSM",
+    "manifest_version": 2,
+    "name": "Replace Maps",
+    "version": "1.0",
+    "homepage_url": "https://github.com/nobkd/replace-maps",
+    "icons": {
+        "48": "icons/48.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*",
+                "https://*"
+            ],
+            "js": [
+                "replace.js"
+            ]
+        }
+    ]
+}
