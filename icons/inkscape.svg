@@ -9,7 +9,6 @@
    id="svg5"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="inkscape.svg"
-   inkscape:export-filename="48.png"
    inkscape:export-xdpi="36"
    inkscape:export-ydpi="36"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,14 +27,14 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="3.2035073"
-     inkscape:cx="-7.6478677"
-     inkscape:cy="101.76346"
-     inkscape:window-width="1969"
-     inkscape:window-height="1047"
+     inkscape:cx="55.408021"
+     inkscape:cy="62.431573"
+     inkscape:window-width="1600"
+     inkscape:window-height="833"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg5" />
+     inkscape:current-layer="g23306" />
   <defs
      id="defs2">
     <clipPath
@@ -91,17 +90,19 @@
          inkscape:label="flag"
          transform="translate(-1.9903854,1.7492722)">
         <path
-           style="fill:#dc5656;fill-opacity:1;stroke:none;stroke-width:1.37713;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.994535"
+           style="fill:#d42e2e;fill-opacity:1;stroke:none;stroke-width:1.37713;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.994535"
            d="M 6.7080857,74.925444 17.437586,97.440671 28.167086,74.925444 Z"
            id="path25710"
-           sodipodi:nodetypes="cccc" />
+           sodipodi:nodetypes="cccc"
+           inkscape:label="pin" />
         <ellipse
-           style="fill:#858585;fill-opacity:1;stroke:#dc5656;stroke-width:4.43576;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:#9fa5a0;fill-opacity:1;stroke:#d42e2e;stroke-width:4.5;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
            id="path23366"
            cx="17.437586"
            cy="70.747612"
            rx="9.4689493"
-           ry="9.4689474" />
+           ry="9.4689474"
+           inkscape:label="circle" />
       </g>
     </g>
     <g
@@ -166,7 +167,16 @@
        transform="translate(-19.930758,1.8676491)"
        style="display:inline;stroke:none;stroke-opacity:0.99453509">
       <rect
-         style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke:none;stroke-dasharray:none"
+         style="display:inline;fill:#000000;fill-opacity:0.25;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1021-3"
+         width="64"
+         height="32"
+         x="53.720181"
+         y="49.093773"
+         ry="16"
+         inkscape:label="rounded_rect_shadow" />
+      <rect
+         style="display:inline;stroke:none;stroke-opacity:1;fill:#f3bfbf;fill-opacity:1;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
          id="rect1021"
          width="64"
          height="32"
@@ -175,7 +185,7 @@
          ry="16"
          inkscape:label="rounded_rect" />
       <circle
-         style="fill:#dc5656;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#d42e2e;fill-opacity:1;stroke:#f3bfbf;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="path6953"
          cx="99.990211"
          cy="62.132351"
