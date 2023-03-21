@@ -14,15 +14,21 @@ Possible examples:
 The capturing can match patterns that might not be correct in real life, but it does not matter, so we keep it like this (and it would become more complex)
 */
 
-let iframes = Array.from(document.getElementsByTagName('iframe'));
-let gMaps = iframes.filter((item) => item.src.match(matcher));
+Array.from(
+    document.getElementsByTagName('iframe')
+).forEach((item) => {
+    if (item.src.match(matcher)) {
+        item.src = convert(item.src.split('?')[1]);
+    }
+});
 
-console.log(gMaps);
 
-// TODO: the hard part will be to interpret the real request params after the `?` and translate it for OSM
+function convert(url_params) {
+    url_params = new URLSearchParams(url_params);
+    console.log(url_params);
 
-// document.replaceChild(prev_map_iframe, new_map_iframe);
-// ^ can be problematic if we are'nt transferring all the iframe args
+    // TODO: the hard part will be to interpret the real request params after the `?` and translate it for OSM
+    // Also we might have to intercept and discard the possible request to gmaps because they're not needed, because the gmap is replaced
 
-// another way would be to just replace the `src` but i don't know if the browser updates / overwrites the iframe
-// ^ we might have to intercept and discard the request to gmaps
+    return ''; // Full uri for the embed src
+}
