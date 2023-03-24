@@ -1,5 +1,7 @@
 const gLocales = ['com', 'de']; // TODO: collect more locales
-const matcher = new RegExp(`^(https?:\/\/)?((maps|www)\.)?google\.(${gLocales.join('|')})\/maps(\/embed)?\/?\?`);
+const matcher = new RegExp(
+    `^(https?:\/\/)?(maps\.google\.(${gLocales.join('|')})\/maps\/?\?.*output=embed|(www\.)?google\.(${gLocales.join('|')})\/maps\/embed\/?\?)`
+);
 
 Array.from(
     document.getElementsByTagName('iframe')
