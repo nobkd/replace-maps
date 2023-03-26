@@ -7,9 +7,9 @@ const patterns = [
     'https://*/maps?*output=embed*'
 ];
 
-const gLocales = ['com', 'de']; // TODO: collect more locales
+const gLocales = ['com', 'de'].join('|'); // TODO: collect more locales
 const matcher = new RegExp(
-    `^(https?:\/\/)?(maps\.google\.(${gLocales.join('|')})\/maps\?.*output=embed|(www\.)?google\.(${gLocales.join('|')})\/maps\/embed\?)`
+    `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed\?)`
 );
 
 
