@@ -15,14 +15,7 @@ const matcher = new RegExp(
 
 function redirect(req) {
     if (req.url.match(matcher)) {
-        const params = new URLSearchParams(req.url.split('?')[1]);
-        
-        console.log(req);
-        console.log(params);
-        
-        return {
-            redirectUrl: 'https://www.openstreetmap.org/export/embed.html?bbox=-12.041015625000002%2C44.32384807250689%2C27.465820312500004%2C57.397624055000456&amp;layer=mapnik'
-        };
+        return { redirectUrl: browser.extension.getURL('map/map.html?' + req.url.split('?')[1]) };
     }
 }
 

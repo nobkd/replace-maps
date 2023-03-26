@@ -19,7 +19,10 @@
     ],
     "background": {
         "scripts": [
-            "replace.js"
+            "background.js"
         ]
-    }
+    },
+    "web_accessible_resources": [
+        "map/map.html"
+    ]
 }
