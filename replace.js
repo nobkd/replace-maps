@@ -1,41 +1,48 @@
 "use strict";
 
+const patterns = [
+    'http://*/maps/embed*',
+    'https://*/maps/embed*',
+    'http://*/maps*output=embed*',
+    'https://*/maps*output=embed*'
+];
+
 const gLocales = ['com', 'de']; // TODO: collect more locales
 const matcher = new RegExp(
     `^(https?:\/\/)?(maps\.google\.(${gLocales.join('|')})\/maps\/?\?.*output=embed|(www\.)?google\.(${gLocales.join('|')})\/maps\/embed\/?\?)`
 );
 
-function matchMaps(iframeNode) {
-    return iframeNode.src.match(matcher);
-}
-
-function replaceMaps(iframeNode) {
-    const url_params = new URLSearchParams(iframeNode.src.split('?')[1]);
-    iframeNode.src = '';
-
-    // TODO: the hard part will be to interpret the real request params after the `?` and translate it for OSM
-    // Also we might have to intercept and discard the possible request to gmaps because they're not needed, because the gmap is replaced
-
-    iframeNode.id = iframeNode.id || 'map-' + `${Math.random()}`.split('.')[0];
-}
-
-function changeMaps(iframeNode) {
-    if (matchMaps(iframeNode)) {
-        iframeNode.contentWindow.stop();
-        replaceMaps(iframeNode);
-    }
-}
-
-Array.from(document.getElementsByTagName('iframe')).forEach(changeMaps);
-
-const observer = new MutationObserver(mutations => {
-    for (let mutation of mutations) {
-        for (let node of mutation.addedNodes) {
-            if (node.nodeName === 'iframe') {
-                changeMaps(node);
-            }
+function editFrame(tabId, frameId) {
+    browser.webNavigation.getFrame({
+        tabId: tabId,
+        frameId: frameId
+    }).then(
+        (frameDetails) => {
+            console.log(frameDetails);
+            frameDetails.scrolling = 'no'; // trying to manipulate iframes attributes: not working
         }
-    }
-});
+    );
+}
 
-observer.observe(document, { childList: true, subtree: true });
+function redirect(req) {
+    if (req.url.match(matcher)) {
+        const params = new URLSearchParams(req.url.split('?')[1]);
+        
+        console.log(req);
+        console.log(params);
+        //editFrame(req.tabId, req.frameId);
+        
+        return {
+            redirectUrl: 'https://www.openstreetmap.org/export/embed.html?bbox=-12.041015625000002%2C44.32384807250689%2C27.465820312500004%2C57.397624055000456&amp;layer=mapnik'
+        };
+    }
+}
+
+browser.webRequest.onBeforeRequest.addListener(
+    redirect,
+    {
+        urls: patterns,
+        types: ['sub_frame']
+    },
+    ['blocking']
+);
