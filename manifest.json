@@ -10,7 +10,6 @@
         "128": "icons/128.png"
     },
     "permissions": [
-        "webNavigation",
         "webRequest",
         "webRequestBlocking",
         "http://*/maps/embed*",
