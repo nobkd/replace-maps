@@ -13,12 +13,14 @@
         "url": "git+https://github.com/nobkd/replace-maps.git"
     },
     "scripts": {
+        "icons": "svgexport icons/plain.svg src/icons/48.png 48:48 && svgexport icons/plain.svg src/icons/96.png 96:96",
         "dev": "web-ext -s src run",
         "lint": "web-ext -s src lint",
         "build": "web-ext -s src build",
         "format": "prettier src --write"
     },
     "devDependencies": {
+        "@baravak/svgexport": "^0.4.1",
         "prettier": "^2.8.7",
         "web-ext": "^7.6.0"
     }
