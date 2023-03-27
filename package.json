@@ -13,7 +13,7 @@
         "url": "git+https://github.com/nobkd/replace-maps.git"
     },
     "scripts": {
-        "run": "web-ext -s src run",
+        "dev": "web-ext -s src run",
         "lint": "web-ext -s src lint",
         "build": "web-ext -s src build",
         "format": "prettier src --write"

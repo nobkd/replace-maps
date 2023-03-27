@@ -8,5 +8,5 @@
     "trailingComma": "es5",
     "singleQuote": true,
     "arrowParens": "always",
-    "printWidth": 90
+    "printWidth": 100
 }
