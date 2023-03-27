@@ -1,0 +1,25 @@
+{
+    "name": "replace-maps",
+    "description": "Replace Google Maps iframes with OSM",
+    "author": "nobkd",
+    "license": "Unlicense",
+    "version": "1.0.0",
+    "homepage": "https://github.com/nobkd/replace-maps#readme",
+    "bugs": {
+        "url": "https://github.com/nobkd/replace-maps/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nobkd/replace-maps.git"
+    },
+    "scripts": {
+        "run": "web-ext -s src run",
+        "lint": "web-ext -s src lint",
+        "build": "web-ext -s src build",
+        "format": "prettier src --write"
+    },
+    "devDependencies": {
+        "prettier": "^2.8.7",
+        "web-ext": "^7.6.0"
+    }
+}
