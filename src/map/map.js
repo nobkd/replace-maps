@@ -15,9 +15,7 @@ let markers = [];
 if (params.has(gPos)) {
     parsePB(params.get(gPos));
 } else if (params.has(gQuery)) {
-
-} else {
-
+    parseQ(params.get(gQuery));
 }
 
 const map = L.map('map').setView([mapArea.lat, mapArea.lng], mapArea.zoom);
@@ -33,6 +31,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // ---
+
+function parseQ(param) {
+    console.log(param);
+}
 
 function parsePB(param) {
     // https://andrewwhitby.com/2014/09/09/google-maps-new-embed-format/
@@ -72,8 +74,8 @@ function parsePB(param) {
                 // two hex parts corresponding to ID of map object? -> FTID????
                 console.log(val);
             }
-            else {
-                console.log(val);
+            else { // might have to add more layers in betwwen to filter out more
+                parseQ(val);
             }
         }
         else {
