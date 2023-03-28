@@ -1,5 +1,16 @@
 'use strict';
+
+const gPos = 'pb';
+const gQuery = 'q';
 const params = new URLSearchParams(document.location.search);
+
+if (params.has(gPos)) {
+    console.log('pb: ' + params.get(gPos));
+} else if (params.has(gQuery)) {
+    console.log('q: ' + params.get(gQuery));
+} else {
+    console.log('?: ' + params);
+}
 
 const map = L.map('map').setView([51.505, -0.09], 13);
 let marker = L.marker([51.5, -0.09]).addTo(map);
