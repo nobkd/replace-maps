@@ -9,6 +9,7 @@ const patterns = [
 
 const gLocales = ['com', 'de'].join('|'); // TODO: collect more locales
 const matcher = new RegExp(
+    // TODO: fix regex to fit more patterns
     `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed\?)`
 );
 

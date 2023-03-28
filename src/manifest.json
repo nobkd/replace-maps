@@ -11,10 +11,10 @@
     "permissions": [
         "webRequest",
         "webRequestBlocking",
-        "http://*/maps/embed?*",
-        "https://*/maps/embed?*",
-        "http://*/maps?*output=embed*",
-        "https://*/maps?*output=embed*"
+        "http://*/maps/embed*?*",
+        "https://*/maps/embed*?*",
+        "http://*/maps*?*output=embed*",
+        "https://*/maps*?*output=embed*"
     ],
     "background": {
         "scripts": ["background.js"]
