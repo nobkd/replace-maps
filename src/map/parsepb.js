@@ -41,5 +41,6 @@ function fromPB(items, idx = 0, out = []) {
     return out;
 }
 
-pb = '!1m18!1m12!1m3!1d2430.8881547480214!2d10.197357316209178!3d52.463052979803535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b01d1b9af65f4b:0x225da8e03e242ad1!2sBaarsweg 9, 31311 Uetze!5e0!3m2!1sde!2sde!4v1557583694739!5m2!1sde!2sde';
+
+let pb = '';
 console.log(fromPB(pb.split('!').slice(1)));
