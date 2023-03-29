@@ -94,11 +94,11 @@ async function parsePB(param) {
                     mapArea.lat = floatVal;
             };
         } else if (val.match(/^\d+z/)) { // decode `base64` to `degrees minutes seconds direction` to `lat lng`
-            let marker = atob(val.substring(2));
+            let marker = atob(val.replace(/^\d+z/, ''));
             marker.replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
             markers.push({ latlon: parseDMS(marker), label: '' });
         } else if (val.match(/^\d+s/)) {
-            val = val.substring(2);
+            val = val.replace(/^\d+s/, '');
 
             if (val.match(/^0x[\da-f]+:0x[\da-f]+$/i)) {
                 // two hex parts corresponding to ID of map object? -> FTID????
