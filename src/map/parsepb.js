@@ -3,44 +3,50 @@ function convertType(item) {
     const type = item.charAt();
     item = item.substring(1);
 
-    let temp = undefined;
+    // s: string || v: timestamp || b: boolean?/byte?
+    let val = item;
 
     switch (type) {
-        case 'f': case 'd': // float or map pos
-            temp = parseFloat(item);
+        case 'f': case 'd': // float || double
+            val = parseFloat(item);
             break;
-        case 'i': case 'm': // int or new
-            temp = parseInt(item);
+        case 'i': case 'm': // int || matrix1d
+            val = parseInt(item);
             break;
-        case 'e': case 's': case 'z': // enum (decode differently later) or string or timestamp
-            temp = item;
+        case 'e': // enum
+            switch (item) {
+                case '0':
+                    val = 'roadmap';
+                    break;
+                case '1':
+                    val = 'satellite';
+            };
             break;
-        default:
-            temp = item;
+        case 'z': // base64 encoded coords
+            val = atob(item).replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
     };
 
-    return [temp, type === 'm'];
+    return [val, type === 'm'];
 }
 
-function fromPB(items, idx = 0, out = []) {
-
-    while (idx < items.length) {
-        let [val, isNew] = convertType(items[idx]);
+function parsePB(items, out = []) {
+    let i = 0;
+    while (i < items.length) {
+        let [val, isNew] = convertType(items[i]);
 
         if (!isNew) {
             out.push(val);
         } else {
-            let range = items.slice(idx + 1, idx + val + 1);
-            let newOut = fromPB(range);
-            out.push(newOut);
-            idx += val;
+            let itemsPart = items.slice(i + 1, i + val + 1);
+            out.push(parsePB(itemsPart));
+            i += val;
         }
-        idx++;
+        i++;
     }
 
     return out;
 }
 
 
-let pb = '';
-console.log(fromPB(pb.split('!').slice(1)));
+pb = '';
+console.log(parsePB(pb.split('!').slice(1)));
