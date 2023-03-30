@@ -73,7 +73,7 @@ export async function readQ(addr: string): Promise<Marker | null> {
         return null;
     }
 
-    let json: {lat: string; lon: string}[] = await res.json();
+    let json: { lat: string; lon: string }[] = await res.json();
 
     let body: { lat: string; lon: string } = json[0];
 
