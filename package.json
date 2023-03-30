@@ -14,15 +14,15 @@
         "url": "git+https://github.com/nobkd/replace-maps.git"
     },
     "scripts": {
-        "leaflet": "cp node_modules/leaflet/dist/leaflet.css public/leaflet.css && cp -r node_modules/leaflet/dist/images public",
         "icons": "svgexport icons/plain.svg public/icons/48.png 48:48 && svgexport icons/plain.svg public/icons/96.png 96:96",
+        "leaflet": "cp node_modules/leaflet/dist/leaflet.css public/leaflet.css && cp -r node_modules/leaflet/dist/images public",
         "format": "prettier . --write",
         "build": "nr leaflet && tsc && vite build",
         "watch": "nr leaflet && vite build --watch --mode development --minify false",
         "dev": "nr leaflet && vite",
-        "serve:firefox": "web-ext run -s ./dist/",
-        "serve:chrome": "web-ext run -t chromium -s dist",
-        "bundle": "web-ext build -s dist -a out"
+        "serve:firefox": "web-ext run -s .dist",
+        "serve:chrome": "web-ext run -t chromium -s .dist",
+        "bundle": "nr build && web-ext build -s .dist -a .out"
     },
     "devDependencies": {
         "@antfu/ni": "^0.21.2",
