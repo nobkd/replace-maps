@@ -21,7 +21,12 @@
     },
     "devDependencies": {
         "@baravak/svgexport": "^0.4.1",
+        "@types/leaflet": "^1.9.3",
         "prettier": "^2.8.7",
+        "typescript": "^5.0.2",
         "web-ext": "^7.6.0"
+    },
+    "dependencies": {
+        "leaflet": "^1.9.3"
     }
 }
