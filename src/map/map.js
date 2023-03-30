@@ -95,7 +95,7 @@ async function parsePB(param) {
             };
         } else if (val.match(/^\d+z/)) { // decode `base64` to `degrees minutes seconds direction` to `lat lng`
             let marker = atob(val.replace(/^\d+z/, ''));
-            marker.replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
+            marker = marker.replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
             markers.push({ latlon: parseDMS(marker), label: '' });
         } else if (val.match(/^\d+s/)) {
             val = val.replace(/^\d+s/, '');
