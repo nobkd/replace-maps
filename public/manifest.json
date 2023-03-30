@@ -19,5 +19,5 @@
     "background": {
         "scripts": ["background.js"]
     },
-    "web_accessible_resources": ["map/map.html"]
+    "web_accessible_resources": ["res/map.html"]
 }
