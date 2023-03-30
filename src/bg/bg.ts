@@ -18,7 +18,7 @@ function redirect(
 ): browser.WebRequest.BlockingResponse {
     if (req.url.match(matcher)) {
         return {
-            redirectUrl: browser.runtime.getURL('res/map.html?' + req.url.split('?')[1]),
+            redirectUrl: browser.runtime.getURL('map.html?' + req.url.split('?')[1]),
         };
     }
     return {};

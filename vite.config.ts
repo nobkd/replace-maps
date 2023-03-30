@@ -9,8 +9,8 @@ export default defineConfig({
         emptyOutDir: true,
         rollupOptions: {
             input: {
-                bg: resolve(__dirname, 'src/background.html'),
-                map: resolve(__dirname, 'src/res/map.html'),
+                bg: resolve(__dirname, 'src/bg.html'),
+                map: resolve(__dirname, 'src/map.html'),
             },
         },
     },

@@ -1,5 +1,5 @@
 node_modules
-web-ext-artifacts
 dist
+out
 public/leaflet.css
 public/images
