@@ -7,10 +7,12 @@ function convertType(item: string): [string | number, boolean] {
     let val: string | number = item;
 
     switch (type) {
-        case 'f': case 'd': // float || double
+        case 'f':
+        case 'd': // float || double
             val = parseFloat(item);
             break;
-        case 'i': case 'm': // int || matrix1d
+        case 'i':
+        case 'm': // int || matrix1d
             val = parseInt(item);
             break;
         case 'e': // enum
@@ -20,11 +22,11 @@ function convertType(item: string): [string | number, boolean] {
                     break;
                 case '1':
                     val = 'satellite';
-            };
+            }
             break;
         case 'z': // base64 encoded coords
             val = atob(item).replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
-    };
+    }
 
     return [val, type === 'm'];
 }

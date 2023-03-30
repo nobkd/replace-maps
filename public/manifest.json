@@ -17,7 +17,7 @@
         "https://*/maps*?*output=embed*"
     ],
     "background": {
-        "scripts": ["background.js"]
+        "page": "background.html"
     },
-    "web_accessible_resources": ["map/map.html"]
+    "web_accessible_resources": ["res/map.html"]
 }

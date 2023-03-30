@@ -1,1 +1,5 @@
-leaflet
+package-lock.json
+*.md
+dist
+public/leaflet.css
+public/images
