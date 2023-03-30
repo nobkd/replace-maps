@@ -5,13 +5,13 @@ const nominatimQ: string = 'https://nominatim.openstreetmap.org/search/?limit=1&
 const cidMatch: RegExp = /^0x[\da-f]+:0x[\da-f]+$/i;
 const dmsMatch: RegExp = /^\d{1,2}°\d{1,2}'\d{1,2}\.\d"(N|S) \d{1,2}°\d{1,2}'\d{1,2}\.\d"(E|W)$/i;
 
-export type Marker = object & {
+export type Marker = {
     lat: number;
     lon: number;
     label?: string;
 };
 
-export type MapData = object & {
+export type MapData = {
     area?: {
         lat: number;
         lon: number;
