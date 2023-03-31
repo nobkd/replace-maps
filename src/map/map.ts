@@ -1,8 +1,26 @@
 import L from 'leaflet';
 
 import { readPB, readQ, type MapData } from './utils/read';
+import { type TileType } from './utils/parsePB';
 
-const tileLayer: string = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+type Tiles = {
+    [K in TileType]: {
+        layer: string;
+        attr: string;
+    };
+};
+
+// https://leaflet-extras.github.io/leaflet-providers/preview/
+const tileProviders: Tiles = {
+    roadmap: {
+        layer: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OpenStreetMap.Mapnik
+        attr: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    },
+    satellite: {
+        layer: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', // Esri.WorldImagery
+        attr: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+    },
+};
 
 const gPos: string = 'pb';
 const gQuery: string = 'q';
@@ -24,7 +42,7 @@ if (params.has(gPos)) {
 }
 
 if (params.has(gZoom)) {
-    mapData.zoom = parseInt(params.get(gZoom) as string);
+    mapData.zoom = Number(params.get(gZoom) as string);
 }
 
 const map: L.Map = L.map('map', {
@@ -50,7 +68,7 @@ if (mapData.markers) {
     }
 }
 
-L.tileLayer(tileLayer, {
+L.tileLayer(tileProviders[mapData.tile ?? 'roadmap'].layer, {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    //attribution: tileProviders[mapData.tile ?? 'roadmap'].attr,
 }).addTo(map);

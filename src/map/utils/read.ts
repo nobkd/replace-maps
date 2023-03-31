@@ -1,4 +1,4 @@
-import { parsePB } from './parsePB';
+import { parsePB, tileTypes, type TileType } from './parsePB';
 import { parseDMS } from './parseDMS';
 
 const nominatimQ: string = 'https://nominatim.openstreetmap.org/search/?limit=1&format=json&q=';
@@ -17,6 +17,7 @@ export type MapData = {
         lon: number;
     };
     zoom?: number;
+    tile?: TileType;
 
     markers?: Marker[];
 };
@@ -30,15 +31,15 @@ export async function readPB(param: string): Promise<MapData> {
         markers: [],
     };
 
-    let data = parsePB(param.split('!').slice(1));
+    let data = parsePB(param.split('!').slice(1))[0];
 
-    let mapArea: number[] = data[0][0][0];
+    let mapArea: number[] = data[0][0];
     mapData.area = {
         lat: mapArea[2],
         lon: mapArea[1],
     };
 
-    let currMarkers: any[] | string = data[0][1];
+    let currMarkers: any[] | string = data[1];
     if (typeof currMarkers !== 'string') {
         for (let markers of currMarkers[0] as string[]) {
             if (markers.match(cidMatch)) {
@@ -60,6 +61,11 @@ export async function readPB(param: string): Promise<MapData> {
             }
         }
     }
+
+    if (tileTypes.includes(data[data.length - 1])) {
+        mapData.tile = data[data.length - 1];
+    }
+
     return mapData;
 }
 

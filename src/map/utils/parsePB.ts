@@ -1,10 +1,13 @@
-function convertType(item: string): [string | number, boolean] {
+export type TileType = 'roadmap' | 'satellite';
+export const tileTypes = ['roadmap', 'satellite']
+
+function convertType(item: string): [string | TileType | number, boolean] {
     item = item.replace(/^\d+/, '');
     const type: string = item.charAt(0);
     item = item.substring(1);
 
     // s: string || v: timestamp || b: boolean?/byte?
-    let val: string | number = item;
+    let val: string | TileType | number = item;
 
     switch (type) {
         case 'f':
@@ -16,13 +19,7 @@ function convertType(item: string): [string | number, boolean] {
             val = parseInt(item);
             break;
         case 'e': // enum
-            switch (item) {
-                case '0':
-                    val = 'roadmap';
-                    break;
-                case '1':
-                    val = 'satellite';
-            }
+            val = tileTypes[parseInt(item) ?? 0]
             break;
         case 'z': // base64 encoded coords
             val = atob(item).replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
