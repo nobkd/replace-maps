@@ -2,5 +2,3 @@ package-lock.json
 *.md
 .dist
 .out
-public/leaflet.css
-public/images
