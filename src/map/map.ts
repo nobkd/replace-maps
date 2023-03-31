@@ -19,7 +19,7 @@ const tileProviders: Tiles = {
     satellite: {
         layer: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', // Esri.WorldImagery
         attr: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-    },
+    }, // TODO: add street layer etc to satellite
 };
 
 const gPos: string = 'pb';
@@ -42,12 +42,15 @@ if (params.has(gPos)) {
 }
 
 if (params.has(gZoom)) {
-    mapData.zoom = Number(params.get(gZoom) as string);
+    mapData.zoom = parseInt(params.get(gZoom) as string);
 }
 
 const map: L.Map = L.map('map', {
     scrollWheelZoom: false, // TODO: on pc allow ctrl + scroll
     zoom: mapData.zoom ?? 17,
+    zoomSnap: 0.1,
+    zoomDelta: 0.5,
+    minZoom: 0.5,
 });
 
 if (mapData.area) {
@@ -58,7 +61,7 @@ if (mapData.markers) {
     mapData.markers.forEach((marker) => {
         let mapMarker = L.marker([marker.lat, marker.lon]).addTo(map);
         if (marker.label) {
-            mapMarker.bindPopup(marker.label).openPopup();
+            mapMarker.bindPopup(marker.label, { closeButton: false }).openPopup();
         }
     });
 
@@ -70,5 +73,5 @@ if (mapData.markers) {
 
 L.tileLayer(tileProviders[mapData.tile ?? 'roadmap'].layer, {
     maxZoom: 19,
-    //attribution: tileProviders[mapData.tile ?? 'roadmap'].attr,
+    attribution: tileProviders[mapData.tile ?? 'roadmap'].attr,
 }).addTo(map);
