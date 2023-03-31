@@ -1,0 +1,11 @@
+html,
+body,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    width: calc(100vw - (100vw - 100%));
+    height: 100vh;
+}
