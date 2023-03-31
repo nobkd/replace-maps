@@ -1,5 +1,5 @@
 export type TileType = 'roadmap' | 'satellite';
-export const tileTypes = ['roadmap', 'satellite']
+export const tileTypes = ['roadmap', 'satellite'];
 
 function convertType(item: string): [string | TileType | number, boolean] {
     item = item.replace(/^\d+/, '');
@@ -19,7 +19,7 @@ function convertType(item: string): [string | TileType | number, boolean] {
             val = parseInt(item);
             break;
         case 'e': // enum
-            val = tileTypes[parseInt(item) ?? 0]
+            val = tileTypes[parseInt(item) ?? 0];
             break;
         case 'z': // base64 encoded coords
             val = atob(item).replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
