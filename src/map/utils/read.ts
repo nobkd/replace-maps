@@ -9,7 +9,7 @@ const dmsMatch: RegExp = /^\d{1,2}°\d{1,2}'\d{1,2}\.\d"(N|S) \d{1,2}°\d{1,2}'\
 export type Marker = {
     lat: number;
     lon: number;
-    label?: string;
+    label: string;
 };
 
 export type MapData = {
@@ -40,7 +40,7 @@ export async function readPB(param: string): Promise<MapData> {
         lon: mapArea[1],
     };
 
-    mapData.zoom = getMapZoom(mapArea[0]);
+    mapData.zoom = getMapZoom(mapArea[0]) ?? 17;
 
     let currMarkers: any[] | string = data[1];
     if (typeof currMarkers !== 'string') {
@@ -54,6 +54,7 @@ export async function readPB(param: string): Promise<MapData> {
                     mapData.markers?.push({
                         lat: lat,
                         lon: lon,
+                        label: `${lat} ${lon}`,
                     });
                 }
             } else {

@@ -1,5 +1,5 @@
 export type TileType = 'roadmap' | 'satellite';
-export const tileTypes = ['roadmap', 'satellite'];
+export const tileTypes: TileType[] = ['roadmap', 'satellite'];
 
 function convertType(item: string): [string | TileType | number, boolean] {
     item = item.replace(/^\d+/, '');

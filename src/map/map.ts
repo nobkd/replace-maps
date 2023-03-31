@@ -1,7 +1,7 @@
 import L from 'leaflet';
 
 import { readPB, readQ, type MapData } from './utils/read';
-import { type TileType } from './utils/parsePB';
+import { type TileType, tileTypes } from './utils/parsePB';
 
 type Tiles = {
     [K in TileType]: {
@@ -27,8 +27,6 @@ const gQuery: string = 'q';
 const gZoom: string = 'z';
 const params: URLSearchParams = new URLSearchParams(document.location.search);
 
-console.log(params);
-
 let mapData: MapData = {};
 
 if (params.has(gPos)) {
@@ -53,25 +51,23 @@ const map: L.Map = L.map('map', {
     minZoom: 0.5,
 });
 
-if (mapData.area) {
+if (mapData.markers?.length == 0 && mapData.area) {
     map.setView([mapData.area.lat, mapData.area.lon]);
 }
 
 if (mapData.markers) {
-    mapData.markers.forEach((marker) => {
-        let mapMarker = L.marker([marker.lat, marker.lon]).addTo(map);
-        if (marker.label) {
-            mapMarker.bindPopup(marker.label, { closeButton: false }).openPopup();
-        }
-    });
-
     if (mapData.markers.length === 1) {
         let mapMarker = mapData.markers[0];
         map.setView([mapMarker.lat, mapMarker.lon]);
     }
+
+    mapData.markers.forEach((marker) => {
+        let mapMarker = L.marker([marker.lat, marker.lon]).addTo(map);
+        mapMarker.bindPopup(marker.label, { closeButton: false }).openPopup();
+    });
 }
 
-L.tileLayer(tileProviders[mapData.tile ?? 'roadmap'].layer, {
+L.tileLayer(tileProviders[mapData.tile || tileTypes[0]].layer, {
     maxZoom: 19,
-    attribution: tileProviders[mapData.tile ?? 'roadmap'].attr,
+    attribution: tileProviders[mapData.tile || tileTypes[0]].attr,
 }).addTo(map);
