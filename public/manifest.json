@@ -8,6 +8,12 @@
         "48": "icons/48.png",
         "96": "icons/96.png"
     },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "replace-maps@nobkd.github.io",
+            "strict_min_version": "89.0"
+        }
+    },
     "permissions": [
         "storage",
         "webRequest",

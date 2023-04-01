@@ -7,14 +7,10 @@ browser.browserAction.onClicked.addListener(async (tab: browser.Tabs.Tab) => {
     let disabled: any = await browser.storage.managed.get('disabled');
     disabled = !(typeof disabled === 'boolean' ? disabled : false);
 
-    if (disabled) {
-        browser.action.enable(tab.id);
-    } else {
-        browser.action.disable(tab.id);
-    }
+    console.log(disabled);
 
     browser.storage.managed.set({ disabled: disabled });
     */
-    
+
     browser.tabs.reload(tab.id);
 });
