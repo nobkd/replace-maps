@@ -9,6 +9,7 @@
         "96": "icons/96.png"
     },
     "permissions": [
+        "storage",
         "webRequest",
         "webRequestBlocking",
         "http://*/maps/embed*?*",
