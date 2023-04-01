@@ -1,4 +1,5 @@
 import { runtime, webRequest, type WebRequest } from 'webextension-polyfill';
+import { getDisabled } from './utils/storage';
 
 const patterns: string[] = [
     'http://*/maps/embed?*',
@@ -14,10 +15,12 @@ const matcher: RegExp = new RegExp(
 );
 
 function redirect(req: WebRequest.OnBeforeRequestDetailsType): WebRequest.BlockingResponse {
-    if (req.url.match(matcher)) {
+    if (req.originUrl && req.url.match(matcher)) {
+        //if (!getDisabled(req.originUrl)) { // TODO: resolve promise async, but response of fuc has to be sync
         return {
             redirectUrl: runtime.getURL('map.html?' + req.url.split('?')[1]),
         };
+        //}
     }
     return {};
 }

@@ -1,21 +1,8 @@
 import { browserAction, tabs, type Tabs } from 'webextension-polyfill';
-import { getDisabled, setDisabled } from './utils/storage';
+import { invertDisabled } from './utils/storage';
 
 browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
-    const hostname = getHostname(tab.url);
-    if (!hostname) return;
-
-    console.log(hostname);
-
-    // TODO
-
+    if (!tab.url) return;
+    await invertDisabled(tab.url);
     tabs.reload(tab.id);
 });
-
-function getHostname(url?: string): string | undefined {
-    if (!url) return;
-
-    url = url.replace(/^\w+:\/\//, '');
-    url = url.split(/[\/#]/, 1)[0];
-    return url;
-}
