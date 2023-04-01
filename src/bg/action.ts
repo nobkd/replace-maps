@@ -1,16 +1,21 @@
-import browser from 'webextension-polyfill';
+import { browserAction, tabs, type Tabs } from 'webextension-polyfill';
+import { getDisabled, setDisabled } from './utils/storage';
 
-browser.browserAction.onClicked.addListener(async (tab: browser.Tabs.Tab) => {
-    console.log(tab);
+browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
+    const hostname = getHostname(tab.url);
+    if (!hostname) return;
 
-    /*
-    let disabled: any = await browser.storage.managed.get('disabled');
-    disabled = !(typeof disabled === 'boolean' ? disabled : false);
+    console.log(hostname);
 
-    console.log(disabled);
+    // TODO
 
-    browser.storage.managed.set({ disabled: disabled });
-    */
-
-    browser.tabs.reload(tab.id);
+    tabs.reload(tab.id);
 });
+
+function getHostname(url?: string): string | undefined {
+    if (!url) return;
+
+    url = url.replace(/^\w+:\/\//, '');
+    url = url.split(/[\/#]/, 1)[0];
+    return url;
+}
