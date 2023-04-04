@@ -1,6 +1,5 @@
 import { describe, it } from 'vitest';
 import { parsePB, tileTypes } from '../../../src/map/utils/parsePB';
-import { experiments } from 'webextension-polyfill';
 
 describe.concurrent('Parse PB', () => {
     it('empty list', ({ expect }) => {
