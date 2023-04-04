@@ -1,5 +1,3 @@
 import { describe, it } from 'vitest';
 
-describe.concurrent('', () => {
-
-});
+describe.concurrent('', () => {});
