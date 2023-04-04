@@ -1,3 +1,4 @@
 node_modules
-.dist
-.out
+dist
+out
+coverage
