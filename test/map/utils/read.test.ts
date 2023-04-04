@@ -20,7 +20,7 @@ describe.concurrent('read pb', () => {
 
     it('pb markers', async ({ expect }) => {
         const res = await readPB(
-            '!1m17!1m12!1m3!1d1.1!2d1.1!3d1.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1zMTDCsDYwJzM2LjAiTiAxMMKwNjAnMzYuMCJF!5e0!3m2!1sde!2sde!4v1557583694739!5m2!1sde!2sde'
+            '!1m18!1m12!1m3!1d1.1!2d1.1!3d1.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2zMTDCsDYwJzM2LjAiTiAxMMKwNjAnMzYuMCJF!5e0!3m2!1sde!2sde!4v1557583694739!5m2!1sde!2sde'
         );
 
         expect(res).toStrictEqual({
