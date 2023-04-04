@@ -1,0 +1,39 @@
+on:
+    workflow_dispatch:
+
+jobs:
+    install:
+        name: Install node
+        runs-on: self-hosted
+
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js 16
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 16
+
+            - name: Install npm packages
+              run: npm install
+
+    build:
+        name: Build and bundle
+        runs-on: self-hosted
+
+        steps:
+            - uses: install
+            - name: Run npm build
+              run: npm run build
+
+    publish:
+        name: Package and sign build results
+        runs-on: self-hosted
+
+        steps:
+            - uses: build
+            - name: Package and sign
+              env:
+                  FIREFOX_TOKEN: ${{ secrets.FIREFOX_TOKEN }}
+
+              run: |
+                  npm run publish -- --token: ${{ env.FIREFOX_TOKEN }}
