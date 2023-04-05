@@ -2,7 +2,8 @@ import { parsePB, tileTypes, type TileType } from './parsePB';
 import { parseDMS } from './parseDMS';
 import { getMapZoom } from './zoom';
 
-const nominatimQ: string = 'https://nominatim.openstreetmap.org/search/?limit=1&format=json&q=';
+export const nominatimQ: string =
+    'https://nominatim.openstreetmap.org/search/?limit=1&format=json&q=';
 const cidMatch: RegExp = /^0x[\da-f]+:0x[\da-f]+$/i;
 const dmsMatch: RegExp = /^\d{1,2}°\d{1,2}'\d{1,2}\.\d"(N|S) \d{1,2}°\d{1,2}'\d{1,2}\.\d"(E|W)$/i;
 
@@ -40,7 +41,7 @@ export async function readPB(param: string): Promise<MapData> {
         lon: mapArea[1],
     };
 
-    mapData.zoom = getMapZoom(mapArea[0]) ?? 17;
+    mapData.zoom = getMapZoom(mapArea[0]);
 
     let currMarkers: any[] | string = data[1];
     if (typeof currMarkers !== 'string') {

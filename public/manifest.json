@@ -26,9 +26,7 @@
     "background": {
         "page": "bg.html"
     },
-    "web_accessible_resources": [
-        "map.html"
-    ],
+    "web_accessible_resources": ["map.html"],
     "browser_action": {
         "default_icon": {
             "48": "icons/48.png",

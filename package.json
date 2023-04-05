@@ -19,19 +19,23 @@
         "build": "tsc && vite build",
         "watch": "vite build --watch --mode development --minify false",
         "dev": "vite",
-        "serve:firefox": "web-ext run -s .dist",
-        "serve:chrome": "web-ext run -t chromium -s .dist",
-        "bundle": "nr build && web-ext build -s .dist -a .out --overwrite-dest"
+        "serve:firefox": "web-ext run -s dist",
+        "serve:chrome": "web-ext run -t chromium -s dist",
+        "bundle": "nr build && web-ext build -s dist -a out --overwrite-dest",
+        "test": "vitest",
+        "coverage": "vitest run --coverage"
     },
     "devDependencies": {
         "@antfu/ni": "^0.21.2",
         "@types/leaflet": "^1.9.3",
         "@types/webextension-polyfill": "^0.10.0",
+        "@vitest/coverage-c8": "^0.29.8",
         "prettier": "^2.8.7",
         "svgexport": "^0.4.2",
         "typescript": "^5.0.2",
         "vite": "^4.2.1",
         "vite-plugin-static-copy": "^0.13.1",
+        "vitest": "^0.29.8",
         "web-ext": "^7.6.0",
         "webextension-polyfill": "^0.10.0"
     },
