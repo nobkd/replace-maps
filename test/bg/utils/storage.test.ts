@@ -1,5 +1,6 @@
-import { describe, it } from 'vitest';
+import { describe, it, test } from 'vitest';
 
 describe.concurrent('', () => {
-    it('', ({ expect }) => {});
+    test.todo('', () => it('', ({ expect }) => {}));
+
 });
