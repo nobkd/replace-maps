@@ -1,6 +1,8 @@
 import { describe, it, vi } from 'vitest';
 import { readPB, readQ, nominatimQ } from '../../../src/map/utils/read';
 
+global.fetch = vi.fn();
+
 const input = 'test position';
 const result = [{ lat: '1.1', lon: '1.1' }];
 
@@ -64,8 +66,9 @@ describe.concurrent('read pb', () => {
     });
 
     it('pb markers to readQ', async ({ expect }) => {
-        global.fetch = vi.fn().mockResolvedValue(mockNominatimResponse(result, true));
-        
+        // @ts-ignore
+        fetch.mockResolvedValue(mockNominatimResponse(result, true));
+
         const res = await readPB(
             `!1m17!1m12!1m3!1d1.1!2d1.1!3d1.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1s${input}!5e0!3m2!1sde!2sde!4v1557583694739!5m2!1sde!2sde`
         );
@@ -90,7 +93,8 @@ describe.concurrent('read pb', () => {
 
 describe.concurrent('read query', () => {
     it('nominatim request', async ({ expect }) => {
-        global.fetch = vi.fn().mockResolvedValue(mockNominatimResponse(result, true));
+        // @ts-ignore
+        fetch.mockResolvedValue(mockNominatimResponse(result, true));
 
         const res = await readQ(input); // TODO: Mocking requests
 
@@ -104,7 +108,8 @@ describe.concurrent('read query', () => {
     });
 
     it('failing nominatim request', async ({ expect }) => {
-        global.fetch = vi.fn().mockResolvedValue(mockNominatimResponse(result, false));
+        // @ts-ignore-next
+        fetch.mockResolvedValue(mockNominatimResponse(result, false));
 
         const res = await readQ(input);
 
