@@ -15,4 +15,10 @@ describe.concurrent('', () => {
         expect(res).toBeTypeOf('number');
         expect(res).toBe(0);
     });
+
+    it('specific zoom', ({expect}) => {
+        const res = getMapZoom(1000);
+
+        expect(res).toBe(18.5);
+    })
 });
