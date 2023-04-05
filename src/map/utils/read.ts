@@ -40,7 +40,7 @@ export async function readPB(param: string): Promise<MapData> {
         lon: mapArea[1],
     };
 
-    mapData.zoom = getMapZoom(mapArea[0]) ?? 17;
+    mapData.zoom = getMapZoom(mapArea[0]);
 
     let currMarkers: any[] | string = data[1];
     if (typeof currMarkers !== 'string') {

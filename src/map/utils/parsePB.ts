@@ -19,8 +19,8 @@ function convertType(item: string): [string | TileType | number, boolean] {
             val = parseInt(item);
             break;
         case 'e': // enum
-            let temp = parseInt(item) ?? 0;
-            val = tileTypes[temp < tileTypes.length && temp >= 0 ? temp : 0];
+            let tileIndex = parseInt(item);
+            val = tileTypes[tileIndex < tileTypes.length && tileIndex >= 0 ? tileIndex : 0];
             break;
         case 'z': // base64 encoded coords
             val = atob(item).replace(/[^\d\s\-\.\'\"\°SNWE]/g, '');
