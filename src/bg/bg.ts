@@ -14,7 +14,9 @@ const matcher: RegExp = new RegExp(
     `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps.*\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed.*\?)`
 );
 
-/*async*/ function redirect(req: WebRequest.OnBeforeRequestDetailsType): /*Promise<*/WebRequest.BlockingResponse/*>*/ {
+/*async*/ function redirect(
+    req: WebRequest.OnBeforeRequestDetailsType
+): /*Promise<*/ WebRequest.BlockingResponse /*>*/ {
     if (req.originUrl && req.url.match(matcher)) {
         //if (!await getDisabled(req.originUrl)) {
         return {
