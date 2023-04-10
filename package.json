@@ -1,6 +1,6 @@
 {
     "name": "replace-maps",
-    "description": "Replace Google Maps iframes with OSM",
+    "description": "Replace Maps iframes with OSM",
     "author": "nobkd",
     "license": "Unlicense",
     "version": "1.0.0",
@@ -21,7 +21,7 @@
         "dev": "vite",
         "serve:firefox": "web-ext run -s dist",
         "serve:chrome": "web-ext run -t chromium -s dist",
-        "bundle": "nr build && web-ext build -s dist -a out --overwrite-dest",
+        "bundle": "web-ext build -s dist -a out --overwrite-dest",
         "test": "vitest",
         "coverage": "vitest run --coverage"
     },
