@@ -1,15 +1,11 @@
 import { storage } from 'webextension-polyfill';
 
-export type HostnameStatus = {
-    [key: string]: boolean;
-};
-
 export const KEY_DISABLED_HOSTS = 'disabled_hosts';
 
 export let disabledHosts: string[] = await getDisabledHosts();
 storage.local.onChanged.addListener((changes) => {
     if (KEY_DISABLED_HOSTS in changes) {
-        disabledHosts = changes[KEY_DISABLED_HOSTS].newValue;
+        disabledHosts = changes[KEY_DISABLED_HOSTS].newValue ?? [];
     }
 });
 
