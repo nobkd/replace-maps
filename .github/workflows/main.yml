@@ -1,39 +1,43 @@
+name: Publish release
+
 on:
     workflow_dispatch:
+    release:
+        types: [created]
 
 jobs:
-    install:
-        name: Install node
+    build:
+        name: Build files
         runs-on: self-hosted
 
         steps:
-            - uses: actions/checkout@v1
+            - uses: actions/checkout@v3
             - name: Use Node.js 16
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v3
               with:
-                  node-version: 16
-
+                node-version: 16
+                cache: 'npm'
             - name: Install npm packages
               run: npm install
-
-    build:
-        name: Build and bundle
-        runs-on: self-hosted
-
-        steps:
-            - uses: install
-            - name: Run npm build
+            - name: Test with vitest
+              run: npm test
+            - name: Build with Vite
               run: npm run build
 
     publish:
-        name: Package and sign build results
+        name: Publish release
         runs-on: self-hosted
 
-        steps:
-            - uses: build
-            - name: Package and sign
-              env:
-                  FIREFOX_TOKEN: ${{ secrets.FIREFOX_TOKEN }}
+        needs: build
+        permissions:
+            contents: read
+            deployments: write
 
-              run: |
-                  npm run publish -- --token: ${{ env.FIREFOX_TOKEN }}
+        steps:
+          - uses: actions/checkout@v3
+          - uses: actions/setup-node@v3
+            with:
+              node-version: 16
+              cache: 'npm'
+          - name: Sign Firefox
+            run: npm run sign -- --api-secret ${{secrets.FIREFOX_TOKEN}}
