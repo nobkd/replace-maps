@@ -14,7 +14,7 @@
         "url": "git+https://github.com/nobkd/replace-maps.git"
     },
     "scripts": {
-        "icons": "svgexport icons/plain.svg public/icons/48.png 48:48 && svgexport icons/plain.svg public/icons/96.png 96:96",
+        "icons": "svgexport icons/icon.svg public/icons/48.png 48:48 && svgexport icons/icon-grey.svg public/icons/48-grey.png 48:48 && svgexport icons/icon.svg public/icons/96.png 96:96 && svgexport icons/icon-grey.svg public/icons/96-grey.png 96:96",
         "format": "prettier . --write",
         "build": "tsc && vite build",
         "watch": "vite build --watch --mode development --minify false",
