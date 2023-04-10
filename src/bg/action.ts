@@ -1,4 +1,4 @@
-import { browserAction, tabs, type Tabs } from 'webextension-polyfill';
+import { runtime, browserAction, tabs, type Tabs } from 'webextension-polyfill';
 import { disabledHosts, getHostname, invertHostState } from './utils/storage';
 
 browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
@@ -7,10 +7,21 @@ browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
     let hostname = getHostname(tab.url);
     await invertHostState(hostname);
 
+    // TODO: having to fix that icon fits to current tab...
     if (disabledHosts.includes(hostname)) {
-        // TODO: set icon to grayscale for tabs with hostname
+        browserAction.setIcon({
+            path: {
+                '48': runtime.getURL('/icons/48-grey.png'),
+                '96': runtime.getURL('/icons/96-grey.png'),
+            },
+        });
     } else {
-        // TODO: set icon to colored
+        browserAction.setIcon({
+            path: {
+                '48': runtime.getURL('/icons/48.png'),
+                '96': runtime.getURL('/icons/96.png'),
+            },
+        });
     }
 
     // TODO: reload only frames (that have gmaps url), not full page
