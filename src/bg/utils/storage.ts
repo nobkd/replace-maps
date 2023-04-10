@@ -4,24 +4,28 @@ export type HostnameStatus = {
     [key: string]: boolean;
 };
 
-export const KEY_DISABLED = 'disabled_urls';
+export const KEY_DISABLED_HOSTS = 'disabled_hosts';
 
-export async function getAllDisabled(): Promise<string[]> {
-    return (await storage.local.get(KEY_DISABLED))[KEY_DISABLED] ?? [];
+export let disabledHosts: string[] = await getDisabledHosts();
+storage.local.onChanged.addListener((changes) => {
+    if (KEY_DISABLED_HOSTS in changes) {
+        disabledHosts = changes[KEY_DISABLED_HOSTS].newValue;
+    }
+});
+
+async function getDisabledHosts(): Promise<string[]> {
+    return (await storage.local.get(KEY_DISABLED_HOSTS))[KEY_DISABLED_HOSTS] ?? [];
 }
 
-export async function invertDisabled(url: string): Promise<void> {
-    url = getHostname(url);
-    const disabledUrls = await getAllDisabled();
-
-    if (disabledUrls.includes(url)) {
-        disabledUrls.splice(disabledUrls.indexOf(url), 1);
+export async function invertHostState(hostname: string): Promise<void> {
+    if (disabledHosts.includes(hostname)) {
+        disabledHosts.splice(disabledHosts.indexOf(hostname), 1);
     } else {
-        disabledUrls.push(url);
+        disabledHosts.push(hostname);
     }
 
     await storage.local.set({
-        [KEY_DISABLED]: disabledUrls,
+        [KEY_DISABLED_HOSTS]: disabledHosts,
     });
 }
 

@@ -1,5 +1,5 @@
-import { storage, runtime, webRequest, type WebRequest } from 'webextension-polyfill';
-import { getAllDisabled, getHostname, KEY_DISABLED } from './utils/storage';
+import { runtime, webRequest, type WebRequest } from 'webextension-polyfill';
+import { disabledHosts, getHostname } from './utils/storage';
 
 const patterns: string[] = [
     'http://*/maps/embed*?*',
@@ -14,18 +14,9 @@ const matcher: RegExp = new RegExp(
     `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps.*\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed.*\?)`
 );
 
-let disabledUrls: string[] = await getAllDisabled();
-storage.local.onChanged.addListener((changes) => {
-    if (KEY_DISABLED in changes) {
-        console.log(changes)
-        disabledUrls = changes[KEY_DISABLED].newValue;
-    }
-});
-
 function redirect(req: WebRequest.OnBeforeRequestDetailsType): WebRequest.BlockingResponse {
     if (req.originUrl && req.url.match(matcher)) {
-        console.log(req.originUrl);
-        if (!disabledUrls.includes(getHostname(req.originUrl))) {
+        if (!disabledHosts.includes(getHostname(req.originUrl))) {
             return {
                 redirectUrl: runtime.getURL('map.html?' + req.url.split('?')[1]),
             };
