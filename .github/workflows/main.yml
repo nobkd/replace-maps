@@ -15,8 +15,8 @@ jobs:
             - name: Use Node.js 16
               uses: actions/setup-node@v3
               with:
-                node-version: 16
-                cache: 'npm'
+                  node-version: 16
+                  cache: 'npm'
             - name: Install npm packages
               run: npm install
             - name: Test with vitest
@@ -34,10 +34,10 @@ jobs:
             deployments: write
 
         steps:
-          - uses: actions/checkout@v3
-          - uses: actions/setup-node@v3
-            with:
-              node-version: 16
-              cache: 'npm'
-          - name: Sign Firefox
-            run: npm run sign -- --api-secret ${{secrets.FIREFOX_TOKEN}}
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'npm'
+            - name: Sign Firefox
+              run: npm run sign -- --api-secret ${{secrets.FIREFOX_TOKEN}}
