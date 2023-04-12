@@ -26,5 +26,8 @@ jobs:
             - name: Install Deps
               run: npm i --prefer-offline --no-audit --progress=false
 
+            - name: Check Formatting
+              run: npm format:check
+
             - name: Test
               run: npm test -- --run
