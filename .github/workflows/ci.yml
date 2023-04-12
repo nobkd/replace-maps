@@ -1,13 +1,16 @@
-name: Publish Release
+name: CI
 
 on:
-    workflow_dispatch:
-    release:
-        types: [created]
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
 
 jobs:
-    publish:
-        name: Publish to Firefox
+    ci:
+        name: CI
         timeout-minutes: 10
         runs-on: self-hosted
 
@@ -23,5 +26,5 @@ jobs:
             - name: Clean Install
               run: npm ci
 
-            - name: Sign Firefox Extension
-              run: npm run sign -- --api-secret ${{secrets.FIREFOX_TOKEN}}
+            - name: Test
+              run: npm test -- --run
