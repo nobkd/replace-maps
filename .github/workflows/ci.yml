@@ -29,4 +29,5 @@ jobs:
               run: npm run format:check
 
             - name: Test
+              if: (${{ success() }} || ${{ failure() }})
               run: npm test -- --run
