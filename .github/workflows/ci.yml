@@ -23,8 +23,8 @@ jobs:
                   cache: 'npm'
                   cache-dependency-path: '**/package-lock.json'
 
-            - name: Clean Install
-              run: npm ci
+            - name: Install Deps
+              run: npm i --prefer-offline --no-audit --progress=false
 
             - name: Test
               run: npm test -- --run
