@@ -1,5 +1,17 @@
 #!/bin/bash
 
+flag_file_path='./.version-update'
+# If this file exists when entering the script, it means the version was already
+# updated and we did a commit amend to update package.json and package-lock.json,
+# so we must delete the file and exit the script.
+if [ -f $flag_file_path ]; then
+    rm $flag_file_path
+    exit 0
+fi
+
+npm run format
+touch $flag_file_path
+
 # types
 commit_types='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)'
 minor_types='^(build|feat|revert)'
@@ -10,12 +22,6 @@ msg=':\s.+'
 
 version_match='"version": *"[0-9.]\+"'
 version_str='"version": '
-
-# skip with env
-if [ "$SKIP_PRE_COMMIT" = true ]; then
-    echo 'Skipping conventional-pre-commit hook...'
-    exit 0
-fi
 
 # read message to var
 commit_msg=$(cat $1)
