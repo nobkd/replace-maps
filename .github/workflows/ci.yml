@@ -28,10 +28,6 @@ jobs:
             - name: Check Formatting
               run: npm run format
 
-            - name: Test
-              if: (${{ success() }} || ${{ failure() }})
-              run: npm test
-
             - name: Test Coverage
               if: (${{ success() }} || ${{ failure() }})
               run: npm run test:coverage
