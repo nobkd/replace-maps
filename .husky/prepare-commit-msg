@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# types
+commit_types='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)'
+minor_types='^(build|feat|revert)'
+patch_types='^(chore|fix|perf|refactor)'
+
+parens='(\(\w+\))?'
+msg=':\s.+'
+
+version_match='"version": *"[0-9.]\+"'
+version_str='"version": '
+
+# skip with env
+if [ "$SKIP_PRE_COMMIT" = true ]; then
+    echo 'Skipping conventional-pre-commit hook...'
+    exit 0
+fi
+
+# read message to var
+commit_msg=$(cat $1)
+
+if [[ $commit_msg =~ $commit_types$parens'!?'$msg ]]; then
+    echo 'Use Conventional Commits: https://conventionalcommits.org'
+    exit 1
+fi
+
+# bump version function
+bumpVersion() {
+    npm version --no-git-tag-version $1 > /dev/null
+
+    sed -i -e "s/$version_match/$version_str$(npm pkg get version)/gi" public/manifest.json
+}
+
+# version change type
+if [[ $commit_msg =~ $commit_types$parens'!'$msg ]]; then
+    bumpVersion major
+else
+    if [[ $commit_msg =~ $minor_types$parens$msg ]]; then
+        bumpVersion minor
+    else
+        if [[ $commit_msg =~ $patch_types$parens$msg ]]; then
+            bumpVersion patch
+        fi
+    fi
+fi
+
+exit 0
