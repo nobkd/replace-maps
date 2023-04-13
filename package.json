@@ -15,16 +15,17 @@
     },
     "scripts": {
         "icons": "svgexport icons/icon.svg public/icons/48.png 48:48 && svgexport icons/icon-grey.svg public/icons/48-grey.png 48:48 && svgexport icons/icon.svg public/icons/96.png 96:96 && svgexport icons/icon-grey.svg public/icons/96-grey.png 96:96",
-        "format": "prettier . --write",
-        "format:check": "prettier . --check",
-        "build": "tsc && vite build",
-        "watch": "vite build --watch --mode development --minify false",
+        "format": "prettier . --check",
+        "format:fix": "npm run format -- --write",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
         "dev": "vite",
+        "dev:watch": "vite build --watch --mode development --minify false",
+        "build": "tsc && vite build",
         "serve:firefox": "web-ext run -s dist",
         "serve:chrome": "web-ext run -t chromium -s dist",
-        "bundle": "web-ext build -s dist -a out --overwrite-dest",
-        "test": "vitest",
-        "coverage": "vitest run --coverage"
+        "bundle": "web-ext build -s dist -a out --overwrite-dest"
     },
     "devDependencies": {
         "@types/leaflet": "^1.9.3",

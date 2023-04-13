@@ -26,8 +26,12 @@ jobs:
               run: npm i --prefer-offline --no-audit --progress=false
 
             - name: Check Formatting
-              run: npm run format:check
+              run: npm run format
 
             - name: Test
               if: (${{ success() }} || ${{ failure() }})
-              run: npm test -- --run
+              run: npm test
+
+            - name: Test Coverage
+              if: (${{ success() }} || ${{ failure() }})
+              run: npm run test:coverage
