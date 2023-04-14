@@ -1,16 +1,18 @@
 #!/bin/bash
 
-flag_file_path='./.version-update'
-# If this file exists when entering the script, it means the version was already
-# updated and we did a commit amend to update package.json and package-lock.json,
-# so we must delete the file and exit the script.
+flag_file_path='.version-update'
+
+# check if commit amend or normal commit
 if [ -f $flag_file_path ]; then
     rm $flag_file_path
     exit 0
 fi
 
-npm run format
 touch $flag_file_path
+
+if [ ! $(git branch --show-current) = 'main' ]; then
+    exit 0
+fi
 
 # types
 commit_types='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)'

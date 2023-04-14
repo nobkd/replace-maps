@@ -1,5 +1,5 @@
 #!/bin/bash
-flag_file_path='./.version-update'
+flag_file_path='.version-update'
 
 if [ -f $flag_file_path ]; then
     git add package.json package-lock.json public/manifest.json
