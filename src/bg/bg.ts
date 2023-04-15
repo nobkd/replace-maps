@@ -1,5 +1,6 @@
-import { runtime, webRequest, type WebRequest } from 'webextension-polyfill';
+import { runtime, tabs, windows, webRequest, type WebRequest } from 'webextension-polyfill';
 import { disabledHosts, getHostname } from './utils/storage';
+import { updateActiveTabIcon } from './utils/actionIcon';
 
 const patterns: string[] = [
     'http://*/maps/embed*?*',
@@ -33,3 +34,15 @@ webRequest.onBeforeRequest.addListener(
     },
     ['blocking']
 );
+
+// listen to tab URL changes
+tabs.onUpdated.addListener(updateActiveTabIcon);
+
+// listen to tab switching
+tabs.onActivated.addListener(updateActiveTabIcon);
+
+// listen for window switching
+windows.onFocusChanged.addListener(updateActiveTabIcon);
+
+// run at startup
+updateActiveTabIcon();
