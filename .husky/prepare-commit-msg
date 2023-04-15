@@ -28,10 +28,11 @@ version_str='"version": '
 # read message to var
 commit_msg=$(cat $1)
 
-if [[ $commit_msg =~ $commit_types$parens'!?'$msg ]]; then
-    echo 'Use Conventional Commits: https://conventionalcommits.org'
-    exit 1
-fi
+# TODO: fix this, as it does not work...
+#if [[ $commit_msg =~ $commit_types$parens'!?'$msg ]]; then
+#    echo 'Use Conventional Commits: https://conventionalcommits.org'
+#    exit 1
+#fi
 
 # bump version function
 bumpVersion() {
