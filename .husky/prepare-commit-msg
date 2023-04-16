@@ -8,8 +8,6 @@ if [ -f $flag_file_path ]; then
     exit 0
 fi
 
-touch $flag_file_path
-
 if [ ! $(git branch --show-current) = 'main' ]; then
     exit 0
 fi
@@ -36,6 +34,8 @@ commit_msg=$(cat $1)
 
 # bump version function
 bumpVersion() {
+    touch $flag_file_path
+
     npm version --no-git-tag-version $1 > /dev/null
 
     sed -i -e "s/$version_match/$version_str$(npm pkg get version)/gi" public/manifest.json
