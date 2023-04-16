@@ -1,9 +1,5 @@
 #!/bin/bash
 
-flag_file_path='.version-update'
-
-if [ -f $flag_file_path ]; then
-    npm run format > /dev/null
-fi
+npm run format > /dev/null
 
 exit 0
