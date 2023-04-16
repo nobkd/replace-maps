@@ -1,4 +1,5 @@
 #!/bin/bash
+
 flag_file_path='.version-update'
 
 if [ -f $flag_file_path ]; then
