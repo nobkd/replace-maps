@@ -8,10 +8,6 @@ if [ -f $flag_file_path ]; then
     exit 0
 fi
 
-if [ $(git branch --show-current) != 'main' ]; then
-    exit 0
-fi
-
 # types
 parens='(\(\w+\))?'
 msg=':\s.+'
@@ -31,6 +27,10 @@ commit_msg=$(cat $1)
 if ! [[ $commit_msg =~ $commit_types$opt_exclam$msg ]]; then
     echo 'Use Conventional Commits: https://conventionalcommits.org'
     exit 1
+fi
+
+if [ $(git branch --show-current) != 'main' ]; then
+    exit 0
 fi
 
 # bump version function
