@@ -1,15 +1,32 @@
-import { browserAction, tabs, type Tabs } from 'webextension-polyfill';
+import { browserAction, webNavigation, type Tabs, tabs } from 'webextension-polyfill';
 import { getHostname, invertHostState } from './utils/storage';
 import { updateIcon } from './utils/actionIcon';
+import { matcher, runtimeMapUrl } from './bg';
+
+const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
 
 browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
-    if (!tab.url) return;
+    if (!tab.url || !tab.id) return;
 
     let hostname = getHostname(tab.url);
     await invertHostState(hostname);
 
     updateIcon(hostname);
 
-    // TODO: reload only frames (that have gmaps url), not full page
-    tabs.reload(tab.id, { bypassCache: true });
+    let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
+
+    // matches osm frames (just reloading the frame ist not working for some reason, so in case of replaced maps the whole tab is reloaded)
+    if (frames.some((frame) => frame.url.match(replacedUrlMatcher))) {
+        tabs.reload(tab.id, { bypassCache: true });
+        return;
+    }
+
+    // matches maps frames (finds the frames that have maps and reloads only them)
+    frames = frames.filter((frame) => frame.url.match(matcher));
+    frames.forEach((frame) => {
+        tabs.executeScript(tab.id, {
+            frameId: frame.frameId,
+            code: 'document.location.reload();',
+        });
+    });
 });
