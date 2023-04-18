@@ -14,11 +14,16 @@ browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
     updateIcon(hostname);
 
     let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
-    frames = frames.filter((frame) => {
-        return frame.url.match(matcher) || frame.url.match(replacedUrlMatcher);
-    });
+
+    // matches osm frames (just reloading the frame ist not working for some reason, so in case of replaced maps the whole tab is reloaded)
+    if (frames.some((frame) => frame.url.match(replacedUrlMatcher))) {
+        tabs.reload(tab.id, { bypassCache: true });
+        return;
+    }
+
+    // matches maps frames (finds the frames that have maps and reloads only them)
+    frames = frames.filter((frame) => frame.url.match(matcher));
     frames.forEach((frame) => {
-        // TODO: currently only works "from maps to osm" and "not from osm to maps" => fix it...
         tabs.executeScript(tab.id, {
             frameId: frame.frameId,
             code: 'document.location.reload();',
