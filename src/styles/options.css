@@ -8,8 +8,8 @@ body {
     --text: black;
     --bg: white;
 
-    --table-even: lightgrey;
-    --table-odd: lightslategrey;
+    --table-even: #e3e2eb;
+    --table-odd: #c3c2cb;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,8 +17,8 @@ body {
         --text: #ccc;
         --bg: #1c1b22;
 
-        --table-even: grey;
-        --table-odd: slategrey;
+        --table-even: #53525b;
+        --table-odd: #33323b;
     }
 }
 
@@ -32,13 +32,13 @@ body {
     gap: 0.5rem;
 }
 
-body > * {
+body > section {
     padding: 0.5rem;
     gap: 0.25rem;
     display: grid;
 }
 
-#table > * {
+.table > * {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,12 +47,28 @@ body > * {
     padding: 0.5rem 1rem;
 }
 
-#table > :nth-child(even) {
+.table > :nth-child(even) {
     background-color: var(--table-even);
 }
 
-#table > :nth-child(odd) {
+.table > :nth-child(odd) {
     background-color: var(--table-odd);
+}
+
+.table button {
+    width: 2rem;
+    height: 2rem;
+}
+
+.table button::before {
+    content: 'rm';
+}
+
+.form {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg);
+    box-shadow: var(--text) 0 0 0.25rem;
 }
 
 form {
