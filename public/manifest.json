@@ -36,5 +36,8 @@
         },
         "default_area": "navbar",
         "default_title": "Replace Maps"
+    },
+    "options_ui": {
+        "page": "options.html"
     }
 }
