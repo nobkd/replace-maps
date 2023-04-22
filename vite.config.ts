@@ -28,6 +28,7 @@ export default defineConfig({
             input: {
                 bg: normalizePath(resolve(__dirname, 'src/bg.html')),
                 map: normalizePath(resolve(__dirname, 'src/map.html')),
+                opt: normalizePath(resolve(__dirname, 'src/options.html')),
             },
         },
     },

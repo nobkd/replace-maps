@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="dark light" />
+        <link rel="stylesheet" href="/styles/options.css" />
+        <script src="/options/options.ts" type="module"></script>
+        <title>Replace Maps Options</title>
+    </head>
+    <body>
+        <section class="form">
+            <form action="">
+                <input
+                    type="text"
+                    pattern="^([^\s\.\?#]+\.)+[^\s\.\?#]+$"
+                    placeholder="(sub.)domain.tld"
+                    name="hostname"
+                    id="hostname"
+                    required />
+                <input type="submit" value="Disable" />
+            </form>
+        </section>
+        <section class="table"></section>
+    </body>
+</html>
