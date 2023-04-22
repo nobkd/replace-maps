@@ -1,5 +1,10 @@
 import { storage } from 'webextension-polyfill';
-import { KEY_DISABLED_HOSTS, disabledHosts, getHostname, invertHostState } from '../bg/utils/storage';
+import {
+    KEY_DISABLED_HOSTS,
+    disabledHosts,
+    getHostname,
+    invertHostState,
+} from '../bg/utils/storage';
 
 const table = document.querySelector('.table')!;
 
@@ -12,7 +17,7 @@ async function addEntry() {
     const search = new URLSearchParams(document.location.search);
     let hostname = search.get('hostname');
     if (hostname === null) return;
-    
+
     hostname = getHostname(hostname);
     if (disabledHosts.includes(hostname)) return;
 
