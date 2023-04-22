@@ -1,21 +1,63 @@
-import { disabledHosts, invertHostState } from '../bg/utils/storage';
+import { storage } from 'webextension-polyfill';
+import { KEY_DISABLED_HOSTS, disabledHosts, getHostname, invertHostState } from '../bg/utils/storage';
 
-const table = document.querySelector('.table');
+const table = document.querySelector('.table')!;
 
-function tableEntries() {
-    const tableItems: HTMLDivElement[] = disabledHosts.map(createEntry);
-    tableItems.forEach((div) => table?.insertAdjacentElement('beforeend', div));
+function buildEntries() {
+    table.innerHTML = '';
+    disabledHosts.forEach(createEntry);
 }
 
-function createEntry(entryText: string, index: number): HTMLDivElement {
+async function addEntry() {
+    const search = new URLSearchParams(document.location.search);
+    let hostname = search.get('hostname');
+    if (hostname === null) return;
+    
+    hostname = getHostname(hostname);
+    if (disabledHosts.includes(hostname)) return;
+
+    await invertHostState(hostname);
+    createEntry(hostname);
+}
+
+function createEntry(hostname: string) {
     const div = document.createElement('div');
-    div.innerHTML = `<span>${entryText}</span><button onclick="removeEntry(${index})"></button>`;
-    return div;
+
+    let span = document.createElement('span');
+    span.innerText = hostname;
+
+    let button = document.createElement('button');
+    button.onclick = removeEntry;
+
+    div.append(span, button);
+    table.appendChild(div);
 }
 
-// TODO: function shouldn't be removed (because 'unused')
-function removeEntry(index: number) {
-    invertHostState(disabledHosts[index]).then(() => document.location.reload());
+async function removeEntry(click: MouseEvent) {
+    let target: EventTarget | null = click.target;
+    if (target === null) return;
+
+    let index = getIndex(target as HTMLButtonElement);
+    if (index === -1) return;
+
+    await invertHostState(disabledHosts[index]);
 }
 
-tableEntries();
+function getIndex(button: HTMLButtonElement) {
+    let div: HTMLDivElement = button.parentElement as HTMLDivElement;
+    if (div === null) return -1;
+
+    let index = Array.from(table.children).indexOf(div);
+    div.remove();
+
+    return index;
+}
+
+storage.local.onChanged.addListener((changes) => {
+    if (KEY_DISABLED_HOSTS in changes) {
+        buildEntries();
+    }
+});
+
+buildEntries();
+addEntry();

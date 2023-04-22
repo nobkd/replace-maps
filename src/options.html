@@ -14,7 +14,7 @@
             <form action="">
                 <input
                     type="text"
-                    pattern="^\S+\.[^\s\.]+$"
+                    pattern="^([^\s\.\?#]+\.)+[^\s\.\?#]+$"
                     placeholder="(sub.)domain.tld"
                     name="hostname"
                     id="hostname"
@@ -22,9 +22,6 @@
                 <input type="submit" value="Disable" />
             </form>
         </section>
-        <section class="table">
-            <div><span>test</span><button></button></div>
-            <div><span>test</span><button></button></div>
-        </section>
+        <section class="table"></section>
     </body>
 </html>

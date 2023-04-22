@@ -1,6 +1,5 @@
 import { browserAction, webNavigation, type Tabs, tabs } from 'webextension-polyfill';
 import { getHostname, invertHostState } from './utils/storage';
-import { updateIcon } from './utils/actionIcon';
 import { matcher, runtimeMapUrl } from './bg';
 
 const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
@@ -10,8 +9,6 @@ browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
 
     let hostname = getHostname(tab.url);
     await invertHostState(hostname);
-
-    updateIcon(hostname);
 
     let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
 

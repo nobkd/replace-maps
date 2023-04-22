@@ -1,4 +1,5 @@
 import { storage } from 'webextension-polyfill';
+import { updateIcon } from './actionIcon';
 
 export const KEY_DISABLED_HOSTS = 'disabled_hosts';
 
@@ -23,10 +24,12 @@ export async function invertHostState(hostname: string): Promise<void> {
     await storage.local.set({
         [KEY_DISABLED_HOSTS]: disabledHosts,
     });
+
+    updateIcon(hostname);
 }
 
 export function getHostname(url: string): string {
     url = url.replace(/^\w+:\/\//, '');
-    url = url.split(/[\/#]/, 1)[0];
+    url = url.split(/[\/#\?]/, 1)[0];
     return url;
 }
