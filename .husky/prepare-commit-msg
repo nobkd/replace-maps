@@ -1,58 +1,13 @@
 #!/bin/bash
 
-flag_file_path='.version-update'
-
-# check if commit amend or normal commit
-if [ -f $flag_file_path ]; then
-    rm $flag_file_path
-    exit 0
-fi
-
-# types
-parens='(\(\w+\))?'
-msg=':\s.+'
-opt_exclam='!?'
-exclam='!'
-
-commit_types='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)'$parens
-minor_types='^(build|feat|revert)'$parens$msg
-patch_types='^(chore|fix|perf|refactor)'$parens$msg
-
-version_match='"version": *"[0-9.]\+"'
-version_str='"version": '
+commit_check='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.+'
 
 # read message to var
 commit_msg=$(cat $1)
 
-if ! [[ $commit_msg =~ $commit_types$opt_exclam$msg ]]; then
+if ! [[ $commit_msg =~ $commit_check ]]; then
     echo 'Use Conventional Commits: https://conventionalcommits.org'
     exit 1
-fi
-
-if [ $(git branch --show-current) != 'main' ]; then
-    exit 0
-fi
-
-# bump version function
-bumpVersion() {
-    touch $flag_file_path
-
-    npm version --no-git-tag-version $1 > /dev/null
-
-    sed -i -e "s/$version_match/$version_str$(npm pkg get version)/gi" public/manifest.json
-}
-
-# version change type
-if [[ $commit_msg =~ $commit_types$exclam$msg ]]; then
-    bumpVersion major
-else
-    if [[ $commit_msg =~ $minor_types ]]; then
-        bumpVersion minor
-    else
-        if [[ $commit_msg =~ $patch_types ]]; then
-            bumpVersion patch
-        fi
-    fi
 fi
 
 exit 0
