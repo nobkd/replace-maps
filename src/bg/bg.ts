@@ -1,6 +1,7 @@
 import { runtime, tabs, windows, webRequest, type WebRequest } from 'webextension-polyfill';
 import { disabledHosts, getHostname } from './utils/storage';
 import { updateActiveTabIcon } from './utils/actionIcon';
+import { domainEnds } from './utils/domainEnds';
 
 const patterns: string[] = [
     'http://*/maps/embed*?*',
@@ -9,7 +10,7 @@ const patterns: string[] = [
     'https://*/maps*?*output=embed*',
 ];
 
-const gLocales: string = ['com', 'de'].join('|'); // TODO: collect more locales
+const gLocales: string = domainEnds.join('|'); // TODO: collect more locales
 export const matcher: RegExp = new RegExp(
     // TODO: fix regex to fit more patterns
     `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps.*\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed.*\?)`
