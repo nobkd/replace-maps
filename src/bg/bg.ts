@@ -3,13 +3,6 @@ import { disabledHosts, getHostname } from './utils/storage';
 import { updateActiveTabIcon } from './utils/actionIcon';
 import { domainEnds } from './utils/domainEnds';
 
-const patterns: string[] = [
-    'http://*/maps/embed*?*',
-    'https://*/maps/embed*?*',
-    'http://*/maps*?*output=embed*',
-    'https://*/maps*?*output=embed*',
-];
-
 const gLocales: string = domainEnds.join('|'); // TODO: collect more locales
 export const matcher: RegExp = new RegExp(
     // TODO: fix regex to fit more patterns
@@ -32,7 +25,7 @@ function redirect(req: WebRequest.OnBeforeRequestDetailsType): WebRequest.Blocki
 webRequest.onBeforeRequest.addListener(
     redirect,
     {
-        urls: patterns,
+        urls: ['<all_urls>'],
         types: ['sub_frame'],
     },
     ['blocking']
