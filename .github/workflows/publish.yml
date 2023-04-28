@@ -2,12 +2,12 @@ name: Publish Release
 
 on:
     workflow_dispatch:
-      inputs:
-        tag:
-          description: 'Tag to use. Has to start with extra char like "v"'
-          default: 'v'
-          type: string
-          required: true
+        inputs:
+            tag:
+                description: 'Tag to use. Has to start with extra char like "v"'
+                default: 'v'
+                type: string
+                required: true
     release:
         types: [created]
 
@@ -28,8 +28,8 @@ jobs:
 
             - name: Update version
               env:
-                TAG: ${{ github.event.release.tag_name }}
-                TAG_INPUT: ${{ inputs.tag }}
+                  TAG: ${{ github.event.release.tag_name }}
+                  TAG_INPUT: ${{ inputs.tag }}
               run: |
                   ${TAG:=$TAG_INPUT}
                   npm version --no-git-tag-version ${$TAG:1}
