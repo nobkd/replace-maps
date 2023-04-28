@@ -3,6 +3,7 @@ import { updateIcon } from './actionIcon';
 
 export const KEY_DISABLED_HOSTS = 'disabled_hosts';
 
+//
 export let disabledHosts: string[] = await getDisabledHosts();
 storage.local.onChanged.addListener((changes) => {
     if (KEY_DISABLED_HOSTS in changes) {
@@ -10,10 +11,18 @@ storage.local.onChanged.addListener((changes) => {
     }
 });
 
+/**
+ *
+ * @returns
+ */
 async function getDisabledHosts(): Promise<string[]> {
     return (await storage.local.get(KEY_DISABLED_HOSTS))[KEY_DISABLED_HOSTS] ?? [];
 }
 
+/**
+ *
+ * @param hostname
+ */
 export async function invertHostState(hostname: string): Promise<void> {
     if (disabledHosts.includes(hostname)) {
         disabledHosts.splice(disabledHosts.indexOf(hostname), 1);
@@ -28,6 +37,11 @@ export async function invertHostState(hostname: string): Promise<void> {
     updateIcon(hostname);
 }
 
+/**
+ *
+ * @param url
+ * @returns
+ */
 export function getHostname(url: string): string {
     url = url.replace(/^\w+:\/\//, '');
     url = url.split(/[\/#\?]/, 1)[0];

@@ -4,6 +4,9 @@ import { matcher, runtimeMapUrl } from './bg';
 
 const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
 
+/**
+ *
+ */
 browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
     if (!tab.url || !tab.id) return;
 

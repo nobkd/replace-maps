@@ -1,6 +1,10 @@
 import { browserAction, tabs } from 'webextension-polyfill';
 import { disabledHosts, getHostname } from './storage';
 
+/**
+ *
+ * @param hostname
+ */
 export function updateIcon(hostname: string) {
     let disabled = disabledHosts.includes(hostname);
 
@@ -17,6 +21,9 @@ export function updateIcon(hostname: string) {
     });
 }
 
+/**
+ *
+ */
 export async function updateActiveTabIcon() {
     let browserTabs = await tabs.query({ active: true, currentWindow: true });
 

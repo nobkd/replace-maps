@@ -8,11 +8,18 @@ import {
 
 const table = document.querySelector('.table')!;
 
+/**
+ *
+ */
 function buildEntries() {
     table.innerHTML = '';
     disabledHosts.forEach(createEntry);
 }
 
+/**
+ *
+ * @returns
+ */
 async function addEntry() {
     const search = new URLSearchParams(document.location.search);
     let hostname = search.get('hostname');
@@ -25,6 +32,10 @@ async function addEntry() {
     createEntry(hostname);
 }
 
+/**
+ *
+ * @param hostname
+ */
 function createEntry(hostname: string) {
     const div = document.createElement('div');
 
@@ -38,6 +49,11 @@ function createEntry(hostname: string) {
     table.appendChild(div);
 }
 
+/**
+ *
+ * @param click
+ * @returns
+ */
 async function removeEntry(click: MouseEvent) {
     let target: EventTarget | null = click.target;
     if (target === null) return;
@@ -48,6 +64,11 @@ async function removeEntry(click: MouseEvent) {
     await invertHostState(disabledHosts[index]);
 }
 
+/**
+ *
+ * @param button
+ * @returns
+ */
 function getIndex(button: HTMLButtonElement) {
     let div: HTMLDivElement = button.parentElement as HTMLDivElement;
     if (div === null) return -1;

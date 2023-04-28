@@ -3,6 +3,11 @@
 const factor: number = 35200000;
 const precision: number = 10;
 
+/**
+ *
+ * @param alt
+ * @returns
+ */
 export function getMapZoom(alt: number): number {
     let zoom = Math.log2(factor / alt) * 1.225;
     zoom = Math.round((zoom + Number.EPSILON) * precision) / precision;
