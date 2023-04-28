@@ -7,7 +7,7 @@ on:
 
 jobs:
     publish:
-        name: Publish to Firefox
+        name: Publish to Firefox AMO
         timeout-minutes: 10
         runs-on: self-hosted
 
@@ -17,10 +17,17 @@ jobs:
               with:
                   node-version: 18
                   cache: 'npm'
-                  cache-dependency-path: '**/package-lock.json'
 
             - name: Install Deps
               run: npm i --prefer-offline --no-audit --progress=false
 
-            - name: Sign Firefox Extension
-              run: npm run sign -- --api-secret ${{secrets.FIREFOX_TOKEN}}
+            - name: Update version
+              run: |
+                npm version --no-git-tag-version ${${{ github.event.release.tag_name }}:1}
+                sed -i -e "s/\"version\": *\"[0-9A-z.\-]*\"/\"version\": $(npm pkg get version)/gi" public/manifest.json
+              # TODO: push version change to main
+
+            #- name: Sign Firefox Extension
+            #  run: npm run sign -- --api-secret ${{ secrets.FIREFOX_TOKEN }}
+            # TODO: add signed addon file to release
+            # TODO: push release to AMO
