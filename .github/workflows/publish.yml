@@ -19,12 +19,12 @@ jobs:
                   cache: 'npm'
 
             - name: Install Deps
-              run: npm i --prefer-offline --no-audit --progress=false
+              run: npm ci --progress=false
 
             - name: Update version
               run: |
-                npm version --no-git-tag-version ${${{ github.event.release.tag_name }}:1}
-                sed -i -e "s/\"version\": *\"[0-9A-z.\-]*\"/\"version\": $(npm pkg get version)/gi" public/manifest.json
+                  npm version --no-git-tag-version ${${{ github.event.release.tag_name }}:1}
+                  sed -i -e "s/\"version\": *\"[0-9A-z.\-]*\"/\"version\": $(npm pkg get version)/gi" public/manifest.json
               # TODO: push version change to main
 
             #- name: Sign Firefox Extension
