@@ -2,6 +2,12 @@ name: Publish Release
 
 on:
     workflow_dispatch:
+      inputs:
+        tag:
+          description: 'Tag to use. Has to start with extra char like "v"'
+          default: 'v'
+          type: string
+          required: true
     release:
         types: [created]
 
@@ -21,8 +27,12 @@ jobs:
               run: npm ci --ignore-scripts --no-audit --progress=false
 
             - name: Update version
+              env:
+                TAG: ${{ github.event.release.tag_name }}
+                TAG_INPUT: ${{ inputs.tag }}
               run: |
-                  npm version --no-git-tag-version ${${{ github.event.release.tag_name }}:1}
+                  ${TAG:=$TAG_INPUT}
+                  npm version --no-git-tag-version ${$TAG:1}
                   sed -i -e "s/\"version\": *\"[0-9A-z.\-]*\"/\"version\": $(npm pkg get version)/gi" public/manifest.json
               # TODO: push version change to main
 
