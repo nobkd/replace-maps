@@ -19,7 +19,7 @@ jobs:
                   cache: 'npm'
 
             - name: Install Deps
-              run: npm ci --progress=false
+              run: npm ci --ignore-scripts --no-audit --progress=false
 
             - name: Update version
               run: |
