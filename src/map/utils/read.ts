@@ -25,9 +25,9 @@ export type MapData = {
 };
 
 /**
- *
- * @param param
- * @returns
+ * Decodes the `pb` parameter with the help of `parsePB` and `readQ`
+ * @param param Content of the `pb` parameter as a string
+ * @returns MapData with area, zoom, tile type and markers
  */
 export async function readPB(param: string): Promise<MapData> {
     let mapData: MapData = {
