@@ -24,11 +24,12 @@ export type MapData = {
     markers?: Marker[];
 };
 
+/**
+ * Decodes the `pb` parameter with the help of `parsePB` and `readQ`
+ * @param param Content of the `pb` parameter as a string
+ * @returns MapData with area, zoom, tile type and markers
+ */
 export async function readPB(param: string): Promise<MapData> {
-    // https://andrewwhitby.com/2014/09/09/google-maps-new-embed-format/
-    // https://blog.themillhousegroup.com/2016/08/deep-diving-into-google-pb-embedded-map.html
-    // https://stackoverflow.com/a/47042514
-
     let mapData: MapData = {
         markers: [],
     };
@@ -47,7 +48,7 @@ export async function readPB(param: string): Promise<MapData> {
     if (typeof currMarkers !== 'string') {
         for (let markers of currMarkers[0] as string[]) {
             if (markers.match(cidMatch)) {
-                // cid
+                // TODO: understand CID
                 console.log(markers);
             } else if (markers.match(dmsMatch)) {
                 let [lat, lon] = parseDMS(markers);
@@ -74,9 +75,14 @@ export async function readPB(param: string): Promise<MapData> {
     return mapData;
 }
 
+/**
+ * Makes a request to the Nominatim API to get the coordinates of an address
+ *
+ * Reference: https://medium.com/@sowmyaaji/how-to-build-a-backend-with-jquery-and-add-a-leaflet-js-frontend-e77f2079c852
+ * @param addr An address or place
+ * @returns The Latitude and Logitude of the address or place
+ */
 export async function readQ(addr: string): Promise<Marker | null> {
-    // https://medium.com/@sowmyaaji/how-to-build-a-backend-with-jquery-and-add-a-leaflet-js-frontend-e77f2079c852
-
     let uri = encodeURI(nominatimQ + addr);
     let res = await fetch(uri);
 

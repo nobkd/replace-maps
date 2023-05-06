@@ -10,6 +10,13 @@ export const matcher: RegExp = new RegExp(
 );
 export const runtimeMapUrl = runtime.getURL('map.html');
 
+/**
+ * Checks if `frames` send a request to Maps.
+ * If they do and the extension isn't disabled for the current site, then the request is redirected to the extension leaflet map with all URL search params.
+ * Else the request is'nt blocked.
+ * @param req Web Request from frame
+ * @returns Redirect to extension map or pass through if extension disabled for website
+ */
 function redirect(req: WebRequest.OnBeforeRequestDetailsType): WebRequest.BlockingResponse {
     // TODO: check if originUrl always matches current tab url -> e.g. in frames with subframes
     if (req.originUrl && req.url.match(matcher)) {
@@ -22,6 +29,7 @@ function redirect(req: WebRequest.OnBeforeRequestDetailsType): WebRequest.Blocki
     return {};
 }
 
+// Listens to web requests from frames, redirects when fitting `matcher`
 webRequest.onBeforeRequest.addListener(
     redirect,
     {
@@ -40,5 +48,5 @@ tabs.onActivated.addListener(updateActiveTabIcon);
 // listen for window switching
 windows.onFocusChanged.addListener(updateActiveTabIcon);
 
-// run at startup
+// update icon at startup
 updateActiveTabIcon();

@@ -4,7 +4,16 @@ import { matcher, runtimeMapUrl } from './bg';
 
 const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
 
-browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
+/**
+ * Async function to react to clicks on the browser action icon.
+ * Takes the current tab, takes its hostname and inverts the state of the hostname.
+ *
+ * Requests all frames from the current tab, filters them for extension Leaflet frames and Maps frames.
+ * Reloads the full tab on extension Leaflet frame match.
+ * If no extension Leaflet frames were found it just reloads the Maps frames
+ * @param tab Currently active tab
+ */
+async function actionClick(tab: Tabs.Tab): Promise<void> {
     if (!tab.url || !tab.id) return;
 
     let hostname = getHostname(tab.url);
@@ -26,4 +35,6 @@ browserAction.onClicked.addListener(async (tab: Tabs.Tab) => {
             code: 'document.location.reload();',
         });
     });
-});
+}
+
+browserAction.onClicked.addListener(actionClick);

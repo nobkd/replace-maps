@@ -1,7 +1,11 @@
 import { browserAction, tabs } from 'webextension-polyfill';
 import { disabledHosts, getHostname } from './storage';
 
-export function updateIcon(hostname: string) {
+/**
+ * Updates the action icon
+ * @param hostname Hostname
+ */
+export function updateIcon(hostname: string): void {
     let disabled = disabledHosts.includes(hostname);
 
     browserAction.setIcon({
@@ -17,7 +21,10 @@ export function updateIcon(hostname: string) {
     });
 }
 
-export async function updateActiveTabIcon() {
+/**
+ * Async function to update the icon of the currently active tab. Uses `updateIcon` internally
+ */
+export async function updateActiveTabIcon(): Promise<void> {
     let browserTabs = await tabs.query({ active: true, currentWindow: true });
 
     let tab = browserTabs[0];
