@@ -3,7 +3,7 @@
     "description": "Replace Maps iframes with OSM",
     "author": "nobkd",
     "license": "Unlicense",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "type": "module",
     "homepage": "https://github.com/nobkd/replace-maps#readme",
     "bugs": {
