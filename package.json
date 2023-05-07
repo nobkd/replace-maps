@@ -27,7 +27,8 @@
         "serve:firefox": "web-ext run -s dist",
         "serve:chrome": "web-ext run -t chromium -s dist",
         "bundle": "web-ext build -s dist -a out --overwrite-dest",
-        "release": "changelogen --release && sed -i -e \"s/\\\"version\\\": *\\\"[^\\\"]*\\\"/\\\"version\\\": $(npm pkg get version)/gi\" public/manifest.json"
+        "bump-manifest": "sed -i -e \"s/\\\"version\\\": *\\\"[^\\\"]*\\\"/\\\"version\\\": $(npm pkg get version)/gi\" public/manifest.json",
+        "release": "changelogen --release && npm run bump-manifest && npm run format:fix && git add public/manifest.json package.json package-lock.json && git commit --amend --no-edit && git push --follow-tags"
     },
     "devDependencies": {
         "@types/leaflet": "^1.9.3",
