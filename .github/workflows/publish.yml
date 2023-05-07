@@ -1,15 +1,8 @@
 name: Publish Release
 
 on:
-    workflow_dispatch:
-        inputs:
-            tag:
-                description: 'Tag to use. Has to start with extra char like "v"'
-                default: 'v'
-                type: string
-                required: true
     release:
-        types: [created]
+        types: [published]
 
 jobs:
     publish:
@@ -26,17 +19,11 @@ jobs:
             - name: Install Deps
               run: npm ci --ignore-scripts --no-audit --progress=false
 
-            - name: Update version
-              env:
-                  TAG: ${{ github.event.release.tag_name }}
-                  TAG_INPUT: ${{ inputs.tag }}
-              run: |
-                  ${TAG:=$TAG_INPUT}
-                  npm version --no-git-tag-version ${$TAG:1}
-                  sed -i -e "s/\"version\": *\"[0-9A-z.\-]*\"/\"version\": $(npm pkg get version)/gi" public/manifest.json
-              # TODO: push version change to main
+            - name: Build
+              run: npm run build
 
-            #- name: Sign Firefox Extension
-            #  run: npm run sign -- --api-secret ${{ secrets.FIREFOX_TOKEN }}
-            # TODO: add signed addon file to release
-            # TODO: push release to AMO
+            - name: Bundle
+              run: npm run bundle
+
+            #- name: Sign
+            #  run:
