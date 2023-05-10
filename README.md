@@ -13,11 +13,44 @@ As a result, the response is an extension page that contains a [Leaflet](https:/
 
 You can turn the extension off for every hostname by using the browser action button or by using the settings page.
 
+### Request-Response System
+
 ```mermaid
 graph TD
-req([Frame Request])-->url{Matches Google\nMaps URL?}
+req([Frame Request])-->url{Matches\nGoogle Maps\nURL?}
 url -->|no / turned off| no([Continue Original Request])
+
 url -->|yes| yes([Redirect to extension map page])
 yes --> dec[Decode URL Search Params]
 dec --> load[Load Leaflet Map]
+```
+
+### Search-Param Decoding
+
+```mermaid
+graph TD
+params(Search Params) -->|has q| q([readQ])
+q -->|with title| pos[Marker/s]
+params -->|has z| zoom[Zoom]
+
+params -->|has pb| pb([readPB])
+pb -->|has| minfo[Marker Info]
+pb -->|has| marea[Map Area]
+
+minfo -->|has\nsearch string| q
+minfo -->|has\n0x...:0x...| cid[CID]
+cid -.->|unknown usage| pos
+minfo -->|has\nDMS coords| dms([parseDMS])
+dms --> pos
+
+pb -->|has| mtype[Map Type]
+
+marea -->|has\ncoords| mcoords[Map Coords]
+marea -->|has\naltitude| mzoom([getMapZoom])
+mzoom --> zoom
+
+pos --> mdata[(Map Data)]
+mtype --> mdata
+mcoords --> mdata
+zoom --> mdata
 ```
