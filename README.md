@@ -13,44 +13,56 @@ As a result, the response is an extension page that contains a [Leaflet](https:/
 
 You can turn the extension off for every hostname by using the browser action button or by using the settings page.
 
-### Request-Response System
+### Extension Flowchart
 
 ```mermaid
-graph TD
-req([Frame Request])-->url{Matches\nGoogle Maps\nURL?}
-url -->|no / turned off| no([Continue Original Request])
+flowchart TD
 
-url -->|yes| yes([Redirect to extension map page])
-yes --> dec[Decode URL Search Params]
-dec --> load[Load Leaflet Map]
-```
+subgraph action [Browser Action]
+actionclick(Action Icon) -->|add / remove| storage[(Disabled Hostnames)]
+settings(Settings Page) -->|add / remove| storage
+end
 
-### Search-Param Decoding
 
-```mermaid
-graph TD
-params(Search Params) -->|has q| q([readQ])
-q -->|with title| pos[Marker/s]
-params -->|has z| zoom[Zoom]
+subgraph reqres [Request-Response Sytem]
+    req([Frame Request]) --> url{Matches\nGoogle Maps\nURL?}
+    url -->|no| nomatch([Continue Original Request])
 
-params -->|has pb| pb([readPB])
-pb -->|has| minfo[Marker Info]
-pb -->|has| marea[Map Area]
+    url -->|yes| match{Hostname\nDisabled?}
+    storage -->|provide hostnames| match
+    match -->|no| res([Redirect to extension map page])
+    match -->|yes| nomatch
 
-minfo -->|has\nsearch string| q
-minfo -->|has\n0x...:0x...| cid[CID]
-cid -.->|unknown usage| pos
-minfo -->|has\nDMS coords| dms([parseDMS])
-dms --> pos
+end
 
-pb -->|has| mtype[Map Type]
+res -->|use params| params
 
-marea -->|has\ncoords| mcoords[Map Coords]
-marea -->|has\naltitude| mzoom([getMapZoom])
-mzoom --> zoom
+subgraph dec [Search-Param Decoding]
+    params(Search Params) -->|has q| q([readQ])
+    q -->|with title| pos[Marker/s]
+    params -->|has z| zoom[Zoom]
 
-pos --> mdata[(Map Data)]
-mtype --> mdata
-mcoords --> mdata
-zoom --> mdata
+    params -->|has pb| pb([readPB])
+    pb -->|has| minfo[Marker Info]
+    pb -->|has| marea[Map Area]
+
+    minfo -->|has\nsearch string| q
+    minfo -->|has\n0x...:0x...| cid[CID]
+    cid -.->|unknown usage| pos
+    minfo -->|has\nDMS coords| dms([parseDMS])
+    dms --> pos
+
+    pb -->|has| mtype[Map Type]
+
+    marea -->|has\ncoords| mcoords[Map Coords]
+    marea -->|has\naltitude| mzoom([getMapZoom])
+    mzoom --> zoom
+
+    pos --> mdata[(Map Data)]
+    mtype --> mdata
+    mcoords --> mdata
+    zoom --> mdata
+end
+
+mdata -->|use map data| mview([Load Leaflet Map])
 ```
