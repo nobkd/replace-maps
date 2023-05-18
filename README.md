@@ -4,12 +4,26 @@
 
 Replace Google Maps iFrames with OpenStreetMap
 
+## Capabilities
+
+- replace Google Maps embeds with Leaflet map. Using API calls to:
+  - [Nominatim Search](https://nominatim.org/release-docs/develop/api/Search/)
+  - [OSM Tiles](https://www.openstreetmap.org/)
+  - [ArcGIS World Imagery Tiles](https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/)
+- disable extension for hostnames
+
+## Uncapabilities
+
+- replace maps requested from API from parent page
+- replace other map providers
+- send usage data and statistics
+
 ## How it Works
 
 This browser extension intercepts web requests from frames in a page.
 If the request URL matches the syntax to a Google Maps map, the response will be replaced.
 The search parameters of the request are decoded and converted to compatible syntax.
-As a result, the response is an extension page that contains a [Leaflet](https://leafletjs.com/) & [OSM](https://www.openstreetmap.org/) map.
+As a result, the response is an extension page that contains a [Leaflet](https://leafletjs.com/) + [OSM](https://www.openstreetmap.org/) + [ArgGIS](https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/) map.
 
 You can turn the extension off for every hostname by using the browser action button or by using the settings page.
 
