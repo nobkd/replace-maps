@@ -39,7 +39,7 @@
         "prettier": "^2.8.8",
         "svgexport": "^0.4.2",
         "typescript": "^5.0.4",
-        "vite": "^4.3.8",
+        "vite": "^4.3.9",
         "vite-plugin-static-copy": "^0.15.0",
         "vitest": "^0.31.1",
         "web-ext": "^7.6.2",
