@@ -36,6 +36,8 @@ export default defineConfig({
         supported: {
             'top-level-await': true,
         },
+        drop: ['debugger'],
+        pure: ['console.log', 'console.warn', 'console.error', 'console.debug', 'console.trace'],
     },
     test: {
         root: '.',
