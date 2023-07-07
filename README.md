@@ -12,12 +12,6 @@ Replace Google Maps iFrames with OpenStreetMap
   - [ArcGIS World Imagery Tiles](https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/)
 - disable extension for hostnames
 
-## Uncapabilities
-
-- replace maps requested from API from parent page
-- replace other map providers
-- send usage data and statistics
-
 ## How it Works
 
 This browser extension intercepts web requests from frames in a page.
