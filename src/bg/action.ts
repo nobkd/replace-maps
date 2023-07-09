@@ -20,7 +20,15 @@ async function actionClick(tab: Tabs.Tab): Promise<void> {
     await invertHostState(hostname);
 
     let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
+    
+    // Added instead of commented below, as map currently isn't loaded properly on just frame reload...
+    if (frames.some((frame) => frame.url.match(replacedUrlMatcher) || frame.url.match(matcher))) {
+        tabs.reload(tab.id, { bypassCache: true });
+        return;
+    }
 
+    // TODO: check if reusable
+    /*
     // matches osm frames (just reloading the frame ist not working for some reason, so in case of replaced maps the whole tab is reloaded)
     if (frames.some((frame) => frame.url.match(replacedUrlMatcher))) {
         tabs.reload(tab.id, { bypassCache: true });
@@ -35,6 +43,7 @@ async function actionClick(tab: Tabs.Tab): Promise<void> {
             code: 'document.location.reload();',
         });
     });
+    */
 }
 
 browserAction.onClicked.addListener(actionClick);
