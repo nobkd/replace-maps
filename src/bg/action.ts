@@ -20,7 +20,7 @@ async function actionClick(tab: Tabs.Tab): Promise<void> {
     await invertHostState(hostname);
 
     let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
-    
+
     // Added instead of commented below, as map currently isn't loaded properly on just frame reload...
     if (frames.some((frame) => frame.url.match(replacedUrlMatcher) || frame.url.match(matcher))) {
         tabs.reload(tab.id, { bypassCache: true });
