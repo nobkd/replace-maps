@@ -21,7 +21,7 @@
         "test": "vitest run",
         "test:watch": "vitest",
         "test:cov": "vitest run --coverage",
-        "dev": "run-p -l vite:watch serve:firefox",
+        "dev": "run-p -r -l vite:watch serve:firefox",
         "vite:site": "vite",
         "vite:watch": "vite build --watch --mode development --minify false",
         "build": "tsc && vite build",
