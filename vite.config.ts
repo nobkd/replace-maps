@@ -18,6 +18,10 @@ export default defineConfig({
                     src: normalizePath(resolve(__dirname, 'node_modules/leaflet/dist/images')),
                     dest: '.',
                 },
+                {
+                    src: normalizePath(resolve(__dirname, 'LICENSE')),
+                    dest: '.',
+                },
             ],
         }),
     ],
