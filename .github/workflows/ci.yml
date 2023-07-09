@@ -32,4 +32,4 @@ jobs:
 
             - name: Test Coverage
               if: (${{ success() }} || ${{ failure() }})
-              run: npm run test:coverage
+              run: npm run test:cov
