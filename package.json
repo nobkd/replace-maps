@@ -60,7 +60,7 @@
             "releaseName": "v${version}"
         },
         "hooks": {
-            "after:bump": "npm run bump-manifest && npm pkg get version | xargs npx changelogen@latest --no-commit --no-tag --output -r"
+            "after:bump": "npm run bump-manifest && npx changelogen@latest --no-commit --no-tag --output -r $(node -p \"require('./package.json').version\")"
         }
     }
 }
