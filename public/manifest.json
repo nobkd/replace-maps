@@ -2,7 +2,7 @@
     "description": "Replace Maps iframes with OSM",
     "manifest_version": 2,
     "name": "Replace Maps",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "homepage_url": "https://github.com/nobkd/replace-maps",
     "icons": {
         "48": "icons/48.png",

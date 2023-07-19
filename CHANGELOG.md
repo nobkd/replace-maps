@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.0.3
+
+[compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.2...v0.0.3)
+
+### 🩹 Fixes
+
+- Give version correctly to changelogen ([be15d98](https://github.com/nobkd/replace-maps/commit/be15d98))
+
+### 🏡 Chore
+
+- **actions:** Update scripts ([7eca31b](https://github.com/nobkd/replace-maps/commit/7eca31b))
+- **actions:** Remove unneded needs ([07db7b5](https://github.com/nobkd/replace-maps/commit/07db7b5))
+- **changelog:** Fix versioning ([b7d949c](https://github.com/nobkd/replace-maps/commit/b7d949c))
+
+### ❤️  Contributors
+
+- Nobkd
+
 ## v0.0.2
 
 [compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.1...v0.0.2)
