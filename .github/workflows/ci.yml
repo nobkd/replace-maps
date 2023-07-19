@@ -39,7 +39,6 @@ jobs:
 
     test:
         name: Test
-        needs: [lint]
         timeout-minutes: 10
         runs-on: self-hosted
 
