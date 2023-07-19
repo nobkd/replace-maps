@@ -1,5 +1,46 @@
 # Changelog
 
+## v0.0.1...main
+
+[compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.1...main)
+
+### 🩹 Fixes
+
+- Don't format md files ([0d1fd5f](https://github.com/nobkd/replace-maps/commit/0d1fd5f))
+- Include license in bundle ([734b3a6](https://github.com/nobkd/replace-maps/commit/734b3a6))
+- Devscript:  stop vite when browser closes ([28a7692](https://github.com/nobkd/replace-maps/commit/28a7692))
+- Always reload tab on action click if frame ([5b8efc2](https://github.com/nobkd/replace-maps/commit/5b8efc2))
+- Reload tab on maps or extension leaflet match ([3dc212c](https://github.com/nobkd/replace-maps/commit/3dc212c))
+
+### 📖 Documentation
+
+- **readme:** Add 'how it works' description ([2741d5a](https://github.com/nobkd/replace-maps/commit/2741d5a))
+- **readme:** Add flowchart to 'how it works' ([86c2004](https://github.com/nobkd/replace-maps/commit/86c2004))
+- **readme:** Add 'search param decoding' section ([edd1625](https://github.com/nobkd/replace-maps/commit/edd1625))
+- **readme:** Create one huge flowchart ([d6c20ae](https://github.com/nobkd/replace-maps/commit/d6c20ae))
+- **readme:** Add capabilities section ([16ad283](https://github.com/nobkd/replace-maps/commit/16ad283))
+- **readme:** Update readme ([#7](https://github.com/nobkd/replace-maps/pull/7))
+- Add wip readme for amo ([1043c6e](https://github.com/nobkd/replace-maps/commit/1043c6e))
+
+### 🏡 Chore
+
+- **release:** V0.0.2 ([000fe2d](https://github.com/nobkd/replace-maps/commit/000fe2d))
+- **version:** Reset version ([8e40173](https://github.com/nobkd/replace-maps/commit/8e40173))
+- **deps-dev:** Bump vite from 4.3.8 to 4.3.9 ([869bf4e](https://github.com/nobkd/replace-maps/commit/869bf4e))
+- **deps-dev:** Bump vite from 4.3.8 to 4.3.9 ([#8](https://github.com/nobkd/replace-maps/pull/8))
+- Upgrade deps, add build options ([cb704e1](https://github.com/nobkd/replace-maps/commit/cb704e1))
+- **readme:** Remove secction ([8e38aae](https://github.com/nobkd/replace-maps/commit/8e38aae))
+- Formatting ([ab6aceb](https://github.com/nobkd/replace-maps/commit/ab6aceb))
+- Formatting ([bd01c1d](https://github.com/nobkd/replace-maps/commit/bd01c1d))
+- Shorten scripts ([d167da7](https://github.com/nobkd/replace-maps/commit/d167da7))
+- Update release script, upgrade deps ([3101372](https://github.com/nobkd/replace-maps/commit/3101372))
+- Set package to private ([b1fcbab](https://github.com/nobkd/replace-maps/commit/b1fcbab))
+- Format changelog ([dc8b804](https://github.com/nobkd/replace-maps/commit/dc8b804))
+
+### ❤️  Contributors
+
+- Nobkd
+
 ## v0.0.1
 
 ### 🚀 Enhancements
