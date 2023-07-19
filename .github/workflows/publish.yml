@@ -1,12 +1,16 @@
-name: Publish Release
+name: Publish
 
 on:
     release:
         types: [published]
 
+concurrency:
+    group: ${{ github.ref }}
+    cancel-in-progress: true
+
 jobs:
-    publish:
-        name: Publish to Firefox AMO
+    lint:
+        name: Lint
         timeout-minutes: 10
         runs-on: self-hosted
 
@@ -16,8 +20,65 @@ jobs:
               with:
                   node-version: 18
 
-            - name: Install Deps
-              run: npm ci --ignore-scripts --no-audit --progress=false
+            - name: Install
+              uses: actions/cache@v3
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - run: npm ci --ignore-scripts
+
+            - name: Lint
+              run: npm run format
+
+    test:
+        name: Test
+        needs: [lint]
+        timeout-minutes: 10
+        runs-on: self-hosted
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+
+            - name: Install
+              uses: actions/cache@v3
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - run: npm ci --ignore-scripts
+
+            - name: Test
+              run: npm run test:cov
+
+    publish:
+        name: Publish to Firefox AMO
+        needs: [lint, test]
+        timeout-minutes: 10
+        runs-on: self-hosted
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+
+            - name: Install
+              uses: actions/cache@v3
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - run: npm ci --ignore-scripts
 
             - name: Build
               run: npm run build
@@ -25,5 +86,4 @@ jobs:
             - name: Bundle
               run: npm run bundle
 
-            #- name: Sign
-            #  run:
+            # Send non-minified code to AMO, Sign file with AMO, Upload artifacts to release
