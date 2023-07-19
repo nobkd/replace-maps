@@ -5,6 +5,7 @@
     "license": "Unlicense",
     "version": "0.0.1",
     "type": "module",
+    "private": true,
     "homepage": "https://github.com/nobkd/replace-maps#readme",
     "bugs": {
         "url": "https://github.com/nobkd/replace-maps/issues"
