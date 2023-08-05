@@ -1,6 +1,6 @@
 {
     "name": "replace-maps",
-    "description": "Replace Maps iframes with OSM",
+    "description": "Replace Google Maps iFrames with OSM",
     "author": "nobkd",
     "license": "Unlicense",
     "version": "0.0.3",
