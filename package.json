@@ -29,7 +29,7 @@
         "serve:firefox": "web-ext run -s dist",
         "serve:chrome": "web-ext run -t chromium -s dist",
         "bundle": "web-ext build -s dist -a out --overwrite-dest",
-        "bump-manifest": "sed -i -e \"s/\\\"version\\\": *\\\"[^\\\"]*\\\"/\\\"version\\\": $(npm pkg get version)/gi\" public/manifest.json",
+        "bump-manifest": "sh scripts/bump.sh",
         "release": "npm run format:fix; release-it"
     },
     "devDependencies": {
