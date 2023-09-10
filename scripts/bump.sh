@@ -1,3 +1,1 @@
-sed -i -e "s/\"versio
-n\": *\"[^\"]*\"/\"version\": $(npm pk
-g get version)/gi" ../public/manifest.json
+sed -i -e "s/\"version\": *\"[^\"]*\"/\"version\": $(npm pkg get version)/gi" public/manifest.json
