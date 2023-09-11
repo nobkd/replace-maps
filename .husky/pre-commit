@@ -1,5 +1,0 @@
-#!/bin/bash
-
-npm run format:fix > /dev/null
-
-exit 0
