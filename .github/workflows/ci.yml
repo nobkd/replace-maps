@@ -13,18 +13,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  debug:
-    name: Debug
-    runs-on: self-hosted
-
-    steps:
-        - name: Dump env
-          run: env | sort
-        - name: Dump GitHub context
-          env:
-            GITHUB_CONTEXT: ${{ toJson(github) }}
-          run: echo "$GITHUB_CONTEXT"
-
   lint:
     name: Lint
     timeout-minutes: 10
