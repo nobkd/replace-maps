@@ -37,7 +37,7 @@ jobs:
         run: npm run bundle
       
       - name: Load source code
-        run: gh release download ${{ github.event.release.tag_name }} --archive zip --dir out --output replace_maps_source.zip
+        run: git archive --format=zip ${{ github.event.release.tag_name }} --output out/replace_maps_source.zip
 
       - name: Release
         uses: browser-actions/release-firefox-addon@latest
