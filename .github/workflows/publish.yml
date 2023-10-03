@@ -36,7 +36,7 @@ jobs:
       - name: Bundle extension
         run: npm run bundle
       
-      - name: Load source code
+      - name: Bundle source code
         run: git archive --format=zip ${{ github.event.release.tag_name }} --output out/replace_maps_source.zip
 
       - name: Release
@@ -46,7 +46,7 @@ jobs:
           addon-path: out/replace_maps.zip
           source-path: out/replace_maps_source.zip
           approval-note: Follow the instructions in AMO-README.md
-          release-note: ${{ github.event.release.body }}
+          #release-note: ${{ github.event.release.body }}  # TODO: convert md to html, h1-6 not allowed...
           auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
           auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
 
