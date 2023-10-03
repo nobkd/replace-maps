@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.0.5
+
+[compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.4...v0.0.5)
+
+### 🩹 Fixes
+
+- Use nominatim api without trailing slash ([fae1c42](https://github.com/nobkd/replace-maps/commit/fae1c42))
+- Hotfix for reloading tabs on state change ([32681cd](https://github.com/nobkd/replace-maps/commit/32681cd))
+
+### 🏡 Chore
+
+- Fix loading source code zip ([1212c02](https://github.com/nobkd/replace-maps/commit/1212c02))
+- Fix source code packing action step ([ee58ce9](https://github.com/nobkd/replace-maps/commit/ee58ce9))
+
+### ❤️ Contributors
+
+- Nobkd
+
 ## v0.0.4
 
 [compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.3...v0.0.4)
