@@ -20,14 +20,15 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install
+      - name: Load cache
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
 
-      - run: npm ci
+      - name: Install
+        run: npm ci
 
       - name: Build
         run: npm run build
@@ -41,8 +42,8 @@ jobs:
           addon-id: "replace_maps@nobkd.github.io"
           addon-path: "out/replace_maps.zip"
           source-path: "https://github.com/nobkd/replace-maps/archive/refs/tags/${{ github.event.release.tag_name }}.zip"
-          approval-note: |
-            Follow the instructions in AMO-README.md
+          approval-note: "Follow the instructions in AMO-README.md"
+          release-note: ${{ github.event.release.body }}
           auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
           auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
 
