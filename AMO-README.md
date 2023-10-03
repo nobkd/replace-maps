@@ -2,13 +2,13 @@
 
 ## Prequisites
 
-- Node
+- Node (18)
 - npm
 
 ## Installation
 
 ```shell
-npm ci --ignore-scripts
+npm ci
 ```
 
 This uses the `package-lock.json` file for installation to avoid package changes and have reproducible builds.
