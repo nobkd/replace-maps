@@ -1,8 +1,8 @@
-import { browserAction, webNavigation, type Tabs, tabs } from 'webextension-polyfill';
+import { browserAction, /*webNavigation,*/ type Tabs, tabs } from 'webextension-polyfill';
 import { getHostname, invertHostState } from './utils/storage';
-import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
+//import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
 
-const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
+//const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
 
 /**
  * Async function to react to clicks on the browser action icon.
@@ -18,15 +18,16 @@ async function actionClick(tab: Tabs.Tab): Promise<void> {
     let hostname = getHostname(tab.url);
     await invertHostState(hostname);
 
+    /*
     let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
 
     if (
         frames.some((frame) => {
             frame.url.match(replacedUrlMatcher) || frame.url.match(mapsUrlMatcher);
         })
-    ) {
-        tabs.reload(tab.id, { bypassCache: true });
-    }
+    )
+    */
+    tabs.reload(tab.id, { bypassCache: true });
 }
 
 browserAction.onClicked.addListener(actionClick);
