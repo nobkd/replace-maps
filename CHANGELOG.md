@@ -1,5 +1,43 @@
 # Changelog
 
+## v0.0.4
+
+[compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.3...v0.0.4)
+
+### 🚀 Enhancements
+
+- Add publish script, rename to replace_maps ([1682087](https://github.com/nobkd/replace-maps/commit/1682087))
+
+### 🩹 Fixes
+
+- **actions:** Don't cancel in progress ([e393a92](https://github.com/nobkd/replace-maps/commit/e393a92))
+- Bump script ([8f7120a](https://github.com/nobkd/replace-maps/commit/8f7120a))
+
+### 📖 Documentation
+
+- Update package.json description ([8169d25](https://github.com/nobkd/replace-maps/commit/8169d25))
+- Add known issues section ([cf38521](https://github.com/nobkd/replace-maps/commit/cf38521))
+
+### 🏡 Chore
+
+- Fix changelogen script ([2b43d71](https://github.com/nobkd/replace-maps/commit/2b43d71))
+- Update LICENSE ([144661d](https://github.com/nobkd/replace-maps/commit/144661d))
+- Update license ([d84ed73](https://github.com/nobkd/replace-maps/commit/d84ed73))
+- Update dev script ([9c6a0ec](https://github.com/nobkd/replace-maps/commit/9c6a0ec))
+- Drop husky and git hooks ([4b6e8ee](https://github.com/nobkd/replace-maps/commit/4b6e8ee))
+- Fix manifesat description ([45399b1](https://github.com/nobkd/replace-maps/commit/45399b1))
+- Drop lint and test from publish script ([f11cde9](https://github.com/nobkd/replace-maps/commit/f11cde9))
+- Update manifest description ([d7a00b1](https://github.com/nobkd/replace-maps/commit/d7a00b1))
+- Remove --ignore-scripts flag ([8bba9d6](https://github.com/nobkd/replace-maps/commit/8bba9d6))
+- Add todo ([de0bad7](https://github.com/nobkd/replace-maps/commit/de0bad7))
+- Use tag name ([6b38178](https://github.com/nobkd/replace-maps/commit/6b38178))
+- Add debug script ([286580c](https://github.com/nobkd/replace-maps/commit/286580c))
+- Drop debug script ([3bc87d6](https://github.com/nobkd/replace-maps/commit/3bc87d6))
+
+### ❤️ Contributors
+
+- Nobkd
+
 ## v0.0.3
 
 [compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.2...v0.0.3)
