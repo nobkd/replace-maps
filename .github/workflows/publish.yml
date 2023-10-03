@@ -45,3 +45,5 @@ jobs:
             Follow the instructions in AMO-README.md
           auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
           auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
+
+      # TODO: upload signed extension artifact
