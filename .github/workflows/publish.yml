@@ -40,10 +40,10 @@ jobs:
         with:
           addon-id: "replace_maps@nobkd.github.io"
           addon-path: "out/replace_maps.zip"
-          source-path: "https://github.com/nobkd/replace-maps/archive/refs/tags/${{ github.ref_name }}.zip"
+          source-path: "https://github.com/nobkd/replace-maps/archive/refs/tags/${{ github.event.release.tag_name }}.zip"
           approval-note: |
             Follow the instructions in AMO-README.md
           auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
           auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
 
-      # TODO: upload signed extension artifact
+      # TODO: upload signed extension to release artifacts

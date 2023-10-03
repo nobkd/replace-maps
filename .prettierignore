@@ -1,5 +1,6 @@
 package-lock.json
 *.md
+.github
 dist
 out
 coverage

@@ -58,5 +58,5 @@ jobs:
 
       - name: Test
         run: npm run test:cov
-      
-      - run: echo "https://github.com/nobkd/replace-maps/archive/refs/tags/${{ github.ref_name }}.zip"
+
+      - run: echo "https://github.com/nobkd/replace-maps/archive/refs/tags/${{ github.event.release.tag_name }}.zip"
