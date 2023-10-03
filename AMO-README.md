@@ -2,7 +2,7 @@
 
 ## Prequisites
 
-- Node (18)
+- Node 18
 - npm
 
 ## Installation
@@ -19,4 +19,4 @@ This uses the `package-lock.json` file for installation to avoid package changes
 npm run build && npm run bundle
 ```
 
-This transpiles and minifies the TypeScript, copies static resources and bundles the output to the `out` directory of the project.
+This transpiles and minifies the TypeScript, copies static resources and bundles the output to `out/replace_maps.zip`.

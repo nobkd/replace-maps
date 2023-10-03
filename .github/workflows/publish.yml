@@ -1,38 +1,47 @@
 name: Publish
 
 on:
-    release:
-        types: [published]
+  release:
+    types: [published]
 
 concurrency:
-    group: ${{ github.ref }}
-    cancel-in-progress: false
+  group: ${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-    publish:
-        name: Publish to Firefox AMO
-        timeout-minutes: 10
-        runs-on: self-hosted
+  publish:
+    name: Publish to Firefox AMO
+    timeout-minutes: 10
+    runs-on: self-hosted
 
-        steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 18
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-            - name: Install
-              uses: actions/cache@v3
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: ${{ runner.os }}-node-
+      - name: Install
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
 
-            - run: npm ci
+      - run: npm ci
 
-            - name: Build
-              run: npm run build
+      - name: Build
+        run: npm run build
 
-            - name: Bundle
-              run: npm run bundle
+      - name: Bundle
+        run: npm run bundle
 
-            # Send non-minified code to AMO, Sign file with AMO, Upload artifacts to release
+      - name: Release
+        uses: browser-actions/release-firefox-addon@latest
+        with:
+          addon-id: "replace_maps@nobkd.github.io"
+          addon-path: "out/replace_maps.zip"
+          source-path: "https://github.com/nobkd/replace-maps/archive/refs/tags/${{ github.ref_name }}.zip"
+          approval-note: |
+            Follow the instructions in AMO-README.md
+          auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
+          auth-api-secret: ${{ secrets.AUTH_API_SECRET }}

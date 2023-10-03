@@ -1,5 +1,5 @@
 {
-    "name": "replace-maps",
+    "name": "replace_maps",
     "description": "Replace Google Maps iFrames with OSM",
     "author": "nobkd",
     "license": "MPL-2.0",
@@ -27,7 +27,7 @@
         "build": "tsc && vite build",
         "serve:firefox": "web-ext run -s dist",
         "serve:chromium": "web-ext run -t chromium -s dist",
-        "bundle": "web-ext build -s dist -a out --overwrite-dest",
+        "bundle": "web-ext build -s dist -a out --overwrite-dest -n replace_maps.zip",
         "bump-manifest": "sh scripts/bump.sh",
         "release": "npm run format:fix; release-it"
     },

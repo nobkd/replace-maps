@@ -10,7 +10,7 @@
     },
     "browser_specific_settings": {
         "gecko": {
-            "id": "replace-maps@nobkd.github.io",
+            "id": "replace_maps@nobkd.github.io",
             "strict_min_version": "89.0"
         }
     },
