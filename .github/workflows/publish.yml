@@ -30,19 +30,22 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build
+      - name: Build extension
         run: npm run build
 
-      - name: Bundle
+      - name: Bundle extension
         run: npm run bundle
+      
+      - name: Load source code
+        run: gh release download ${{ github.event.release.tag_name }} --archive zip --dir out --output replace_maps_source.zip
 
       - name: Release
         uses: browser-actions/release-firefox-addon@latest
         with:
-          addon-id: "replace_maps@nobkd.github.io"
-          addon-path: "out/replace_maps.zip"
-          source-path: "https://github.com/nobkd/replace-maps/archive/refs/tags/${{ github.event.release.tag_name }}.zip"
-          approval-note: "Follow the instructions in AMO-README.md"
+          addon-id: replace_maps@nobkd.github.io
+          addon-path: out/replace_maps.zip
+          source-path: out/replace_maps_source.zip
+          approval-note: Follow the instructions in AMO-README.md
           release-note: ${{ github.event.release.body }}
           auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
           auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
