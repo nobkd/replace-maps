@@ -36,7 +36,7 @@ jobs:
       - name: Bundle extension
         run: npm run bundle
       
-      - name: Bundle source code
+      - name: Bundle source
         run: git archive --format=zip ${{ github.event.release.tag_name }} --output out/replace_maps_source.zip
 
       - name: Release
