@@ -4,6 +4,8 @@
 
 **Replace Google Maps iFrames with OpenStreetMap**
 
+[!['Get Firefox Extension'-Badge](https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg)](https://addons.mozilla.org/addon/replace-maps/)
+
 ## Capabilities
 
 - replace Google Maps embeds with Leaflet map. Using API calls to:
