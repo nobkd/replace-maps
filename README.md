@@ -1,6 +1,6 @@
 # Replace Maps
 
-[<img src="icons/icon.svg" alt="Light blue icon with white border. Shape is a pin for the current position on a map." align="right" width="128" height="128" />](#)
+<img src="icons/icon.svg" alt="Light blue icon with white border. Shape is a pin for the current position on a map." align="right" width="128" height="128" />
 
 **Replace Google Maps iFrames with OpenStreetMap**
 
