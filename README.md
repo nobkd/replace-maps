@@ -83,3 +83,4 @@ mdata -->|use map data| mview([Load Leaflet Map])
 - Not working when a website does not use an iFrame / embed
 - Not working when iFrame uses only CIDs
 - No routes, just positions
+- If insufficient information is gathered, the map stays blank
