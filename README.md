@@ -1,6 +1,6 @@
 # Replace Maps
 
-<img src="icons/icon.svg" alt="Light blue icon with white border. Shape is a pin for the current position on a map." align="right" width="128" height="128" />
+[<img src="icons/icon.svg" alt="Light blue icon with white border. Shape is a pin for the current position on a map." align="right" width="128" height="128" />](#)
 
 **Replace Google Maps iFrames with OpenStreetMap**
 
@@ -82,3 +82,4 @@ mdata -->|use map data| mview([Load Leaflet Map])
 - Sometimes the zoom level is completely wrong
 - Not working when a website does not use an iFrame / embed
 - Not working when iFrame uses only CIDs
+- No routes, just positions
