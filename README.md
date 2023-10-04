@@ -4,7 +4,7 @@
 
 **Replace Google Maps iFrames with OpenStreetMap**
 
-[<img alt="'Get Firefox Extension'-Badge" src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" width="129" height="45" />](https://addons.mozilla.org/addon/replace-maps/)
+[<img alt="'Get Firefox Add-On'-Badge" src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" width="129" height="45" />](https://addons.mozilla.org/addon/replace-maps/)
 
 ## Capabilities
 
