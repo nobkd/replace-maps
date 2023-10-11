@@ -1,10 +1,14 @@
 # Replace Maps
 
-<img src="icons/icon.svg" alt="Light blue icon with white border. Shape is a pin for the current position on a map." align="right" width="128" height="128" />
+[<img alt="Light blue icon with white border. Shape is a pin for the current position on a map." src="icons/icon.svg" width="128" align="right" />][link-latest-release]
+
+[![CI GitHub Workflow Status][badge-status-ci]][link-workflow-ci]
+[![MPL-2.0 License][badge-license]][link-license]
+[![Mozilla Add-on Version][badge-amo]][link-amo]
 
 **Replace Google Maps iFrames with OpenStreetMap**
 
-[<img alt="'Get Firefox Add-On'-Badge" src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" width="129" height="45" />](https://addons.mozilla.org/addon/replace-maps/)
+[!['Get Firefox Add-On'-Badge][icon-amo]][link-amo]
 
 ## Capabilities
 
@@ -84,3 +88,16 @@ mdata -->|use map data| mview([Load Leaflet Map])
 - Not working when iFrame uses only CIDs
 - No routes, just positions
 - If insufficient information is gathered, the map stays blank
+
+<!-- Badges & Links -->
+[badge-license]: https://img.shields.io/github/license/nobkd/replace-maps
+[badge-amo]: https://img.shields.io/amo/v/replace-maps
+[badge-status-ci]: https://img.shields.io/github/actions/workflow/status/nobkd/replace-maps/ci.yml?label=ci
+
+[icon-logo]: icons/icon.svg
+[icon-amo]: icons/get-firefox-addon.svg
+
+[link-license]: LICENSE
+[link-latest-release]: https://github.com/nobkd/replace-maps/releases/latest
+[link-workflow-ci]: https://github.com/nobkd/replace-maps/actions/workflows/ci.yml
+[link-amo]: https://addons.mozilla.org/addon/replace-maps/
