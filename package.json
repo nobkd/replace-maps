@@ -29,7 +29,7 @@
         "serve:chromium": "web-ext run -t chromium -s dist",
         "bundle": "web-ext build -s dist -a out --overwrite-dest -n replace_maps.zip",
         "bump-manifest": "sh scripts/bump.sh",
-        "release": "npm run format:fix; release-it"
+        "release": "release-it"
     },
     "devDependencies": {
         "@types/leaflet": "^1.9.8",
@@ -58,6 +58,10 @@
             "releaseName": "v${version}"
         },
         "hooks": {
+            "before:init": [
+                "npm run format",
+                "npm test"
+            ],
             "after:bump": "npm run bump-manifest && npx changelogen@latest --no-commit --no-tag --output -r $(node -p \"require('./package.json').version\")"
         }
     }
