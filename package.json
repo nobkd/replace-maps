@@ -28,7 +28,6 @@
         "serve:firefox": "web-ext run -s dist",
         "serve:chromium": "web-ext run -t chromium -s dist",
         "bundle": "web-ext build -s dist -a out --overwrite-dest -n replace_maps.zip",
-        "bump-manifest": "sh scripts/bump.sh",
         "release": "release-it"
     },
     "devDependencies": {
@@ -38,6 +37,7 @@
         "npm-run-all": "^4.1.5",
         "prettier": "^3.1.0",
         "release-it": "^17.0.0",
+        "release-it-changelogen": "^0.0.4",
         "svgexport": "^0.4.2",
         "typescript": "^5.2.2",
         "vite": "^5.0.0",
@@ -51,18 +51,32 @@
     },
     "release-it": {
         "git": {
-            "commitMessage": "chore(release): release v${version}"
+            "tagName": "v${version}",
+            "commitMessage": "chore(release): v${version}",
+            "tagAnnotation": "v${version}"
         },
         "github": {
             "release": true,
             "releaseName": "v${version}"
+        },
+        "plugins": {
+            "release-it-changelogen": {
+                "disableVersion": true,
+                "templates": {
+                    "commitMessage": "chore(release): v{{newVersion}}",
+                    "tagMessage": "v{{newVersion}}",
+                    "tagBody": "v{{newVersion}}"
+                }
+            }
         },
         "hooks": {
             "before:init": [
                 "npm run format",
                 "npm test"
             ],
-            "after:bump": "npm run bump-manifest && npx changelogen@latest --no-commit --no-tag --output -r $(node -p \"require('./package.json').version\")"
+            "after:bump": [
+                "sh scripts/bump.sh"
+            ]
         }
     }
 }
