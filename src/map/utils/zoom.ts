@@ -3,7 +3,8 @@ const precision: number = 10;
 
 /**
  * Converts *altitude over the map* to *zoom level of the map*
- *
+ * TODO: Should be rewritten!!!
+ * 
  * Reference: https://groups.google.com/g/google-earth-browser-plugin/c/eSL9GlAkWBk/m/T4mdToJz_FgJ
  * @param alt Altitude as number
  * @returns Zoom level between 0 and 19

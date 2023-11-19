@@ -1,8 +1,8 @@
-import { browserAction, /*webNavigation,*/ type Tabs, tabs } from 'webextension-polyfill';
+import { browserAction, webNavigation, type Tabs, tabs } from 'webextension-polyfill';
 import { getHostname, invertHostState } from './utils/storage';
-//import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
+import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
 
-//const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
+const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
 
 /**
  * Async function to react to clicks on the browser action icon.
@@ -19,6 +19,7 @@ async function actionClick(tab: Tabs.Tab): Promise<void> {
     await invertHostState(hostname);
 
     /*
+    // TODO: try to only reload necessary parts!!!
     let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
 
     if (
