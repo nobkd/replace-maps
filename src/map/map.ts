@@ -1,4 +1,5 @@
 import L from 'leaflet';
+import 'leaflet-fullscreen';
 
 import { readPB, readQ, type MapData } from './utils/read';
 import { type TileType, tileTypes } from './utils/parsePB';
@@ -44,7 +45,8 @@ if (params.has(gZoom)) {
 }
 
 const map: L.Map = L.map('map', {
-    scrollWheelZoom: false, // TODO: on pc allow ctrl + scroll
+    fullscreenControl: true,
+    scrollWheelZoom: true, // TODO: on pc allow ctrl + scroll
     zoom: mapData.zoom ?? 17,
     zoomSnap: 0.1,
     zoomDelta: 0.5,
@@ -71,3 +73,7 @@ L.tileLayer(tileProviders[mapData.tile || tileTypes[0]].layer, {
     maxZoom: 19,
     attribution: tileProviders[mapData.tile || tileTypes[0]].attr,
 }).addTo(map);
+
+L.control.scale().addTo(map);
+// TODO: fix layer loading
+//L.control.layers({}, {}, { hideSingleBase: true }).addTo(map)

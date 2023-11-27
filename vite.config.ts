@@ -19,6 +19,14 @@ export default defineConfig({
                     dest: '.',
                 },
                 {
+                    src: normalizePath(resolve(__dirname, 'node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css')),
+                    dest: '.',
+                },
+                {
+                    src: normalizePath(resolve(__dirname, 'node_modules/leaflet-fullscreen/dist/*.png')),
+                    dest: '.',
+                },
+                {
                     src: normalizePath(resolve(__dirname, 'LICENSE')),
                     dest: '.',
                 },
