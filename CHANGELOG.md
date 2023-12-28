@@ -1,5 +1,42 @@
 # Changelog
 
+## v0.0.6
+
+[compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.5...v0.0.6)
+
+### 🚀 Enhancements
+
+- Map fullscreen control & m/ft scale ([bd8e5d3](https://github.com/nobkd/replace-maps/commit/bd8e5d3))
+
+### 📖 Documentation
+
+- Add firefox extension badge ([39ce782](https://github.com/nobkd/replace-maps/commit/39ce782))
+- Update known issues section ([3f5a806](https://github.com/nobkd/replace-maps/commit/3f5a806))
+- Revert changing icon link ([ec0ce0d](https://github.com/nobkd/replace-maps/commit/ec0ce0d))
+- Add issue to known issues ([e0df8a4](https://github.com/nobkd/replace-maps/commit/e0df8a4))
+- **readme:** Add badges ([cf7014b](https://github.com/nobkd/replace-maps/commit/cf7014b))
+
+### 🏡 Chore
+
+- Rename action step, disable release note ([cf438de](https://github.com/nobkd/replace-maps/commit/cf438de))
+- Set size of ff ext badge ([f082b1b](https://github.com/nobkd/replace-maps/commit/f082b1b))
+- Add license field to publish script ([ac6192e](https://github.com/nobkd/replace-maps/commit/ac6192e))
+- Update alt text of get ff add-on badge ([3c16b54](https://github.com/nobkd/replace-maps/commit/3c16b54))
+- Rename bundle action step ([0cae3dd](https://github.com/nobkd/replace-maps/commit/0cae3dd))
+- Add todos ([86436e0](https://github.com/nobkd/replace-maps/commit/86436e0))
+- Moving towars better release-it integration ([3903a8f](https://github.com/nobkd/replace-maps/commit/3903a8f))
+- Update gitignore ([966b009](https://github.com/nobkd/replace-maps/commit/966b009))
+- Simplify release ([9f50f97](https://github.com/nobkd/replace-maps/commit/9f50f97))
+- Lint ([6f2c77d](https://github.com/nobkd/replace-maps/commit/6f2c77d))
+- **deps-dev:** Bump vite from 5.0.2 to 5.0.5 ([#11](https://github.com/nobkd/replace-maps/pull/11))
+- Comment out unused code ([b3eefc0](https://github.com/nobkd/replace-maps/commit/b3eefc0))
+- Test build run to check if working on release ([8744292](https://github.com/nobkd/replace-maps/commit/8744292))
+- WIP use release body as release notes ([7a3f03e](https://github.com/nobkd/replace-maps/commit/7a3f03e))
+
+### ❤️ Contributors
+
+- Nobkd
+
 ## v0.0.5
 
 [compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.4...v0.0.5)

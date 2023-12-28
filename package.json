@@ -3,7 +3,7 @@
     "description": "Replace Google Maps iFrames with OSM",
     "author": "nobkd",
     "license": "MPL-2.0",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "type": "module",
     "private": true,
     "homepage": "https://github.com/nobkd/replace-maps#readme",
