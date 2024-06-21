@@ -12,7 +12,7 @@ jobs:
   publish:
     name: Publish to Firefox AMO
     timeout-minutes: 10
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
