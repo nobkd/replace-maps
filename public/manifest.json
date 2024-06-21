@@ -1,40 +1,40 @@
 {
-    "description": "Replace Google Maps iFrames with OpenStreetMap",
-    "manifest_version": 2,
-    "name": "Replace Maps",
-    "version": "0.0.6",
-    "homepage_url": "https://github.com/nobkd/replace-maps",
-    "icons": {
-        "48": "icons/48.png",
-        "96": "icons/96.png"
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "replace_maps@nobkd.github.io",
-            "strict_min_version": "89.0"
-        }
-    },
-    "permissions": [
-        "tabs",
-        "webNavigation",
-        "storage",
-        "webRequest",
-        "webRequestBlocking",
-        "<all_urls>"
-    ],
-    "background": {
-        "page": "bg.html"
-    },
-    "web_accessible_resources": ["map.html"],
-    "browser_action": {
-        "default_icon": {
-            "48": "icons/48.png",
-            "96": "icons/96.png"
-        },
-        "default_area": "navbar",
-        "default_title": "Replace Maps"
-    },
-    "options_ui": {
-        "page": "options.html"
+  "description": "Replace Google Maps iFrames with OpenStreetMap",
+  "manifest_version": 2,
+  "name": "Replace Maps",
+  "version": "0.0.6",
+  "homepage_url": "https://github.com/nobkd/replace-maps",
+  "icons": {
+    "48": "icons/48.png",
+    "96": "icons/96.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "replace_maps@nobkd.github.io",
+      "strict_min_version": "89.0"
     }
+  },
+  "permissions": [
+    "tabs",
+    "webNavigation",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "background": {
+    "page": "bg.html"
+  },
+  "web_accessible_resources": ["map.html"],
+  "browser_action": {
+    "default_icon": {
+      "48": "icons/48.png",
+      "96": "icons/96.png"
+    },
+    "default_area": "navbar",
+    "default_title": "Replace Maps"
+  },
+  "options_ui": {
+    "page": "options.html"
+  }
 }

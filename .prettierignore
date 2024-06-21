@@ -1,6 +1,5 @@
-package-lock.json
+.github/
+dist/
+out/
+
 *.md
-.github
-dist
-out
-coverage
