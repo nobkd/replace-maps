@@ -3,7 +3,7 @@
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "paths": {
-            "~/*": ["src/*"],
+            "~/*": ["src/*"]
         },
         "target": "ESNext",
         "useDefineForClassFields": true,
@@ -18,8 +18,8 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noImplicitReturns": true,
-        "declaration": false,
+        "declaration": false
     },
     "include": ["src"],
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules"]
 }
