@@ -1,19 +1,19 @@
-import { storage } from 'webextension-polyfill';
+import { storage } from 'webextension-polyfill'
 import {
-    KEY_DISABLED_HOSTS,
-    disabledHosts,
-    getHostname,
-    invertHostState,
-} from '../bg/utils/storage';
+  KEY_DISABLED_HOSTS,
+  disabledHosts,
+  getHostname,
+  invertHostState,
+} from '../bg/utils/storage'
 
-const table = document.querySelector('.table')!;
+const table = document.querySelector('.table')!
 
 /**
  * (Re)Builds the list of diasabled hostnames
  */
 function buildEntries(): void {
-    table.innerHTML = '';
-    disabledHosts.forEach(createEntry);
+  table.innerHTML = ''
+  disabledHosts.forEach(createEntry)
 }
 
 /**
@@ -21,15 +21,15 @@ function buildEntries(): void {
  * If the entry is already present in the stored hosts, no entry is added to the display list
  */
 async function addEntry(): Promise<void> {
-    const search = new URLSearchParams(document.location.search);
-    let hostname = search.get('hostname');
-    if (hostname === null) return;
+  const search = new URLSearchParams(document.location.search)
+  let hostname = search.get('hostname')
+  if (hostname === null) return
 
-    hostname = getHostname(hostname);
-    if (disabledHosts.includes(hostname)) return;
+  hostname = getHostname(hostname)
+  if (disabledHosts.includes(hostname)) return
 
-    await invertHostState(hostname);
-    createEntry(hostname);
+  await invertHostState(hostname)
+  createEntry(hostname)
 }
 
 /**
@@ -37,16 +37,16 @@ async function addEntry(): Promise<void> {
  * @param hostname Hostname to add to the list
  */
 function createEntry(hostname: string): void {
-    const div = document.createElement('div');
+  const div = document.createElement('div')
 
-    let span = document.createElement('span');
-    span.innerText = hostname;
+  let span = document.createElement('span')
+  span.innerText = hostname
 
-    let button = document.createElement('button');
-    button.onclick = removeEntry;
+  let button = document.createElement('button')
+  button.onclick = removeEntry
 
-    div.append(span, button);
-    table.appendChild(div);
+  div.append(span, button)
+  table.appendChild(div)
 }
 
 /**
@@ -55,13 +55,13 @@ function createEntry(hostname: string): void {
  * @param click Button click
  */
 async function removeEntry(click: MouseEvent): Promise<void> {
-    let target: EventTarget | null = click.target;
-    if (target === null) return;
+  let target: EventTarget | null = click.target
+  if (target === null) return
 
-    let index = getIndex(target as HTMLButtonElement);
-    if (index === -1) return;
+  let index = getIndex(target as HTMLButtonElement)
+  if (index === -1) return
 
-    await invertHostState(disabledHosts[index]);
+  await invertHostState(disabledHosts[index])
 }
 
 /**
@@ -70,20 +70,20 @@ async function removeEntry(click: MouseEvent): Promise<void> {
  * @returns Index of the list entry
  */
 function getIndex(button: HTMLButtonElement): number {
-    let div: HTMLDivElement = button.parentElement as HTMLDivElement;
-    if (div === null) return -1;
+  let div: HTMLDivElement = button.parentElement as HTMLDivElement
+  if (div === null) return -1
 
-    let index = Array.from(table.children).indexOf(div);
-    div.remove();
+  let index = Array.from(table.children).indexOf(div)
+  div.remove()
 
-    return index;
+  return index
 }
 
 storage.local.onChanged.addListener((changes) => {
-    if (KEY_DISABLED_HOSTS in changes) {
-        buildEntries();
-    }
-});
+  if (KEY_DISABLED_HOSTS in changes) {
+    buildEntries()
+  }
+})
 
-buildEntries();
-addEntry();
+buildEntries()
+addEntry()

@@ -1,80 +1,80 @@
 {
-    "name": "replace_maps",
-    "description": "Replace Google Maps iFrames with OSM",
-    "author": "nobkd",
-    "license": "MPL-2.0",
-    "version": "0.0.6",
-    "type": "module",
-    "private": true,
-    "homepage": "https://github.com/nobkd/replace-maps#readme",
-    "bugs": {
-        "url": "https://github.com/nobkd/replace-maps/issues"
+  "name": "replace_maps",
+  "description": "Replace Google Maps iFrames with OSM",
+  "author": "nobkd",
+  "license": "MPL-2.0",
+  "version": "0.0.6",
+  "type": "module",
+  "private": true,
+  "homepage": "https://github.com/nobkd/replace-maps#readme",
+  "bugs": {
+    "url": "https://github.com/nobkd/replace-maps/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nobkd/replace-maps.git"
+  },
+  "scripts": {
+    "icons": "inkscape -w 48 -h 48 icons/icon.svg -o public/icons/48.png && inkscape -w 48 -h 48 icons/icon-grey.svg -o public/icons/48-grey.png && inkscape -w 96 -h 96 icons/icon.svg -o public/icons/96.png && inkscape -w 96 -h 96 icons/icon-grey.svg -o public/icons/96-grey.png",
+    "format": "prettier . --check",
+    "format:fix": "npm run format -- --write",
+    "test": "vitest run",
+    "dev": "run-p -rl vite:watch serve:firefox",
+    "vite:site": "vite",
+    "vite:watch": "vite build --watch --mode development --minify false",
+    "build": "tsc && vite build",
+    "serve:firefox": "web-ext run -s dist",
+    "serve:chromium": "web-ext run -t chromium -s dist",
+    "bundle": "web-ext build -s dist -a out --overwrite-dest -n replace_maps.zip",
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.12",
+    "@types/leaflet-fullscreen": "^1.0.9",
+    "@types/webextension-polyfill": "^0.10.7",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.3.2",
+    "release-it": "^17.4.0",
+    "release-it-changelogen": "^0.1.0",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.1",
+    "vite-plugin-static-copy": "^1.0.5",
+    "web-ext": "^8.2.0",
+    "webextension-polyfill": "^0.12.0"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "leaflet-fullscreen": "^1.0.2"
+  },
+  "release-it": {
+    "git": {
+      "tagName": "v${version}",
+      "commitMessage": "chore(release): v${version}",
+      "tagAnnotation": "v${version}"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/nobkd/replace-maps.git"
+    "github": {
+      "release": true,
+      "releaseName": "v${version}"
     },
-    "scripts": {
-        "icons": "inkscape -w 48 -h 48 icons/icon.svg -o public/icons/48.png && inkscape -w 48 -h 48 icons/icon-grey.svg -o public/icons/48-grey.png && inkscape -w 96 -h 96 icons/icon.svg -o public/icons/96.png && inkscape -w 96 -h 96 icons/icon-grey.svg -o public/icons/96-grey.png",
-        "format": "prettier . --check",
-        "format:fix": "npm run format -- --write",
-        "test": "vitest run",
-        "dev": "run-p -rl vite:watch serve:firefox",
-        "vite:site": "vite",
-        "vite:watch": "vite build --watch --mode development --minify false",
-        "build": "tsc && vite build",
-        "serve:firefox": "web-ext run -s dist",
-        "serve:chromium": "web-ext run -t chromium -s dist",
-        "bundle": "web-ext build -s dist -a out --overwrite-dest -n replace_maps.zip",
-        "release": "release-it"
-    },
-    "devDependencies": {
-        "@types/leaflet": "^1.9.12",
-        "@types/leaflet-fullscreen": "^1.0.9",
-        "@types/webextension-polyfill": "^0.10.7",
-        "npm-run-all": "^4.1.5",
-        "prettier": "^3.3.2",
-        "release-it": "^17.4.0",
-        "release-it-changelogen": "^0.1.0",
-        "typescript": "^5.5.2",
-        "vite": "^5.3.1",
-        "vite-plugin-static-copy": "^1.0.5",
-        "web-ext": "^8.2.0",
-        "webextension-polyfill": "^0.12.0"
-    },
-    "dependencies": {
-        "leaflet": "^1.9.4",
-        "leaflet-fullscreen": "^1.0.2"
-    },
-    "release-it": {
-        "git": {
-            "tagName": "v${version}",
-            "commitMessage": "chore(release): v${version}",
-            "tagAnnotation": "v${version}"
-        },
-        "github": {
-            "release": true,
-            "releaseName": "v${version}"
-        },
-        "plugins": {
-            "release-it-changelogen": {
-                "disableVersion": true,
-                "templates": {
-                    "commitMessage": "chore(release): v{{newVersion}}",
-                    "tagMessage": "v{{newVersion}}",
-                    "tagBody": "v{{newVersion}}"
-                }
-            }
-        },
-        "hooks": {
-            "before:init": [
-                "npm run format",
-                "npm test",
-                "npm run build"
-            ],
-            "after:bump": [
-                "sh scripts/bump.sh"
-            ]
+    "plugins": {
+      "release-it-changelogen": {
+        "disableVersion": true,
+        "templates": {
+          "commitMessage": "chore(release): v{{newVersion}}",
+          "tagMessage": "v{{newVersion}}",
+          "tagBody": "v{{newVersion}}"
         }
+      }
+    },
+    "hooks": {
+      "before:init": [
+        "npm run format",
+        "npm test",
+        "npm run build"
+      ],
+      "after:bump": [
+        "sh scripts/bump.sh"
+      ]
     }
+  }
 }

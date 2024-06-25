@@ -1,5 +1,5 @@
-import { browserAction, /*webNavigation,*/ type Tabs, tabs } from 'webextension-polyfill';
-import { getHostname, invertHostState } from './utils/storage';
+import { browserAction, /*webNavigation,*/ type Tabs, tabs } from 'webextension-polyfill'
+import { getHostname, invertHostState } from './utils/storage'
 //import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
 
 //const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
@@ -13,12 +13,12 @@ import { getHostname, invertHostState } from './utils/storage';
  * @param tab Currently active tab
  */
 async function actionClick(tab: Tabs.Tab): Promise<void> {
-    if (!tab.url || !tab.id) return;
+  if (!tab.url || !tab.id) return
 
-    let hostname = getHostname(tab.url);
-    await invertHostState(hostname);
+  let hostname = getHostname(tab.url)
+  await invertHostState(hostname)
 
-    /*
+  /*
     // TODO: try to only reload necessary parts!!!
     let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
 
@@ -28,7 +28,7 @@ async function actionClick(tab: Tabs.Tab): Promise<void> {
         })
     )
     */
-    tabs.reload(tab.id, { bypassCache: true });
+  tabs.reload(tab.id, { bypassCache: true })
 }
 
-browserAction.onClicked.addListener(actionClick);
+browserAction.onClicked.addListener(actionClick)
