@@ -2,13 +2,12 @@
 
 ## Prequisites
 
-- Node 18
-- npm
+- [Bun](https://bun.sh/)
 
 ## Installation
 
 ```shell
-npm ci
+bun install --frozen-lockfile
 ```
 
 This uses the `package-lock.json` file for installation to avoid package changes and have reproducible builds.
@@ -16,7 +15,7 @@ This uses the `package-lock.json` file for installation to avoid package changes
 ## Building
 
 ```shell
-npm run build && npm run bundle
+bun run build && bun run bundle
 ```
 
 This transpiles and minifies the TypeScript, copies static resources and bundles the output to `out/replace_maps.zip`.

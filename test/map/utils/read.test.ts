@@ -1,7 +1,7 @@
-import { describe, it, vi } from 'vitest';
+import { describe, it, expect, jest } from 'bun:test';
 import { readPB, readQ, nominatimQ } from '../../../src/map/utils/read';
 
-global.fetch = vi.fn();
+global.fetch = jest.fn();
 
 const input = 'test position';
 const result = [{ lat: '1.1', lon: '1.1' }];
@@ -10,8 +10,8 @@ function mockNominatimResponse(data: { lat: string; lon: string }[], status: boo
     return { ok: status, json: () => new Promise((resolve) => resolve(data)) };
 }
 
-describe.concurrent('read pb', () => {
-    it('read example', async ({ expect }) => {
+describe('read pb', () => {
+    it('read example', async () => {
         const res = await readPB(
             '!1m14!1m12!1m3!1d1.1!2d1.1!3d1.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sde!2sde!4v1680097499131!5m2!1sde!2sde'
         );
@@ -27,7 +27,7 @@ describe.concurrent('read pb', () => {
         });
     });
 
-    it('pb base64 marker', async ({ expect }) => {
+    it('pb base64 marker', async () => {
         const res = await readPB(
             '!1m17!1m12!1m3!1d1.1!2d1.1!3d1.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1zMTDCsDYwJzM2LjAiTiAxMMKwNjAnMzYuMCJF!5e0!3m2!1sde!2sde!4v1557583694739!5m2!1sde!2sde'
         );
@@ -49,7 +49,7 @@ describe.concurrent('read pb', () => {
         });
     });
 
-    it('pb id marker', async ({ expect }) => {
+    it('pb id marker', async () => {
         const res = await readPB(
             '!1m17!1m12!1m3!1d1.1!2d1.1!3d1.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1s0x0:0x0!5e0!3m2!1sde!2sde!4v1557583694739!5m2!1sde!2sde'
         );
@@ -65,7 +65,7 @@ describe.concurrent('read pb', () => {
         });
     });
 
-    it('pb markers to readQ', async ({ expect }) => {
+    it('pb markers to readQ', async () => {
         // @ts-ignore
         fetch.mockResolvedValue(mockNominatimResponse(result, true));
 
@@ -91,8 +91,8 @@ describe.concurrent('read pb', () => {
     });
 });
 
-describe.concurrent('read query', () => {
-    it('nominatim request', async ({ expect }) => {
+describe('read query', () => {
+    it('nominatim request', async () => {
         // @ts-ignore
         fetch.mockResolvedValue(mockNominatimResponse(result, true));
 
@@ -107,7 +107,7 @@ describe.concurrent('read query', () => {
         });
     });
 
-    it('failing nominatim request', async ({ expect }) => {
+    it('failing nominatim request', async () => {
         // @ts-ignore-next
         fetch.mockResolvedValue(mockNominatimResponse(result, false));
 

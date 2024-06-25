@@ -15,26 +15,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Load cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
 
       - name: Install
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Build extension
-        run: npm run build
+        run: bun run build
 
       - name: Bundle extension
-        run: npm run bundle
+        run: bun run bundle
       
       - name: Bundle source
         run: git archive --format=zip ${{ github.event.release.tag_name }} --output out/replace_maps_source.zip
