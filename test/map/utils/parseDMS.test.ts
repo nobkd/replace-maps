@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'bun:test'
+import { describe, it, expect } from 'vitest'
 import { parseDMS } from '../../../src/map/utils/parseDMS'
 
 describe('Parse Degrees Minutes Seconds Direction', () => {

@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { defineConfig, normalizePath } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { resolve } from 'path'
@@ -50,5 +52,8 @@ export default defineConfig({
     },
     drop: ['debugger'],
     pure: ['console.log', 'console.warn', 'console.error', 'console.debug', 'console.trace'],
+  },
+  test: {
+    root: '.',
   },
 })

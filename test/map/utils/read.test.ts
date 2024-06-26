@@ -1,7 +1,7 @@
-import { describe, it, expect, jest } from 'bun:test'
+import { describe, it, expect, vitest } from 'vitest'
 import { readPB, readQ, nominatimQ } from '../../../src/map/utils/read'
 
-globalThis.fetch = jest.fn()
+globalThis.fetch = vitest.fn()
 
 const input = 'test position'
 const result = [{ lat: '1.1', lon: '1.1' }]

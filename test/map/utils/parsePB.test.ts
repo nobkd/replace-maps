@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'bun:test'
+import { describe, it, expect } from 'vitest'
 import { parsePB, tileTypes } from '../../../src/map/utils/parsePB'
 
 describe('Parse PB', () => {

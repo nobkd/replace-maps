@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'bun:test'
+import { describe, it, expect } from 'vitest'
 import { getMapZoom } from '../../../src/map/utils/zoom'
 
 describe('Zoom levels', () => {
