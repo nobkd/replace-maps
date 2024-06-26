@@ -62,8 +62,12 @@ body > section {
 }
 
 .table button::before {
-  display: block;
-  content: url('/trash.svg');
+  display: flex;
+  content: '✘';
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  color: red;
   width: 100%;
   height: 100%;
 }
