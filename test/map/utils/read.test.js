@@ -6,7 +6,13 @@ globalThis.fetch = vitest.fn()
 const input = 'test position'
 const result = [{ lat: '1.1', lon: '1.1' }]
 
-function mockNominatimResponse(data: { lat: string; lon: string }[], status: boolean) {
+/**
+ *
+ * @param {{lat: string; lon: string}} data
+ * @param {boolean} status
+ * @returns {Response}
+ */
+function mockNominatimResponse(data, status) {
   return { ok: status, json: () => new Promise((resolve) => resolve(data)) }
 }
 

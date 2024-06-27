@@ -1,10 +1,10 @@
-import { runtime, tabs, windows, webRequest, type WebRequest } from 'webextension-polyfill'
+import { runtime, tabs, windows, webRequest, WebRequest } from 'webextension-polyfill'
 import { disabledHosts, getHostname } from './utils/storage'
 import { updateActiveTabIcon } from './utils/actionIcon'
 import { domainEnds } from './utils/domainEnds'
 
-const gLocales: string = domainEnds.join('|') // TODO: collect more locales
-export const matcher: RegExp = new RegExp(
+const gLocales = domainEnds.join('|') // TODO: collect more locales
+export const matcher = new RegExp(
   // TODO: fix regex to fit more patterns
   `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps.*\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed.*\?)`
 )
@@ -14,10 +14,10 @@ export const runtimeMapUrl = runtime.getURL('map.html')
  * Checks if `frames` send a request to Maps.
  * If they do and the extension isn't disabled for the current site, then the request is redirected to the extension leaflet map with all URL search params.
  * Else the request is'nt blocked.
- * @param req Web Request from frame
- * @returns Redirect to extension map or pass through if extension disabled for website
+ * @param {WebRequest.OnBeforeRequestDetailsType} req Web Request from frame
+ * @returns {WebRequest.BlockingResponse} Redirect to extension map or pass through if extension disabled for website
  */
-function redirect(req: WebRequest.OnBeforeRequestDetailsType): WebRequest.BlockingResponse {
+function redirect(req) {
   // TODO: check if originUrl always matches current tab url -> e.g. in frames with subframes
   if (req.originUrl && req.url.match(matcher)) {
     if (!disabledHosts.includes(getHostname(req.originUrl))) {

@@ -1,4 +1,4 @@
-import { browserAction, /*webNavigation,*/ type Tabs, tabs } from 'webextension-polyfill'
+import { browserAction, /*webNavigation,*/ Tabs, tabs } from 'webextension-polyfill'
 import { getHostname, invertHostState } from './utils/storage'
 //import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
 
@@ -10,9 +10,9 @@ import { getHostname, invertHostState } from './utils/storage'
  *
  * Requests all frames from the current tab, filters them for extension Leaflet frames and Maps frames.
  * Reloads the full tab on extension Leaflet or Maps frame match.
- * @param tab Currently active tab
+ * @param {Tabs.Tab} tab Currently active tab
  */
-async function actionClick(tab: Tabs.Tab): Promise<void> {
+async function actionClick(tab) {
   if (!tab.url || !tab.id) return
 
   let hostname = getHostname(tab.url)

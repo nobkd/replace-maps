@@ -1,18 +1,18 @@
 import L from 'leaflet'
 import 'leaflet-fullscreen'
 
-import { readPB, readQ, type MapData } from './utils/read'
-import { type TileType, tileTypes } from './utils/parsePB'
+import { readPB, readQ, MapData } from './utils/read'
+import { tileTypes } from './utils/parsePB'
 
-type Tiles = {
-  [K in TileType]: {
-    layer: string
-    attr: string
-  }
-}
+/**
+ * @typedef {object} Tile
+ * @property {string} layer
+ * @property {string} attr
+ */
 
 // https://leaflet-extras.github.io/leaflet-providers/preview/
-const tileProviders: Tiles = {
+/** @type {{TileTypes: Tile}} */
+const tileProviders = {
   roadmap: {
     layer: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OpenStreetMap.Mapnik
     attr: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -24,17 +24,18 @@ const tileProviders: Tiles = {
   }, // TODO: add street layer etc to satellite
 }
 
-const gPos: string = 'pb'
-const gQuery: string = 'q'
-const gZoom: string = 'z'
-const params: URLSearchParams = new URLSearchParams(document.location.search)
+const gPos = 'pb'
+const gQuery = 'q'
+const gZoom = 'z'
+const params = new URLSearchParams(document.location.search)
 
-let mapData: MapData = {}
+/** @type {MapData} */
+const mapData = {}
 
 if (params.has(gPos)) {
-  mapData = await readPB(params.get(gPos) as string)
+  mapData = await readPB(params.get(gPos))
 } else if (params.has(gQuery)) {
-  let marker = await readQ(params.get(gQuery) as string)
+  let marker = await readQ(params.get(gQuery))
 
   if (marker) {
     mapData.markers = [marker]
@@ -42,10 +43,11 @@ if (params.has(gPos)) {
 }
 
 if (params.has(gZoom)) {
-  mapData.zoom = parseInt(params.get(gZoom) as string)
+  mapData.zoom = parseInt(params.get(gZoom))
 }
 
-const map: L.Map = L.map('map', {
+/** @type {L.Map} */
+const map = L.map('map', {
   fullscreenControl: true,
   scrollWheelZoom: true, // TODO: on pc allow ctrl + scroll
   zoom: mapData.zoom ?? 17,

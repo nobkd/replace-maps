@@ -1,5 +1,8 @@
-export type TileType = 'roadmap' | 'satellite'
-export const tileTypes: TileType[] = ['roadmap', 'satellite']
+/**
+ * @typedef {'roadmap' | 'satellite'} TileType
+ * @type {TileType[]}
+ */
+export const tileTypes = ['roadmap', 'satellite']
 
 /**
  * Takes one bang operator and decodes it.
@@ -17,16 +20,18 @@ export const tileTypes: TileType[] = ['roadmap', 'satellite']
  *
  * Unknown types are kept as string.
  *
- * @param item One bang operator with the structure: position, one character (data type), encoded data
- * @returns Array of two items. First is the decoded result. Second describes if the result is a new matrix.
+ * @param  {string} item One bang operator with the structure: position, one character (data type), encoded data
+ * @returns {[string | TileType | number, boolean]} Array of two items. First is the decoded result. Second describes if the result is a new matrix.
  */
-function convertType(item: string): [string | TileType | number, boolean] {
+function convertType(item) {
   item = item.replace(/^\d+/, '')
-  const type: string = item.charAt(0)
+  /** @type {string} */
+  const type = item.charAt(0)
   item = item.substring(1)
 
   // s: string || v: timestamp || b: boolean?/byte?
-  let val: string | TileType | number = item
+  /** @type {string | TileType | number} */
+  let val = item
 
   switch (type) {
     case 'f':
@@ -66,11 +71,11 @@ function convertType(item: string): [string | TileType | number, boolean] {
  * - https://andrewwhitby.com/2014/09/09/google-maps-new-embed-format/
  * - https://blog.themillhousegroup.com/2016/08/deep-diving-into-google-pb-embedded-map.html
  * - https://stackoverflow.com/a/47042514
- * @param items Bang operators (e.g. `!1m13`) split into pieces at `!`
- * @param out Array for top and recursion levels to save results and return
- * @returns Filled `out` array with bang operators converted into readable format
+ * @param {string[]} items Bang operators (e.g. `!1m13`) split into pieces at `!`
+ * @param {any[]} out Array for top and recursion levels to save results and return
+ * @returns {any[]} Filled `out` array with bang operators converted into readable format
  */
-export function parsePB(items: string[], out: any[] = []): any[] {
+export function parsePB(items, out = []) {
   let i = 0
   while (i < items.length) {
     let [val, isNew] = convertType(items[i])
@@ -78,9 +83,9 @@ export function parsePB(items: string[], out: any[] = []): any[] {
     if (!isNew) {
       out.push(val)
     } else {
-      let itemsPart = items.slice(i + 1, i + (val as number) + 1)
+      let itemsPart = items.slice(i + 1, i + val + 1)
       out.push(parsePB(itemsPart))
-      i += val as number
+      i += val
     }
     i++
   }

@@ -3,9 +3,9 @@ import { disabledHosts, getHostname } from './storage'
 
 /**
  * Updates the action icon
- * @param hostname Hostname
+ * @param {string} hostname Hostname
  */
-export function updateIcon(hostname: string): void {
+export function updateIcon(hostname) {
   let disabled = disabledHosts.includes(hostname)
 
   browserAction.setIcon({
@@ -24,7 +24,7 @@ export function updateIcon(hostname: string): void {
 /**
  * Async function to update the icon of the currently active tab. Uses `updateIcon` internally
  */
-export async function updateActiveTabIcon(): Promise<void> {
+export async function updateActiveTabIcon() {
   let browserTabs = await tabs.query({ active: true, currentWindow: true })
 
   let tab = browserTabs[0]

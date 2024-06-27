@@ -1,5 +1,5 @@
 // Domain ends of google
-export const domainEnds: string[] = [
+export const domainEnds = [
   'com',
   'ac',
   'ad',

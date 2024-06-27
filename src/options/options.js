@@ -6,12 +6,12 @@ import {
   invertHostState,
 } from '../bg/utils/storage'
 
-const table = document.querySelector('.table')!
+const table = document.querySelector('.table')
 
 /**
  * (Re)Builds the list of diasabled hostnames
  */
-function buildEntries(): void {
+function buildEntries() {
   table.innerHTML = ''
   disabledHosts.forEach(createEntry)
 }
@@ -20,7 +20,7 @@ function buildEntries(): void {
  * Async function to add a hostname (from the form / URL Search Params) to the displayed list and the storage list of disabled hosts
  * If the entry is already present in the stored hosts, no entry is added to the display list
  */
-async function addEntry(): Promise<void> {
+async function addEntry() {
   const search = new URLSearchParams(document.location.search)
   let hostname = search.get('hostname')
   if (hostname === null) return
@@ -34,9 +34,9 @@ async function addEntry(): Promise<void> {
 
 /**
  * Creates a new entry for the displayed list of disabled hostnames and appends it to the view
- * @param hostname Hostname to add to the list
+ * @param {string} hostname Hostname to add to the list
  */
-function createEntry(hostname: string): void {
+function createEntry(hostname) {
   const div = document.createElement('div')
 
   let span = document.createElement('span')
@@ -52,13 +52,13 @@ function createEntry(hostname: string): void {
 /**
  * Async funtion to remove an entry at click of its button.
  * Takes the index in the table to remove it from the list of stored hostnames
- * @param click Button click
+ * @param {MouseEvent} click Button click
  */
-async function removeEntry(click: MouseEvent): Promise<void> {
-  let target: EventTarget | null = click.target
+async function removeEntry(click) {
+  const target = click.target
   if (target === null) return
 
-  let index = getIndex(target as HTMLButtonElement)
+  let index = getIndex(target)
   if (index === -1) return
 
   await invertHostState(disabledHosts[index])
@@ -66,11 +66,11 @@ async function removeEntry(click: MouseEvent): Promise<void> {
 
 /**
  * Gets the index of a list entry using its clicked button
- * @param button Button that was clicked to remove an entry
- * @returns Index of the list entry
+ * @param {HTMLButtonElement} button Button that was clicked to remove an entry
+ * @returns {number} Index of the list entry
  */
-function getIndex(button: HTMLButtonElement): number {
-  let div: HTMLDivElement = button.parentElement as HTMLDivElement
+function getIndex(button) {
+  let div = button.parentElement
   if (div === null) return -1
 
   let index = Array.from(table.children).indexOf(div)
