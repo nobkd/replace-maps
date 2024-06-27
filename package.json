@@ -40,7 +40,7 @@
     "release-it": "^17.4.0",
     "release-it-changelogen": "^0.1.0",
     "typescript": "^5.5.2",
-    "vite": "^5.3.1",
+    "vite": "^5.3.2",
     "vite-plugin-static-copy": "^1.0.5",
     "vitest": "^1.6.0",
     "web-ext": "^8.2.0",
