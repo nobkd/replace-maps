@@ -2,7 +2,7 @@
   "description": "Replace Google Maps iFrames with OpenStreetMap",
   "manifest_version": 2,
   "name": "Replace Maps",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "homepage_url": "https://github.com/nobkd/replace-maps",
   "icons": {
     "48": "icons/48-icon.png",

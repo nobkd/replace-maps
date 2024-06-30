@@ -1,5 +1,37 @@
 # Changelog
 
+## v0.0.7
+
+[compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.6...v0.0.7)
+
+### 🔥 Performance
+
+- Migrate to bun (WIP) ([f064723](https://github.com/nobkd/replace-maps/commit/f064723))
+
+### 🩹 Fixes
+
+- Generate icons on the fly ([de11289](https://github.com/nobkd/replace-maps/commit/de11289))
+- Const assignment, styles, scripts ([0e35f6d](https://github.com/nobkd/replace-maps/commit/0e35f6d))
+
+### 🏡 Chore
+
+- **deps-dev:** Bump vite from 5.0.10 to 5.0.12 ([#13](https://github.com/nobkd/replace-maps/pull/13))
+- Use inkscape to convert svgs, leaflet-fullscreen to deps ([f531050](https://github.com/nobkd/replace-maps/commit/f531050))
+- Linting / formatting ([8746067](https://github.com/nobkd/replace-maps/commit/8746067))
+- **deps-dev:** Bump ip from 1.1.8 to 1.1.9 ([#14](https://github.com/nobkd/replace-maps/pull/14))
+- **deps-dev:** Bump vite from 5.0.12 to 5.0.13 ([#15](https://github.com/nobkd/replace-maps/pull/15))
+- **ci:** Use gh runner instead of self hosted ([a1f0383](https://github.com/nobkd/replace-maps/commit/a1f0383))
+- Use vitest until fetch can be mocked with bun etc. ([f6354bc](https://github.com/nobkd/replace-maps/commit/f6354bc))
+- Remove trash icon ([afba653](https://github.com/nobkd/replace-maps/commit/afba653))
+- Move ts to js ([51fb3b8](https://github.com/nobkd/replace-maps/commit/51fb3b8))
+- Fix scripts, drop chromium as ext doesn't work there ([4a37fe2](https://github.com/nobkd/replace-maps/commit/4a37fe2))
+- Fix script ([b5f9b82](https://github.com/nobkd/replace-maps/commit/b5f9b82))
+- Release script fixes ([4ab1f41](https://github.com/nobkd/replace-maps/commit/4ab1f41))
+
+### ❤️ Contributors
+
+- Nobkd ([@nobkd](http://github.com/nobkd))
+
 ## v0.0.6
 
 [compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.5...v0.0.6)
