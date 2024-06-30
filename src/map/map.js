@@ -30,7 +30,7 @@ const gZoom = 'z'
 const params = new URLSearchParams(document.location.search)
 
 /** @type {MapData} */
-const mapData = {}
+let mapData = {}
 
 if (params.has(gPos)) {
   mapData = await readPB(params.get(gPos))
