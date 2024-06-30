@@ -26,7 +26,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Lint
-        run: bun run format
+        run: bun run lint
 
   test:
     name: Test
