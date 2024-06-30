@@ -70,9 +70,9 @@
     },
     "hooks": {
       "before:init": [
-        "npm run format",
-        "npm test",
-        "npm run build"
+        "bun run lint",
+        "bun run test",
+        "bun run build"
       ],
       "after:bump": [
         "sh scripts/bump.sh"
