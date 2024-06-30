@@ -15,7 +15,7 @@
     "url": "git+https://github.com/nobkd/replace-maps.git"
   },
   "scripts": {
-    "icons": "inkscape -w 48 -h 48 icons/icon.svg -o public/icons/48.png && inkscape -w 48 -h 48 icons/icon-grey.svg -o public/icons/48-grey.png && inkscape -w 96 -h 96 icons/icon.svg -o public/icons/96.png && inkscape -w 96 -h 96 icons/icon-grey.svg -o public/icons/96-grey.png",
+    "postinstall": "bun build-icons.js",
     "format": "prettier . --check",
     "format:fix": "npm run format -- --write",
     "test": "vitest run",
@@ -34,6 +34,7 @@
     "@types/webextension-polyfill": "^0.10.7",
     "@vitest/coverage-v8": "^1.6.0",
     "npm-run-all": "^4.1.5",
+    "oslllo-svg2": "^2.0.2",
     "prettier": "^3.3.2",
     "release-it": "^17.4.0",
     "release-it-changelogen": "^0.1.0",

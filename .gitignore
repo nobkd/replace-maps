@@ -4,3 +4,5 @@ out/
 coverage/
 .version-update
 .env
+
+public/icons/

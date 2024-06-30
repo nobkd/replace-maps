@@ -5,8 +5,8 @@
   "version": "0.0.6",
   "homepage_url": "https://github.com/nobkd/replace-maps",
   "icons": {
-    "48": "icons/48.png",
-    "96": "icons/96.png"
+    "48": "icons/48-icon.png",
+    "96": "icons/96-icon.png"
   },
   "browser_specific_settings": {
     "gecko": {
@@ -28,8 +28,8 @@
   "web_accessible_resources": ["map.html"],
   "browser_action": {
     "default_icon": {
-      "48": "icons/48.png",
-      "96": "icons/96.png"
+      "48": "icons/48-icon.png",
+      "96": "icons/96-icon.png"
     },
     "default_area": "navbar",
     "default_title": "Replace Maps"

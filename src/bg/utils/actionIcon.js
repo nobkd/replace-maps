@@ -11,12 +11,12 @@ export function updateIcon(hostname) {
   browserAction.setIcon({
     path: !disabled
       ? {
-          48: '/icons/48.png',
-          96: '/icons/96.png',
+          48: '/icons/48-icon.png',
+          96: '/icons/96-icon.png',
         }
       : {
-          48: '/icons/48-grey.png',
-          96: '/icons/96-grey.png',
+          48: '/icons/48-icon-grey.png',
+          96: '/icons/96-icon-grey.png',
         },
   })
 }
