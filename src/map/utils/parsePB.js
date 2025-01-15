@@ -47,7 +47,7 @@ function convertType(item) {
       val = tileTypes[tileIndex < tileTypes.length && tileIndex >= 0 ? tileIndex : 0]
       break
     case 'z': // base64 encoded coords
-      val = atob(item).replace(/[^\d\s\-\.\'\"\°SNWE]/g, '')
+      val = Buffer.from(item, 'base64').toString('utf-8')
   }
 
   return [val, type === 'm']

@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import { defineConfig, normalizePath } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { resolve } from 'path'

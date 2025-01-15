@@ -1,4 +1,4 @@
-import { TileType, parsePB, tileTypes } from './parsePB'
+import { parsePB, tileTypes } from './parsePB'
 import { parseDMS } from './parseDMS'
 import { getMapZoom } from './zoom'
 
