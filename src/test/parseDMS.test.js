@@ -1,7 +1,6 @@
 import { test, expect } from 'bun:test'
 import { parseDMS } from '../map/utils/parseDMS'
 
-
 test('Parse Degrees Minutes Seconds Direction: Example', () => {
   const res = parseDMS(`10°60'36.0"N 10°60'36.0"E`)
 

@@ -16,15 +16,13 @@
   },
   "scripts": {
     "postinstall": "bun build-icons.js",
-    "lint": "prettier . --check",
-    "lint:fix": "prettier . --write",
     "test": "bun test",
     "test:cov": "bun test --coverage",
     "dev": "run-p -rl build:dev serve",
-    "build": "vite build",
-    "build:dev": "vite build --watch --mode development --minify false",
-    "serve": "web-ext run -s dist",
-    "bundle": "web-ext build -s dist -a out --overwrite-dest -n replace_maps.zip",
+    "build": "bun build --experimental-css --experimental-html src/*.html --outdir .dist --minify && cp -r public/. .dist",
+    "build:dev": "mkdir -p .dist && cp -r public/. .dist && bun build --experimental-css --experimental-html src/*.html --outdir .dist --watch",
+    "serve": "web-ext run -s .dist",
+    "bundle": "web-ext build -s .dist -a .out --overwrite-dest -n replace_maps.zip",
     "release": "release-it"
   },
   "devDependencies": {
@@ -33,11 +31,8 @@
     "@types/webextension-polyfill": "^0.10.7",
     "npm-run-all": "^4.1.5",
     "oslllo-svg2": "^2.0.2",
-    "prettier": "^3.3.2",
     "release-it": "^17.4.0",
     "release-it-changelogen": "^0.1.0",
-    "vite": "^5.3.2",
-    "vite-plugin-static-copy": "^1.0.5",
     "web-ext": "^8.2.0",
     "webextension-polyfill": "^0.12.0"
   },
@@ -67,12 +62,11 @@
     },
     "hooks": {
       "before:init": [
-        "bun run lint",
         "bun run test",
         "bun run build"
       ],
       "after:bump": [
-        "sh scripts/bump.sh"
+        "bun bump.js"
       ]
     }
   }
