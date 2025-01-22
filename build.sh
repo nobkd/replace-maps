@@ -8,9 +8,6 @@ mkdir -p '.dist'
 cp -r 'public/.' '.dist'
 cp 'node_modules/leaflet/dist/images/marker-icon-2x.png' 'node_modules/leaflet/dist/images/marker-shadow.png' '.dist'
 
-# cp -r 'node_modules/leaflet/dist/images/.' '.dist'
-# cp 'node_modules/leaflet-fullscreen/dist/fullscreen.png' 'node_modules/leaflet-fullscreen/dist/fullscreen@2x.png' '.dist'
-
 # check if dev / prod, then build
 if [[ $1 == 'dev' ]]; then
   echo '--watch'
