@@ -26,14 +26,14 @@
     "release": "release-it"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.12",
+    "@types/leaflet": "^1.9.16",
     "@types/leaflet-fullscreen": "^1.0.9",
-    "@types/webextension-polyfill": "^0.10.7",
+    "@types/webextension-polyfill": "^0.12.1",
     "npm-run-all": "^4.1.5",
-    "oslllo-svg2": "^2.0.2",
-    "release-it": "^17.4.0",
+    "oslllo-svg2": "^4.0.0",
+    "release-it": "^18.1.1",
     "release-it-changelogen": "^0.1.0",
-    "web-ext": "^8.2.0",
+    "web-ext": "^8.3.0",
     "webextension-polyfill": "^0.12.0"
   },
   "dependencies": {
