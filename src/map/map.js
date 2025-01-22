@@ -48,7 +48,8 @@ if (params.has(gZoom)) {
 
 const map = L.map('map', {
   fullscreenControl: true,
-  scrollWheelZoom: true, // TODO: on pc allow ctrl + scroll
+  scrollWheelZoom: true,
+  touchZoom: true,
   zoom: mapData.zoom ?? 17,
   zoomSnap: 0.1,
   zoomDelta: 0.5,

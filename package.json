@@ -19,8 +19,8 @@
     "test": "bun test",
     "test:cov": "bun test --coverage",
     "dev": "run-p -rl build:dev serve",
-    "build": "bun build --experimental-css --experimental-html src/*.html --outdir .dist --minify && cp -r public/. .dist",
-    "build:dev": "mkdir -p .dist && cp -r public/. .dist && bun build --experimental-css --experimental-html src/*.html --outdir .dist --watch",
+    "build": "sh build.sh",
+    "build:dev": "sh build.sh dev",
     "serve": "web-ext run -s .dist",
     "bundle": "web-ext build -s .dist -a .out --overwrite-dest -n replace_maps.zip",
     "release": "release-it"
