@@ -8,15 +8,13 @@ export function updateIcon(hostname) {
   let disabled = disabledHosts.includes(hostname)
 
   browser.browserAction.setIcon({
-    path: !disabled
-      ? {
-          48: '/icons/48-icon.png',
-          96: '/icons/96-icon.png',
-        }
-      : {
-          48: '/icons/48-icon-grey.png',
-          96: '/icons/96-icon-grey.png',
-        },
+    path: !disabled ? {
+      48: '/icons/48-icon.png',
+      96: '/icons/96-icon.png',
+    } : {
+      48: '/icons/48-icon-grey.png',
+      96: '/icons/96-icon-grey.png',
+    },
   })
 }
 

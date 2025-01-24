@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import { parsePB, tileTypes } from '../map/utils/parsePB'
+import { parsePB, tileTypes } from '../map/utils/parsePB.js'
 
 test('Parse PB: empty list', () => {
   const res = parsePB([])

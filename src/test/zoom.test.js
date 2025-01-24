@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import { getMapZoom } from '../map/utils/zoom'
+import { getMapZoom } from '../map/utils/zoom.js'
 
 test('Zoom levels: zoom > 19', () => {
   const res = getMapZoom(1)
