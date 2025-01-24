@@ -1,7 +1,6 @@
-import { readFileSync, writeFileSync } from 'node:fs'
-import { version } from './package.json'
+import { writeFileSync } from 'node:fs'
+import { version } from './package.json' with { type: 'json' }
+import manifest from './public/manifest.json' with { type: 'json' }
 
-const fpath = 'public/manifest.json'
-let manifest = JSON.parse(readFileSync(fpath, 'utf-8'))
 manifest.version = version
-writeFileSync(fpath, JSON.stringify(manifest, null, 2))
+writeFileSync('./public/manifest.json', JSON.stringify(manifest, null, 2))
