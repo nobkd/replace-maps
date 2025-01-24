@@ -11,7 +11,6 @@ on:
 jobs:
   test:
     name: Test
-    timeout-minutes: 10
     runs-on: ubuntu-latest
 
     steps:
@@ -22,4 +21,4 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Test
-        run: bun run test:cov
+        run: bun test --coverage
