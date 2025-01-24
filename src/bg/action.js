@@ -1,5 +1,4 @@
-import { browserAction, /*webNavigation,*/ Tabs, tabs } from 'webextension-polyfill'
-import { getHostname, invertHostState } from './utils/storage'
+import { getHostname, invertHostState } from './utils/storage.js'
 //import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
 
 //const replacedUrlMatcher = new RegExp(`^${runtimeMapUrl}\?`);
@@ -10,7 +9,7 @@ import { getHostname, invertHostState } from './utils/storage'
  *
  * Requests all frames from the current tab, filters them for extension Leaflet frames and Maps frames.
  * Reloads the full tab on extension Leaflet or Maps frame match.
- * @param {Tabs.Tab} tab Currently active tab
+ * @param {browser.Tabs.Tab} tab Currently active tab
  */
 async function actionClick(tab) {
   if (!tab.url || !tab.id) return
@@ -20,7 +19,7 @@ async function actionClick(tab) {
 
   /*
     // TODO: try to only reload necessary parts!!!
-    let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
+    let frames = (await browser.webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
 
     if (
         frames.some((frame) => {
@@ -28,7 +27,7 @@ async function actionClick(tab) {
         })
     )
     */
-  tabs.reload(tab.id, { bypassCache: true })
+  browser.tabs.reload(tab.id, { bypassCache: true })
 }
 
-browserAction.onClicked.addListener(actionClick)
+browser.browserAction.onClicked.addListener(actionClick)

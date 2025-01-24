@@ -1,8 +1,8 @@
 import L from 'leaflet'
 import 'leaflet-fullscreen'
 
-import { readPB, readQ } from './utils/read'
-import { tileTypes } from './utils/parsePB'
+import { readPB, readQ } from './utils/read.js'
+import { tileTypes } from './utils/parsePB.js'
 
 /**
  * @typedef {object} Tile

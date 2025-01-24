@@ -1,12 +1,11 @@
-import { storage } from 'webextension-polyfill'
-import { updateIcon } from './actionIcon'
+import { updateIcon } from './actionIcon.js'
 
 export const KEY_DISABLED_HOSTS = 'disabled_hosts'
 
 // Listens to changes on the storage. Updates disabled hosts list, if stored list changes
 /** @type {string[]} */
 export let disabledHosts = await getDisabledHosts()
-storage.local.onChanged.addListener((changes) => {
+browser.storage.local.onChanged.addListener((changes) => {
   if (KEY_DISABLED_HOSTS in changes) {
     disabledHosts = changes[KEY_DISABLED_HOSTS].newValue ?? []
   }
@@ -17,7 +16,7 @@ storage.local.onChanged.addListener((changes) => {
  * @returns {Promise<string[]>} List of disabled hostnames
  */
 async function getDisabledHosts() {
-  return (await storage.local.get(KEY_DISABLED_HOSTS))[KEY_DISABLED_HOSTS] ?? []
+  return (await browser.storage.local.get(KEY_DISABLED_HOSTS))[KEY_DISABLED_HOSTS] ?? []
 }
 
 /**
@@ -32,7 +31,7 @@ export async function invertHostState(hostname) {
     disabledHosts.push(hostname)
   }
 
-  await storage.local.set({
+  await browser.storage.local.set({
     [KEY_DISABLED_HOSTS]: disabledHosts,
   })
 
