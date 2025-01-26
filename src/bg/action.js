@@ -1,3 +1,5 @@
+import { tabs, browserAction, /*webNavigation*/ } from 'webextension-polyfill'
+
 import { getHostname, invertHostState } from './utils/storage.js'
 //import { matcher as mapsUrlMatcher, runtimeMapUrl } from './bg';
 
@@ -19,7 +21,7 @@ async function actionClick(tab) {
 
   /*
     // TODO: try to only reload necessary parts!!!
-    let frames = (await browser.webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
+    let frames = (await webNavigation.getAllFrames({ tabId: tab.id })) ?? [];
 
     if (
         frames.some((frame) => {
@@ -27,7 +29,7 @@ async function actionClick(tab) {
         })
     )
     */
-  browser.tabs.reload(tab.id, { bypassCache: true })
+  tabs.reload(tab.id, { bypassCache: true })
 }
 
-browser.browserAction.onClicked.addListener(actionClick)
+browserAction.onClicked.addListener(actionClick)

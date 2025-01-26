@@ -1,3 +1,5 @@
+import { browserAction, tabs } from 'webextension-polyfill'
+
 import { disabledHosts, getHostname } from './storage.js'
 
 /**
@@ -7,7 +9,7 @@ import { disabledHosts, getHostname } from './storage.js'
 export function updateIcon(hostname) {
   let disabled = disabledHosts.includes(hostname)
 
-  browser.browserAction.setIcon({
+  browserAction.setIcon({
     path: !disabled ? {
       48: '/icons/48-icon.png',
       96: '/icons/96-icon.png',
@@ -22,7 +24,7 @@ export function updateIcon(hostname) {
  * Async function to update the icon of the currently active tab. Uses `updateIcon` internally
  */
 export async function updateActiveTabIcon() {
-  let browserTabs = await browser.tabs.query({ active: true, currentWindow: true })
+  let browserTabs = await tabs.query({ active: true, currentWindow: true })
 
   let tab = browserTabs[0]
   if (tab && tab.url) {

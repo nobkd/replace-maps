@@ -1,3 +1,5 @@
+import { storage } from 'webextension-polyfill'
+
 import {
   KEY_DISABLED_HOSTS,
   disabledHosts,
@@ -78,7 +80,7 @@ function getIndex(button) {
   return index
 }
 
-browser.storage.local.onChanged.addListener((changes) => {
+storage.local.onChanged.addListener((changes) => {
   if (KEY_DISABLED_HOSTS in changes) {
     buildEntries()
   }

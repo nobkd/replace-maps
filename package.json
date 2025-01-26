@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "leaflet": "^1.9.4",
-    "leaflet-fullscreen": "^1.0.2"
+    "leaflet-fullscreen": "^1.0.2",
+    "webextension-polyfill": "^0.12.0"
   },
   "release-it": {
     "git": {

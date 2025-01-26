@@ -1,3 +1,5 @@
+import { runtime, webRequest, tabs, windows } from 'webextension-polyfill'
+
 import { disabledHosts, getHostname } from './utils/storage.js'
 import { updateActiveTabIcon } from './utils/actionIcon.js'
 import domainEnds from './utils/domainEnds.json' with { type: 'json' }
@@ -7,7 +9,7 @@ export const matcher = new RegExp(
   // TODO: fix regex to fit more patterns
   `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps.*\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed.*\?)`
 )
-export const runtimeMapUrl = browser.runtime.getURL('map.html')
+export const runtimeMapUrl = runtime.getURL('map.html')
 
 /**
  * Checks if `frames` send a request to Maps.
@@ -29,7 +31,7 @@ function redirect(req) {
 }
 
 // Listens to web requests from frames, redirects when fitting `matcher`
-browser.webRequest.onBeforeRequest.addListener(
+webRequest.onBeforeRequest.addListener(
   redirect,
   {
     urls: ['<all_urls>'],
@@ -39,13 +41,13 @@ browser.webRequest.onBeforeRequest.addListener(
 )
 
 // listen to tab URL changes
-browser.tabs.onUpdated.addListener(updateActiveTabIcon)
+tabs.onUpdated.addListener(updateActiveTabIcon)
 
 // listen to tab switching
-browser.tabs.onActivated.addListener(updateActiveTabIcon)
+tabs.onActivated.addListener(updateActiveTabIcon)
 
 // listen for window switching
-browser.windows.onFocusChanged.addListener(updateActiveTabIcon)
+windows.onFocusChanged.addListener(updateActiveTabIcon)
 
 // update icon at startup
 updateActiveTabIcon()
