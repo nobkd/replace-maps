@@ -38,6 +38,15 @@ body > section {
   display: grid;
 }
 
+hr {
+  width: 100%;
+}
+
+.check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
 .table > * {
   display: flex;
   align-items: center;
@@ -70,13 +79,6 @@ body > section {
   color: red;
   width: 100%;
   height: 100%;
-}
-
-.form {
-  position: sticky;
-  top: 0;
-  background-color: var(--bg);
-  box-shadow: var(--text) 0 0 0.25rem;
 }
 
 form {

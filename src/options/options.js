@@ -2,10 +2,19 @@ import { storage } from 'webextension-polyfill'
 
 import {
   KEY_DISABLED_HOSTS,
+  KEY_RESIZABLE_STATE,
   disabledHosts,
   getHostname,
   invertHostState,
+  resizableState,
+  setResizableState,
 } from '../bg/utils/storage.js'
+
+const resizable = document.getElementById('resizable')
+resizable.addEventListener('change', (e) => {
+  setResizableState(resizable.checked)
+})
+
 
 const table = document.querySelector('.table')
 
@@ -13,6 +22,7 @@ const table = document.querySelector('.table')
  * (Re)Builds the list of diasabled hostnames
  */
 function buildEntries() {
+  resizable.checked = resizableState
   table.innerHTML = ''
   disabledHosts.forEach(createEntry)
 }
@@ -84,6 +94,8 @@ storage.local.onChanged.addListener((changes) => {
   if (KEY_DISABLED_HOSTS in changes) {
     buildEntries()
   }
+
+  if (KEY_RESIZABLE_STATE in changes) resizable.checked = resizableState
 })
 
 buildEntries()
