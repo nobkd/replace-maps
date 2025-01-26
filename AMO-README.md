@@ -18,4 +18,4 @@ This uses the `package-lock.json` file for installation to avoid package changes
 bun run build && bun run bundle
 ```
 
-This transpiles and minifies the TypeScript, copies static resources and bundles the output to `out/replace_maps.zip`.
+This minifies the JavaScript, copies static resources and bundles the output to `.out/replace_maps.zip`.

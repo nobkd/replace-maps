@@ -1,6 +1,6 @@
-import { TileType, parsePB, tileTypes } from './parsePB'
-import { parseDMS } from './parseDMS'
-import { getMapZoom } from './zoom'
+import { parsePB, tileTypes } from './parsePB.js'
+import { parseDMS } from './parseDMS.js'
+import { getMapZoom } from './zoom.js'
 
 export const nominatimQ = 'https://nominatim.openstreetmap.org/search?limit=1&format=json&q='
 const cidMatch = /^0x[\da-f]+:0x[\da-f]+$/i

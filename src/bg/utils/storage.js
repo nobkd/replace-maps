@@ -1,5 +1,6 @@
 import { storage } from 'webextension-polyfill'
-import { updateIcon } from './actionIcon'
+
+import { updateIcon } from './actionIcon.js'
 
 export const KEY_DISABLED_HOSTS = 'disabled_hosts'
 

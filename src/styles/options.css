@@ -63,7 +63,7 @@ body > section {
 
 .table button::before {
   display: flex;
-  content: '✘';
+  content: "✘";
   align-items: center;
   justify-content: center;
   font-size: large;
@@ -91,10 +91,10 @@ input {
   border-style: solid;
 }
 
-input[type='text'] {
+input[type="text"] {
   width: 80%;
 }
-input[type='submit'] {
+input[type="submit"] {
   width: 20%;
   text-align: center;
 }

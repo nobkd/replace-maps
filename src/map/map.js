@@ -1,8 +1,8 @@
 import L from 'leaflet'
 import 'leaflet-fullscreen'
 
-import { readPB, readQ, MapData } from './utils/read'
-import { tileTypes } from './utils/parsePB'
+import { readPB, readQ } from './utils/read.js'
+import { tileTypes } from './utils/parsePB.js'
 
 /**
  * @typedef {object} Tile
@@ -46,10 +46,10 @@ if (params.has(gZoom)) {
   mapData.zoom = parseInt(params.get(gZoom))
 }
 
-/** @type {L.Map} */
 const map = L.map('map', {
   fullscreenControl: true,
-  scrollWheelZoom: true, // TODO: on pc allow ctrl + scroll
+  scrollWheelZoom: true,
+  touchZoom: true,
   zoom: mapData.zoom ?? 17,
   zoomSnap: 0.1,
   zoomDelta: 0.5,

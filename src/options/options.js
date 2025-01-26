@@ -1,10 +1,11 @@
 import { storage } from 'webextension-polyfill'
+
 import {
   KEY_DISABLED_HOSTS,
   disabledHosts,
   getHostname,
   invertHostState,
-} from '../bg/utils/storage'
+} from '../bg/utils/storage.js'
 
 const table = document.querySelector('.table')
 
