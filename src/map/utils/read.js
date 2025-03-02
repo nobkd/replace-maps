@@ -1,6 +1,6 @@
 import { parsePB, tileTypes } from './parsePB.js'
 import { parseDMS } from './parseDMS.js'
-import { getMapZoom } from './zoom.js'
+import { altitude2zoom } from './zoom.js'
 
 export const nominatimQ = 'https://nominatim.openstreetmap.org/search?limit=1&format=json&q='
 const cidMatch = /^0x[\da-f]+:0x[\da-f]+$/i
@@ -41,13 +41,13 @@ export async function readPB(param) {
   let data = parsePB(param.split('!').slice(1))[0]
 
   /** @type {number[]} */
-  let mapArea = data[0][0]
+  let mapArea = data[0][0].reverse()
   mapData.area = {
-    lat: mapArea[2],
+    lat: mapArea[0],
     lon: mapArea[1],
   }
 
-  mapData.zoom = getMapZoom(mapArea[0])
+  mapData.zoom = altitude2zoom(mapArea[2])
 
   /** @type {any[] | string} */
   let currMarkers = data[1]
@@ -98,6 +98,8 @@ export async function readQ(addr) {
 
   /** @type {LatLon[]} */
   const json = await res.json()
+  if (!json.length) return null
+  
   /** @type {LatLon} */
   const body = json[0]
 

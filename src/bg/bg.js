@@ -23,7 +23,7 @@ function redirect(req) {
   if (req.originUrl && req.url.match(matcher)) {
     if (!disabledHosts.includes(getHostname(req.originUrl))) {
       return {
-        redirectUrl: runtimeMapUrl + '?' + req.url.split('?')[1],
+        redirectUrl: runtimeMapUrl + '?' + req.url.split('?').pop(),
       }
     }
   }
