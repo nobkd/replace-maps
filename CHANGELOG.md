@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.0.8
+
+[compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.7...v0.0.8)
+
+### 🚀 Enhancements
+
+- Map dark mode ([f683e60](https://github.com/nobkd/replace-maps/commit/f683e60))
+
+### 🩹 Fixes
+
+- Manually copy missing static resources ([df1f803](https://github.com/nobkd/replace-maps/commit/df1f803))
+
+### ✅ Tests
+
+- Migrate tests to bun ([952af9e](https://github.com/nobkd/replace-maps/commit/952af9e))
+- Command ([e461f08](https://github.com/nobkd/replace-maps/commit/e461f08))
+
+### ❤️ Contributors
+
+- Nobkd ([@nobkd](http://github.com/nobkd))
+
 ## v0.0.7
 
 [compare changes](https://github.com/nobkd/replace-maps/compare/v0.0.6...v0.0.7)
