@@ -4,17 +4,18 @@ import { updateIcon } from './actionIcon.js'
 
 export const KEY_DISABLED_HOSTS = 'disabled_hosts'
 export const KEY_RESIZABLE_STATE = 'resizable_state'
+export const KEY_THEME = 'theme'
 
 // Listens to changes on the storage. Updates disabled hosts list, if stored list changes
 /** @type {string[]} */
 export let disabledHosts = await getDisabledHosts()
 export let resizableState = await getResizableState()
+export let theme = await getTheme()
 
 storage.local.onChanged.addListener((changes) => {
-  if (KEY_DISABLED_HOSTS in changes) {
-    disabledHosts = changes[KEY_DISABLED_HOSTS].newValue ?? []
-  }
+  if (KEY_DISABLED_HOSTS in changes) disabledHosts = changes[KEY_DISABLED_HOSTS].newValue ?? []
   if (KEY_RESIZABLE_STATE in changes) resizableState = changes[KEY_RESIZABLE_STATE].newValue ?? false
+  if (KEY_THEME in changes) theme = changes[KEY_THEME].newValue ?? 'system'
 })
 
 /**
@@ -27,6 +28,10 @@ async function getDisabledHosts() {
 
 async function getResizableState() {
   return (await storage.local.get(KEY_RESIZABLE_STATE))[KEY_RESIZABLE_STATE] ?? false
+}
+
+async function getTheme() {
+  return (await storage.local.get(KEY_THEME))[KEY_THEME] ?? 'system'
 }
 
 /**
@@ -51,6 +56,12 @@ export async function invertHostState(hostname) {
 export async function setResizableState(state) {
   return (await storage.local.set({
     [KEY_RESIZABLE_STATE]: state
+  }))
+}
+
+export async function setTheme(state) {
+  return (await storage.local.set({
+    [KEY_THEME]: state
   }))
 }
 

@@ -1,8 +1,13 @@
 import L from 'leaflet'
 import 'leaflet-fullscreen'
 
+import { theme, KEY_THEME } from '../bg/utils/storage.js'
 import { readPB, readQ } from './utils/read.js'
 import { tileTypes } from './utils/parsePB.js'
+
+import { storage } from 'webextension-polyfill'
+document.body.dataset.theme = theme
+storage.local.onChanged.addListener((changes) => { if (KEY_THEME in changes) document.body.dataset.theme = theme })
 
 /**
  * @typedef {object} Tile

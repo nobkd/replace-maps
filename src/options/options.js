@@ -8,21 +8,34 @@ import {
   invertHostState,
   resizableState,
   setResizableState,
+  theme,
+  setTheme,
+  KEY_THEME,
 } from '../bg/utils/storage.js'
 
-const resizable = document.getElementById('resizable')
-resizable.addEventListener('change', (e) => {
-  setResizableState(resizable.checked)
+// const resizable = document.getElementById('resizable')
+// resizable.addEventListener('change', (e) => {
+//   setResizableState(resizable.checked)
+// })
+
+const themeEl = document.getElementById('theme')
+themeEl.addEventListener('change', (e) => {
+  setTheme(themeEl.selectedOptions[0].value)
 })
 
 
 const table = document.querySelector('.table')
 
+function setThemeOption() {
+  [...themeEl.querySelectorAll('option')].filter(e => e.value == theme)?.pop()?.setAttribute('selected', true)
+}
+
 /**
  * (Re)Builds the list of diasabled hostnames
  */
 function buildEntries() {
-  resizable.checked = resizableState
+  // resizable.checked = resizableState
+  setThemeOption()
   table.innerHTML = ''
   disabledHosts.forEach(createEntry)
 }
@@ -91,11 +104,9 @@ function getIndex(button) {
 }
 
 storage.local.onChanged.addListener((changes) => {
-  if (KEY_DISABLED_HOSTS in changes) {
-    buildEntries()
-  }
-
-  if (KEY_RESIZABLE_STATE in changes) resizable.checked = resizableState
+  if (KEY_DISABLED_HOSTS in changes) buildEntries()
+  // if (KEY_RESIZABLE_STATE in changes) resizable.checked = resizableState
+  if (KEY_THEME in changes) setThemeOption()
 })
 
 buildEntries()

@@ -42,9 +42,9 @@ hr {
   width: 100%;
 }
 
-.check {
+.items {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto;
 }
 
 .table > * {
