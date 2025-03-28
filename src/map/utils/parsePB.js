@@ -3,6 +3,7 @@
  * @type {TileType[]}
  */
 export const tileTypes = ['roadmap', 'satellite']
+const decoder = new TextDecoder()
 
 /**
  * Takes one bang operator and decodes it.
@@ -47,7 +48,7 @@ function convertType(item) {
       val = tileTypes[tileIndex < tileTypes.length && tileIndex >= 0 ? tileIndex : 0]
       break
     case 'z': // base64 encoded coords
-      val = Uint8Array.fromBase64(item).toString('utf-8')
+      val = decoder.decode(Uint8Array.fromBase64(item))
   }
 
   return [val, type === 'm']

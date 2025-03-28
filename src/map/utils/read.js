@@ -92,7 +92,7 @@ export async function readQ(addr) {
   const uri = encodeURI(nominatimQ + addr)
   const res = await fetch(uri)
 
-  if (!res.ok) {
+  if (!res?.ok) {
     return null
   }
 

@@ -5,6 +5,8 @@ globalThis.fetch = mock()
 
 const input = 'test position'
 const result = [{ lat: '1.1', lon: '1.1' }]
+const zoom = 32.648369576816776
+
 
 /**
  *
@@ -28,7 +30,7 @@ test('read pb: read example', async () => {
     },
     markers: [],
     tile: 'roadmap',
-    zoom: 19,
+    zoom,
   })
 })
 
@@ -50,7 +52,7 @@ test('read pb: pb base64 marker', async () => {
       },
     ],
     tile: 'roadmap',
-    zoom: 19,
+    zoom,
   })
 })
 
@@ -66,7 +68,7 @@ test('read pb: pb id marker', async () => {
     },
     markers: [],
     tile: 'roadmap',
-    zoom: 19,
+    zoom,
   })
 })
 
@@ -91,7 +93,7 @@ test('read pb: pb markers to readQ', async () => {
       },
     ],
     tile: 'roadmap',
-    zoom: 19,
+    zoom,
   })
 })
 
