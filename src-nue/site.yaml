@@ -1,0 +1,5 @@
+dist: ../.dist
+libs: ['@lib']
+globals: ['@view']
+
+title_template: '%s | Replace Maps'

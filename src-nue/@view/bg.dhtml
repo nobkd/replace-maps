@@ -1,0 +1,3 @@
+<div @name="bg">
+  bg
+</div>
