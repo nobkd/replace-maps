@@ -10,6 +10,7 @@
 
     mounted() {
       router.initialize({ root: this.root })
+      router.on('theme disabled_hosts resizable', () => this.update())
     }
   </script>
 </div>

@@ -1,5 +1,6 @@
 dist: ../.dist
 libs: ['@lib']
 globals: ['@global']
+bundle: ['@lib/map-script.js', '@lib/bg-script.js']
 
 title_template: '%s | Replace Maps'
