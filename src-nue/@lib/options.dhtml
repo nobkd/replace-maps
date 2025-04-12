@@ -37,7 +37,7 @@
     </form>
     <ul class="table">
       <li :for="e, i in router.state.disabled_hosts">
-        <span>{e}</span>
+        <p>{e}</p>
         <button @click="rmDisabled(i)">✘</button>
       </li>
     </ul>
@@ -52,9 +52,12 @@
 
     addDisabled() {
       const hosts = router.state.disabled_hosts || []
-      hosts.push(getHostname(this.$refs.host.value))
+      const name = getHostname(this.$refs.host.value)
+      if (!hosts.includes(name)) {
+        hosts.push(name)
+        router.set({ disabled_hosts: hosts })
+      }
       this.$refs.host.value = ''
-      router.set({ disabled_hosts: hosts })
     }
 
     rmDisabled(i) {
