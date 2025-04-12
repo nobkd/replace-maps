@@ -1,0 +1,15 @@
+<script>
+  import { router } from '/@nue/app-router.js'
+</script>
+
+<div @name="bg">
+  bg
+
+  <script>
+    router = router
+
+    mounted() {
+      router.initialize({ root: this.root })
+    }
+  </script>
+</div>

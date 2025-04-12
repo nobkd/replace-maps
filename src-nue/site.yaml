@@ -1,5 +1,5 @@
 dist: ../.dist
 libs: ['@lib']
-globals: ['@view']
+globals: ['@global']
 
 title_template: '%s | Replace Maps'
