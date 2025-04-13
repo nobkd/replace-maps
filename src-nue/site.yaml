@@ -1,6 +1,5 @@
-dist: ../.dist
 libs: ['@lib']
 globals: ['@global']
-bundle: ['@lib/map-script.js', '@lib/bg-script.js']
+bundle: ['map-script.js', 'bg-script.js', 'webext.js']
 
 title_template: '%s | Replace Maps'
