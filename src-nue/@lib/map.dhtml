@@ -1,5 +1,7 @@
 <script>
   import { router } from '/@nue/app-router.js'
+  import { keys, nueStateChange } from '/@lib/helper.js'
+  import L from '/@lib/map-script.js'
 </script>
 
 <div @name="maps">
@@ -9,8 +11,8 @@
     router = router
 
     mounted() {
-      router.initialize({ root: this.root })
-      router.on('theme disabled_hosts resizable', () => this.update())
+      router.on(keys, this.update)
+      nueStateChange(this.update)
     }
   </script>
 </div>

@@ -1,6 +1,4 @@
 ---
 include: [bg]
-title: Background
+title: Background & Action
 ---
-
-[bg]

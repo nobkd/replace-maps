@@ -1,5 +1,5 @@
 libs: ['@lib']
 globals: ['@global']
-bundle: ['map-script.js', 'bg-script.js', 'webext.js']
+bundle: ['map-script.js']
 
 title_template: '%s | Replace Maps'

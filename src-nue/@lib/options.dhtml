@@ -1,11 +1,6 @@
 <script>
   import { router } from '/@nue/app-router.js'
-
-  function getHostname(url) {
-    url = url.replace(/^\w+:\/\//, '')
-    url = url.split(/[\/#\?]/, 1)[0]
-    return url
-  }
+  import { keys, changeHostnameState, nueStateChange } from '/@lib/helper.js'
 </script>
 
 <div @name="options">
@@ -51,12 +46,7 @@
     }
 
     addDisabled() {
-      const hosts = router.state.disabled_hosts || []
-      const name = getHostname(this.$refs.host.value)
-      if (!hosts.includes(name)) {
-        hosts.push(name)
-        router.set({ disabled_hosts: hosts })
-      }
+      changeHostnameState(this.$refs.host.value, true)
       this.$refs.host.value = ''
     }
 
@@ -68,7 +58,8 @@
 
     mounted() {
       router.initialize({ root: this.root })
-      router.on('theme disabled_hosts resizable', () => this.update())
+      router.on(keys, this.update)
+      nueStateChange(this.update)
     }
   </script>
 </div>
