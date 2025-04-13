@@ -1,7 +1,7 @@
 <script>
   import { router } from '/@nue/app-router.js'
   import { keys, nueStateChange } from '/@lib/helper.js'
-  import L from '/@lib/map-script.js'
+  import L from '/@lib/leaflet.js'
 </script>
 
 <div @name="maps">
