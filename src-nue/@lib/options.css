@@ -1,33 +1,61 @@
-html, body, ul { margin: 0; padding: 0; }
+html, body, ul, p { margin: 0; padding: 0; }
 
 * { box-sizing: border-box; font: inherit; }
 
 :root {
-  --text: light-dark(black, #ccc);
-  --bg: light-dark(white, #1c1b22);
+  --text: black;
+  --bg: white;
 
-  --table-even: light-dark(#e3e2eb, #53525b);
-  --table-odd: light-dark(#c3c2cb, #33323b);
+  --table-even: #d3d2db;
+  --table-odd: #c3c2cb;
+
+  @media (prefers-color-scheme: dark) {
+    --text: #ccc;
+    --bg: #1c1b22;
+
+    --table-even: #53525b;
+    --table-odd: #33323b;
+  }
 
   font-family: system-ui, sans-serif;
+  font-size: 14px;
 }
 
 body, main, main > div { width: 100%; min-height: 100vh; }
 
 main > div { color: var(--text); background-color: var(--bg); }
 
+label { font-weight: bold; }
+
+input, button, select { padding: 0.5rem; border-radius: 0.5rem; border-style: solid; border-color: color-mix(in srgb, var(--text), transparent); }
+
 section { padding: 0.5rem; display: grid; gap: 0.75rem; }
 
 .items, .form :is(form, li) {
   display: grid;
-  gap: 0.5rem;
   grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.form {
-  li button { 
-    width: 1.75rem;
-    height: 1.75rem;
-    color: red;
+.form ul {
+  display: grid;
+  gap: 0.25rem;
+
+  li {
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+
+    &:nth-child(even) { background-color: var(--table-even); }
+    &:nth-child(odd) { background-color: var(--table-odd); }
+
+    button { 
+      width: 1.75rem;
+      height: 1.75rem;
+      color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
