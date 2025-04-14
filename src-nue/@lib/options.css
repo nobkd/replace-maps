@@ -1,0 +1,33 @@
+html, body, ul { margin: 0; padding: 0; }
+
+* { box-sizing: border-box; font: inherit; }
+
+:root {
+  --text: light-dark(black, #ccc);
+  --bg: light-dark(white, #1c1b22);
+
+  --table-even: light-dark(#e3e2eb, #53525b);
+  --table-odd: light-dark(#c3c2cb, #33323b);
+
+  font-family: system-ui, sans-serif;
+}
+
+body, main, main > div { width: 100%; min-height: 100vh; }
+
+main > div { color: var(--text); background-color: var(--bg); }
+
+section { padding: 0.5rem; display: grid; gap: 0.75rem; }
+
+.items, .form :is(form, li) {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr auto;
+}
+
+.form {
+  li button { 
+    width: 1.75rem;
+    height: 1.75rem;
+    color: red;
+  }
+}
