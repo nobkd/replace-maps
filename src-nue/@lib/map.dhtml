@@ -4,8 +4,7 @@
   import L from '/@util/leaflet.js'
 </script>
 
-<div @name="maps">
-  map
+<div @name="maps" :data-theme="router.state.theme || 'system'" id="map">
 
   <script>
     router = router
@@ -13,6 +12,8 @@
     mounted() {
       router.on('theme disabled_hosts resizable', this.update)
       nueStateChange(this.update)
+
+      L.map(this.root, {})
     }
   </script>
 </div>
