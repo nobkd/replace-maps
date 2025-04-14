@@ -1,6 +1,6 @@
 <script>
   import { router } from '/@nue/app-router.js'
-  import { keys, changeHostnameState, nueStateChange } from '/@lib/helper.js'
+  import { changeHostnameState, nueStateChange } from '/@util/helper.js'
 </script>
 
 <div @name="options">
@@ -58,7 +58,7 @@
 
     mounted() {
       router.initialize({ root: this.root })
-      router.on(keys, this.update)
+      router.on('theme disabled_hosts resizable', this.update)
       nueStateChange(this.update)
     }
   </script>

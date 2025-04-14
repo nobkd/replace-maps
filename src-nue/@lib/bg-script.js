@@ -1,6 +1,5 @@
-import { changeHostnameState, getHostnameState, runtimeMapUrl, matcher, nueStateChange } from '/@lib/helper.js'
-
-const { browserAction, tabs, webRequest, windows } = browser
+import { changeHostnameState, getHostnameState, nueStateChange } from '/@util/helper.js'
+import { browserAction, tabs, webRequest, windows, runtime } from '/@util/webext.js'
 
 
 /*** action ***/
@@ -35,6 +34,15 @@ function actionClick(tab) {
 
 
 /*** bg ***/
+
+const gLocales = (await (await fetch('/domain-ends.json')).json()).join('|')
+
+const matcher = new RegExp(
+  // TODO: fix regex to fit more patterns
+  `^(https?:\/\/)?(maps\.google\.(${gLocales})\/maps.*\?.*output=embed|(www\.)?google\.(${gLocales})\/maps\/embed.*\?)`
+)
+
+const runtimeMapUrl = runtime.getURL('map.html')
 
 /**
  * Checks if `frames` send a request to Maps.

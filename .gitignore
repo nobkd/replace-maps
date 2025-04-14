@@ -4,3 +4,5 @@ node_modules/
 
 .version-update
 .env
+
+src-nue/@lib/**/*.png

@@ -1,7 +1,7 @@
 <script>
   import { router } from '/@nue/app-router.js'
-  import { keys, nueStateChange } from '/@lib/helper.js'
-  import L from '/@lib/leaflet.js'
+  import { nueStateChange } from '/@util/helper.js'
+  import L from '/@util/leaflet.js'
 </script>
 
 <div @name="maps">
@@ -11,7 +11,7 @@
     router = router
 
     mounted() {
-      router.on(keys, this.update)
+      router.on('theme disabled_hosts resizable', this.update)
       nueStateChange(this.update)
     }
   </script>

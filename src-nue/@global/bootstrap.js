@@ -1,9 +1,9 @@
 import { router } from '/@nue/app-router.js'
-import { keys } from '/@lib/helper.js'
 
 router.configure({
   route: '/:',
-  persistent_params: keys.split(' '),
+  url_params: ['q', 'pb', 'z'],
+  persistent_params: ['theme', 'disabled_hosts', 'resizable'],
 })
 
 router.initialize({
