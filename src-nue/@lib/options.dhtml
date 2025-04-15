@@ -4,46 +4,58 @@
 </script>
 
 <div @name="options">
-  <section class="items">
-    <!--
-    <label for="resizable">Resizable map iFrame:</label>
-    <input id="resizable" type="checkbox">
-    -->
-
-    <label for="theme">Theme:</label>
-    <select @change="setTheme">
-      <option value="system" :selected="!router.state.theme || router.state.theme == 'system'">System</option>
-      <option value="light" :selected="router.state.theme == 'light'">Light</option>
-      <option value="dark" :selected="router.state.theme == 'dark'">Dark</option>
-    </select>
-  </section>
-
+  <options-list />
   <hr>
+  <disabled-list />
+</div>
 
-  <section class="form">
-    <form @submit.prevent="addDisabled">
-      <input
-        ref="host"
-        pattern="^([^\s\.\?#]+\.)+[^\s\.\?#]+$"
-        placeholder="(sub.)domain.tld"
-        required
-      >
-      <button>Disable</button>
-    </form>
-    <ul class="table">
-      <li :for="e, i in router.state.disabled_hosts">
-        <p>{e}</p>
-        <button @click="rmDisabled(i)">✘</button>
-      </li>
-    </ul>
-  </section>
+
+<section @name="options-list" class="items">
+  <!--
+  <label for="resizable">Resizable map iFrame:</label>
+  <input id="resizable" type="checkbox">
+  -->
+
+  <label for="theme">Theme:</label>
+  <select @change="setTheme">
+    <option value="system" :selected="!router.state.theme || router.state.theme == 'system'">System</option>
+    <option value="light" :selected="router.state.theme == 'light'">Light</option>
+    <option value="dark" :selected="router.state.theme == 'dark'">Dark</option>
+  </select>
 
   <script>
     router = router
 
-    setTheme({ target }) {
-      router.set({ theme: target.value })
-    }
+    setTheme({ target }) { router.set({ theme: target.value }) }
+
+    mounted() {
+      router.on('theme resizable', this.update)
+      nueStateChange(this.update)
+     }
+  </script>
+</section>
+
+
+<section @name="disabled-list" class="form">
+  <form @submit.prevent="addDisabled">
+    <input
+      ref="host"
+      pattern="^([^\s\.\?#]+\.)+[^\s\.\?#]+$"
+      placeholder="(sub.)domain.tld"
+      required
+    >
+    <button>Disable</button>
+  </form>
+  
+  <ul class="table">
+    <li :for="e, i in router.state.disabled_hosts">
+      <p>{e}</p>
+      <button @click="rmDisabled(i)">✘</button>
+    </li>
+  </ul>
+
+  <script>
+    router = router
 
     addDisabled() {
       changeHostnameState(this.$refs.host.value, true)
@@ -57,9 +69,8 @@
     }
 
     mounted() {
-      router.initialize({ root: this.root })
-      router.on('theme disabled_hosts resizable', this.update)
+      router.on('disabled_hosts', this.update)
       nueStateChange(this.update)
     }
   </script>
-</div>
+</section>

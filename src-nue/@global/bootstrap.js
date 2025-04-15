@@ -6,6 +6,4 @@ router.configure({
   persistent_params: ['theme', 'disabled_hosts', 'resizable'],
 })
 
-router.initialize({
-  root: document.body
-})
+router.initialize({ root: document.body })
