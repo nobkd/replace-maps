@@ -3,7 +3,7 @@ import { join } from 'path'
 import { mkdirSync } from 'fs'
 
 const indir = 'icons'
-const outdir = 'public/icons'
+const outdir = 'src/icons'
 const svgs = ['icon-grey.svg', 'icon.svg']
 const sizes = [48, 96]
 

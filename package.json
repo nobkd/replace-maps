@@ -19,11 +19,11 @@
     "icons": "bun i --no-save oslllo-svg2 && bun build-icons.js",
     "dev": "run-p -rl build:dev serve:dev",
     "prod": "run-s -l build serve",
-    "build": "nue build -pr src-nue",
-    "build:dev": "nue -r src-nue",
-    "serve": "web-ext run -s src-nue/.dist/prod",
-    "serve:dev": "web-ext run -s src-nue/.dist/dev",
-    "bundle": "web-ext build -s src-nue/.dist/prod -a .out --overwrite-dest -n replace_maps.zip",
+    "build": "nue build -pr src",
+    "build:dev": "nue -r src",
+    "serve": "web-ext run -s src/.dist/prod",
+    "serve:dev": "web-ext run -s src/.dist/dev",
+    "bundle": "web-ext build -s src/.dist/prod -a .dist --overwrite-dest -n replace_maps.zip",
     "release": "bun i --no-save release-it release-it-changelogen && release-it"
   },
   "devDependencies": {

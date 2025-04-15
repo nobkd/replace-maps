@@ -20,7 +20,7 @@ const tiles = {
 }
 
 export async function init(el, { q, z, pb }) {
-  const data = { zoom: z ?? 2, tile: 'roadmap' }
+  const data = { zoom: z ?? 15, tile: 'roadmap' }
 
   /* process params */
   if (pb) Object.assign(data, await readPB(pb))

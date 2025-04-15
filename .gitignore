@@ -1,8 +1,7 @@
 node_modules/
 .dist/
-.out/
 
 .version-update
 .env
 
-src-nue/@lib/**/*.png
+src/@lib/**/*.png
