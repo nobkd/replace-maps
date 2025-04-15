@@ -1,0 +1,18 @@
+<script>
+  import { router } from '/@nue/app-router.js'
+  import { nueStateChange } from '/@util/helper.js'
+  import { init } from '/@util/leaflet.js'
+</script>
+
+<div @name="maps" :data-theme="router.state.theme || 'system'" id="map">
+
+  <script>
+    router = router
+
+    mounted() {
+      router.on('theme resizable', this.update)
+      nueStateChange(this.update)
+      init(this.root, router.state)
+    }
+  </script>
+</div>

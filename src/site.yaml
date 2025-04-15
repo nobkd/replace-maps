@@ -1,0 +1,5 @@
+libs: ['@lib']
+globals: ['@global']
+bundle: ['leaflet.js', 'webext.js']
+
+title_template: '%s | Replace Maps'

@@ -27,14 +27,14 @@ jobs:
         run: bun run bundle
       
       - name: Bundle source
-        run: git archive --format=zip ${{ github.event.release.tag_name }} --output .out/replace_maps_source.zip
+        run: git archive --format=zip ${{ github.event.release.tag_name }} --output .dist/replace_maps_source.zip
 
       - name: Release
         uses: browser-actions/release-firefox-addon@latest
         with:
           addon-id: replace_maps@nobkd.github.io
-          addon-path: .out/replace_maps.zip
-          source-path: .out/replace_maps_source.zip
+          addon-path: .dist/replace_maps.zip
+          source-path: .dist/replace_maps_source.zip
           approval-note: Follow the instructions in AMO-README.md
           release-note: ${{ github.event.release.body }}  # TODO: convert md to html, h1-6 not allowed... Currently ignoring this problem, as the field is needed for publishing
           license: MPL-2.0
