@@ -1,5 +1,5 @@
 import { test, expect, mock } from 'bun:test'
-import { readPB, readQ, nominatimQ } from '../map/utils/read.js'
+import { readPB, readQ, nominatimQ } from '../read.js'
 
 globalThis.fetch = mock()
 
