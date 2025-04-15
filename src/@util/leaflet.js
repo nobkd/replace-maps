@@ -29,6 +29,8 @@ export async function init(el, { q, z, pb }) {
     if (marker) data.markers = [marker]
   }
 
+  data.tile = 'roadmap' // TODO: re-enable satellite in the future again.
+
   /* leaflet */
 
   const map = L.map(el, {
