@@ -4,15 +4,19 @@
   import { init } from '/@util/leaflet.js'
 </script>
 
-<div @name="maps" :data-theme="router.state.theme || 'system'" id="map">
+<div @name="maps" :data-theme="theme || router.state.theme || 'system'" id="map">
 
   <script>
     router = router
+    theme = undefined
 
     mounted() {
-      router.on('theme disabled_hosts resizable', this.update)
+      router.on('theme resizable', this.update)
       nueStateChange(this.update)
-      init(this.root, router.state)
+      init(this.root, router.state).then(data => {
+        // currently prevent satellite from using dark mode...
+        if (data.tile == 'satellite') this.update({ theme: 'light' })
+      })
     }
   </script>
 </div>

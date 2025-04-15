@@ -37,7 +37,7 @@ export async function init(el, { q, z, pb }) {
     touchZoom: true,
     zoomSnap: 0.1,
     zoomDelta: 0.5,
-    minZoom: 0.5,
+    minZoom: 1,
     maxZoom: 18,
     center: [0, 0],
     ...data,
@@ -58,4 +58,6 @@ export async function init(el, { q, z, pb }) {
       mapMarker.bindPopup(marker.label, { closeButton: false }).openPopup()
     })
   }
+
+  return data
 }

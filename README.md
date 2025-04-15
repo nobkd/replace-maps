@@ -27,67 +27,12 @@ As a result, the response is an extension page that contains a [Leaflet](https:/
 
 You can turn the extension off for every hostname by using the browser action button or by using the settings page.
 
-### Extension Flowchart
-
-```mermaid
-flowchart TD
-
-subgraph action [Browser Action]
-actionclick(Action Icon) -->|add / remove| storage[(Disabled Hostnames)]
-settings(Settings Page) -->|add / remove| storage
-end
-
-
-subgraph reqres [Request-Response Sytem]
-    req([Frame Request]) --> url{Matches\nGoogle Maps\nURL?}
-    url -->|no| nomatch([Continue Original Request])
-
-    url -->|yes| match{Hostname\nDisabled?}
-    storage -->|provide hostnames| match
-    match -->|no| res([Redirect to extension map page])
-    match -->|yes| nomatch
-
-end
-
-res -->|use params| params
-
-subgraph dec [Search-Param Decoding]
-    params(Search Params) -->|has q| q([readQ])
-    q -->|with title| pos[Marker/s]
-    params -->|has z| zoom[Zoom]
-
-    params -->|has pb| pb([readPB])
-    pb -->|has| minfo[Marker Info]
-    pb -->|has| marea[Map Area]
-
-    minfo -->|has\nsearch string| q
-    minfo -->|has\n0x...:0x...| cid[CID]
-    cid -.->|unknown usage| pos
-    minfo -->|has\nDMS coords| dms([parseDMS])
-    dms --> pos
-
-    pb -->|has| mtype[Map Type]
-
-    marea -->|has\ncoords| mcoords[Map Coords]
-    marea -->|has\naltitude| mzoom([getMapZoom])
-    mzoom --> zoom
-
-    pos --> mdata[(Map Data)]
-    mtype --> mdata
-    mcoords --> mdata
-    zoom --> mdata
-end
-
-mdata -->|use map data| mview([Load Leaflet Map])
-```
-
 ### Known issues
 
 - Sometimes the zoom level is completely wrong
 - Not working when a website does not use an iFrame / embed
 - Not working when iFrame uses only CIDs
 - No routes, just positions
-- If insufficient information is gathered, the map stays blank
 
 <!-- Badges & Links -->
 [badge-license]: https://img.shields.io/github/license/nobkd/replace-maps
