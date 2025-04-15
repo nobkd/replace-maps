@@ -7,8 +7,8 @@ html, body, div { margin: 0; padding: 0; }
 #map { width: 100%; height: 100vh; }
 
 .leaflet-container {
-  &[data-theme="dark"] { background: #000 !important; }
-  @media (prefers-color-scheme: dark) { &[data-theme="system"] { background: #000 !important; } }
+  &[data-theme="dark"] { background: #111 !important; }
+  @media (prefers-color-scheme: dark) { &[data-theme="system"] { background: #111 !important; } }
 }
 
 .leaflet-layer, .leaflet-popup, .leaflet-tooltip, .leaflet-control, .leaflet-control-layers-toggle, .leaflet-attribution-flag {
