@@ -3,20 +3,13 @@ html, body, ul, p { margin: 0; padding: 0; }
 * { box-sizing: border-box; font: inherit; }
 
 :root {
-  --text: black;
-  --bg: white;
+  --text: light-dark(black, #ccc);
+  --bg: light-dark(white, #1c1b22);
 
-  --table-even: #d3d2db;
-  --table-odd: #c3c2cb;
+  --table-even: light-dark(#d3d2db, #53525b);
+  --table-odd: light-dark(#c3c2cb, #33323b);
 
-  @media (prefers-color-scheme: dark) {
-    --text: #ccc;
-    --bg: #1c1b22;
-
-    --table-even: #53525b;
-    --table-odd: #33323b;
-  }
-
+  color-scheme: light dark;
   font-family: system-ui, sans-serif;
   font-size: 14px;
 }
