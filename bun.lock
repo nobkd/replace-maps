@@ -4,7 +4,7 @@
     "": {
       "name": "replace_maps",
       "dependencies": {
-        "leaflet": "^1.9.4",
+        "leaflet": "^2.0.0-alpha",
         "leaflet-fullscreen": "^1.0.2",
         "webextension-polyfill": "^0.12.0",
       },
@@ -506,7 +506,7 @@
 
     "latest-version": ["latest-version@9.0.0", "", { "dependencies": { "package-json": "^10.0.0" } }, "sha512-7W0vV3rqv5tokqkBAFV1LbR7HPOWzXQDpDgEuib/aJ1jsZZx6x3c2mBI+TJhJzOhkGeaLbCKEHXEXLfirtG2JA=="],
 
-    "leaflet": ["leaflet@1.9.4", "", {}, "sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA=="],
+    "leaflet": ["leaflet@2.0.0-alpha", "", {}, "sha512-RnEJ3UYcuHPFFsDq0e2/QovyIaR3hhwiQpq3wrKnvprA/lsiAJpcxvkRZL3UwQ2xnKm1r2pYcMa+rcSKVwEQag=="],
 
     "leaflet-fullscreen": ["leaflet-fullscreen@1.0.2", "", {}, "sha512-1Yxm8RZg6KlKX25+hbP2H/wnOAphH7hFcvuADJFb4QZTN7uOSN9Hsci5EZpow8vtNej9OGzu59Jxmn+0qKOO9Q=="],
 

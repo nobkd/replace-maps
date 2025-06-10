@@ -32,7 +32,7 @@
     "web-ext": "^8.5.0"
   },
   "dependencies": {
-    "leaflet": "^1.9.4",
+    "leaflet": "^2.0.0-alpha",
     "leaflet-fullscreen": "^1.0.2",
     "webextension-polyfill": "^0.12.0"
   },
