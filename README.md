@@ -23,7 +23,7 @@
 This browser extension intercepts web requests from frames in a page.
 If the request URL matches the syntax to a Google Maps map, the response will be replaced.
 The search parameters of the request are decoded and converted to compatible syntax.
-As a result, the response is an extension page that contains a [Leaflet](https://leafletjs.com/) + [OSM](https://www.openstreetmap.org/) ~~+ [ArgGIS](https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/) map~~.
+As a result, the response is an extension page that contains a [Leaflet](https://leafletjs.com/) + [OSM](https://www.openstreetmap.org/) ~~+ [ArgGIS](https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/)~~ map.
 
 You can turn the extension off for every hostname by using the browser action button or by using the settings page.
 
