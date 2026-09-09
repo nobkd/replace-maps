@@ -15,7 +15,7 @@
     "url": "git+https://github.com/nobkd/replace-maps.git"
   },
   "scripts": {
-    "postinstall": "bun -e \"import {$} from 'bun'; $`cp -r 'node_modules/leaflet/dist/images' 'node_modules/leaflet-fullscreen/dist/fullscreen.png' 'node_modules/leaflet-fullscreen/dist/fullscreen@2x.png' 'src/@lib/'`\"",
+    "postinstall": "bun -e \"import {$} from 'bun'; $`cp -r 'node_modules/leaflet/dist/images' 'src/@lib/'`\"",
     "icons": "bun i --no-save oslllo-svg2 && bun build-icons.js",
     "dev": "run-p -rl build:dev serve:dev",
     "prod": "run-s -l build serve",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "leaflet": "^2.0.0-alpha.1",
-    "leaflet-fullscreen": "^1.0.2",
+    "leaflet.fullscreen": "^5.3.3",
     "webextension-polyfill": "^0.12.0"
   },
   "release-it": {

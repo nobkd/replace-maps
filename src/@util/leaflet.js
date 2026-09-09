@@ -1,5 +1,5 @@
 import L from 'leaflet'
-// import 'leaflet-fullscreen'
+import 'leaflet.fullscreen'
 
 import { readPB, readQ } from '../../map-utils/read.js'
 
@@ -8,7 +8,7 @@ const tiles = {
     layer: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OpenStreetMap.Mapnik
     data: {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      referrerPolicy: 'strict-origin-when-cross-origin',
+      referrerPolicy: true,
     },
   },
   satellite: {
